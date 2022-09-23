@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
-import { GoogleLogin } from 'react-google-login';
+// import { GoogleLogin } from 'react-google-login';
 
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -70,12 +70,12 @@ export const LoginScreen = () => {
 
     }
 
-    const handleGoogleLogin = (response) => {
+    // const handleGoogleLogin = (response) => {
 
-        const { tokenId } = response;
+    //     const { tokenId } = response;
 
-        dispatch(startGoogleLogin(tokenId));
-    }
+    //     dispatch(startGoogleLogin(tokenId));
+    // }
 
 
 
@@ -143,7 +143,7 @@ export const LoginScreen = () => {
 
                 <div id='loginButtonContainer'>
 
-                    <GoogleLogin
+                    {/* <GoogleLogin
                         clientId="263099325228-55asn431srakct5pegne7a7go6hjctq6.apps.googleusercontent.com"
                         render={renderProps => (
                             <button className='google-button' onClick={renderProps.onClick} disabled={renderProps.disabled}>Ingresar con Google<img className='google-button__icon' alt='google_logo' src={google_logo} /></button>
@@ -152,7 +152,7 @@ export const LoginScreen = () => {
                         onSuccess={handleGoogleLogin}
                         onFailure={handleGoogleLogin}
                         cookiePolicy={'single_host_origin'}
-                    />
+                    /> */}
                     <Link className='Link' to="/register"> No tienes una cuenta ? - Registrarse </Link>
                 </div>
 
