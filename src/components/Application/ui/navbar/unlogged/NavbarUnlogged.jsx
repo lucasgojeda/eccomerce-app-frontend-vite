@@ -9,8 +9,8 @@ import { useTheme } from '@mui/material/styles';
 
 import { LargueUnloggedBar } from './LargueUnloggedBar';
 import { SmallUnloggedDrawerBar } from './SmallUnloggedDrawerBar';
-import { startLoadProducts } from '../../../../../actions/products';
 
+import { startLoadProducts } from '../../../../../store/thunks/products';
 
 
 export const NavbarUnlogged = () => {

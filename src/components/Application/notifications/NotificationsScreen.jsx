@@ -15,8 +15,9 @@ import IconButton from '@mui/material/IconButton';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
+import { notificationStartUpdated, startLoadNotifications } from '../../../store/thunks/notifications';
+
 import { styles__notificationsScreen } from '../../../styles/Application/notifications/styles__notificationsScreen';
-import { notificationStartUpdated, startLoadNotifications } from '../../../actions/notifications';
 
 moment.locale('es');
 

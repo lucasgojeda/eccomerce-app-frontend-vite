@@ -22,12 +22,13 @@ import HomeIcon from '@mui/icons-material/Home';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-import { startLogout } from '../../../../../actions/auth';
-// import { clearFilteredProducts } from '../../../../../actions/products';
+import { startLogout } from '../../../../../store/thunks/auth';
+// import { clearFilteredProducts } from '../../../../../store/thunks/products';
+
 import { CategoriesBar } from '../ui/CategoriesBar';
 import { CartMenu } from '../ui/CartMenu';
 import { NotificationsMenu } from '../ui/NotificationsMenu';
-import { DialogLogout } from '../../../../dashboard/ui/alerts/DialogLogout';
+// import { DialogLogout } from '../../../../dashboard/ui/alerts/DialogLogout';
 
 import { styles__largueLoggedBar } from '../../../../../styles/Application/ui/logged/styles__largueLoggedBar';
 
@@ -70,10 +71,10 @@ export const LargueLoggedBar = () => {
   };
   return (
     <Box sx={styles__largueLoggedBar(sm, md, lg, xl)}>
-      <DialogLogout
+      {/* <DialogLogout
         dialogLogoutOpen={dialogLogoutOpen}
         setDialogLogoutOpen={setDialogLogoutOpen}
-      />
+      /> */}
       <AppBar id='appBar'>
         <Toolbar id='toolBar'>
 

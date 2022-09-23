@@ -22,9 +22,17 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
 import { prepareProducts } from '../../../helpers/prepareProducts';
-import { startDeletedCart, startUpdatedCart } from '../../../actions/cart';
-import { activeProduct } from '../../../actions/products';
-import { uiOpenDialogDelete, uiOpenProductModalEdit } from '../../../actions/ui';
+
+import {
+    startDeletedCart,
+    startUpdatedCart
+} from '../../../store/thunks/cart';
+import { activeProduct } from '../../../store/slices/productSlice';
+import {
+    uiOpenDialogDelete,
+    uiOpenProductModalEdit
+} from '../../../store/slices/uiSlice';
+
 import { styles__cardsMainHome } from '../../../styles/Application/home/styles__cardsMainHome';
 
 
@@ -168,7 +176,7 @@ export const CardsMainHome = () => {
                             key={e.id}
                             ref={refs?.current[i]}
                             sx={styles__cardsMainHome(sm, md, lg, xl, conditionHover, e, i, cartProducts, role)}
-                            >
+                        >
                             <div id='iconsContainer'>
 
                                 <Button
@@ -218,7 +226,7 @@ export const CardsMainHome = () => {
                                             aria-haspopup="true"
                                             onClick={(event) => handleMenu(event, e)}
                                             color="inherit"
-                                            
+
                                         >
                                             <MoreVertIcon />
                                         </IconButton>

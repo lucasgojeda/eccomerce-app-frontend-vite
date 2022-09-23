@@ -16,9 +16,10 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import Badge from '@mui/material/Badge';
 import { useTheme } from '@mui/material/styles';
 
+import { startDeletedCart } from '../../../../../store/thunks/cart';
 
-import { startDeletedCart } from '../../../../../actions/cart';
 import { styles__cartMenu } from '../../../../../styles/Application/ui/ui/styles__cartMenu';
+
 
 export const CartMenu = () => {
 

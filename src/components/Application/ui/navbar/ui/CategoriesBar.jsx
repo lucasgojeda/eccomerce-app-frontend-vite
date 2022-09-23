@@ -13,9 +13,10 @@ import { Box, Container } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 
+import { startLoadProducts } from '../../../../../store/thunks/products';
 
 import { styles__categoriesBar } from '../../../../../styles/Application/ui/ui/styles__categoriesBar';
-import { startLoadProducts } from '../../../../../actions/products';
+
 
 export const CategoriesBar = () => {
 

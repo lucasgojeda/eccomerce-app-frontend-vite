@@ -14,12 +14,16 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
 
-import google_logo from '../../../assets/google_logo.png';
+import {
+    startGoogleLogin,
+    StartLogin
+} from '../../../store/thunks/auth';
 
-import { startGoogleLogin, StartLogin } from '../../../actions/auth';
 import { useForm } from '../../../hooks/useForm';
+
 import { styles__login } from '../../../styles/Application/auth/styles__login';
 
+import google_logo from '../../../assets/google_logo.png';
 
 
 export const LoginScreen = () => {

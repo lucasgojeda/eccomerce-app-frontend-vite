@@ -10,7 +10,7 @@ import { useTheme } from '@mui/material/styles';
 import { LargueLoggedBar } from './LargueLoggedBar';
 import { SmallLoggedDrawerBar } from './SmallLoggedDrawerBar';
 
-import { startLoadProducts } from '../../../../../actions/products';
+import { startLoadProducts } from '../../../../../store/thunks/products';
 
 
 export const NavbarLogged = () => {

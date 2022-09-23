@@ -31,7 +31,8 @@ import MailIcon from '@mui/icons-material/Mail';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 
-import { startLogout } from '../../../../../actions/auth';
+import { startLogout } from '../../../../../store/thunks/auth';
+import { startLoadProducts } from '../../../../../store/thunks/products';
 
 import {
     AppBar,
@@ -41,7 +42,6 @@ import {
     StyledInputBase,
     styles__smallUnloggedDrawerBar
 } from '../../../../../styles/Application/ui/unlogged/styles__smallUnloggedDrawerBar';
-import { startLoadProducts } from '../../../../../actions/products';
 
 
 export const SmallUnloggedDrawerBar = () => {

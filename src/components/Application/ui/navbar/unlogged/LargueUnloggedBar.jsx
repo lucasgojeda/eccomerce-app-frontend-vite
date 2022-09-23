@@ -22,8 +22,9 @@ import HomeIcon from '@mui/icons-material/Home';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-import { startLogout } from '../../../../../actions/auth';
 import { CategoriesBar } from '../ui/CategoriesBar';
+
+import { startLogout } from '../../../../../store/thunks/auth';
 
 import { styles__largueUnloggedBar } from '../../../../../styles/Application/ui/unlogged/styles__largueUnloggedBar';
 

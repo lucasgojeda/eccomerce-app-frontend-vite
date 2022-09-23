@@ -21,13 +21,15 @@ import { useLocation, useNavigate } from 'react-router';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+
+import { startLoadProducts } from '../../../store/thunks/products';
+
 import {
     Search,
     SearchIconWrapper,
     StyledInputBase,
     styles__home
 } from '../../../styles/Application/home/styles__home';
-import { startLoadProducts } from '../../../actions/products';
 
 
 export const Home = () => {

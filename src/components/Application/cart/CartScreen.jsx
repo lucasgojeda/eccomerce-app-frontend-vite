@@ -15,10 +15,11 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
 import { Footer } from '../ui/Footer';
-import { DialogBuy } from '../../dashboard/ui/alerts/DialogBuy';
+// import { DialogBuy } from '../../dashboard/ui/alerts/DialogBuy';
 
-import { salesStartAddNew } from '../../../actions/sales';
-import { startDeletedCart } from '../../../actions/cart';
+import { salesStartAddNew } from '../../../store/thunks/sales';
+import { startDeletedCart } from '../../../store/thunks/cart';
+
 import { styles__cartScreen } from '../../../styles/Application/cart/styles__cartScreen';
 
 
@@ -94,11 +95,11 @@ export const CartScreen = () => {
 
     return (
         <Box sx={styles__cartScreen(sm, md, lg, xl, widthContainer)} >
-            <DialogBuy
+            {/* <DialogBuy
                 dialogBuyOpen={dialogBuyOpen}
                 setDialogBuyOpen={setDialogBuyOpen}
                 cart={cart}
-            />
+            /> */}
             <Container id='productsContainer'>
 
                 <>

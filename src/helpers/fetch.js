@@ -6,7 +6,7 @@ export const fetchSinToken = (endPoint, data, method = 'GET') => {
 
     const url = `${baseUrl}/${endPoint} `; // localhost:3030/api/
 
-    console.log(url)
+    // console.log(url)
 
     try {
 
@@ -31,7 +31,7 @@ export const fetchConToken = (endPoint, data, method = 'GET') => {
 
     const url = `${baseUrl}/${endPoint} `; // localhost:3030/api/
 
-    console.log(url)
+    // console.log(url)
 
     const token = localStorage.getItem('token');
 

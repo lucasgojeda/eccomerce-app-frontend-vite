@@ -36,10 +36,12 @@ import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 import { Container } from '@mui/material';
 
-import { startLogout } from '../../../../../actions/auth';
+import { startLogout } from '../../../../../store/thunks/auth';
+import { startLoadProducts } from '../../../../../store/thunks/products';
+
 import { CartMenu } from '../ui/CartMenu';
 import { NotificationsMenu } from '../ui/NotificationsMenu';
-import { DialogLogout } from '../../../../dashboard/ui/alerts/DialogLogout';
+// import { DialogLogout } from '../../../../dashboard/ui/alerts/DialogLogout';
 
 import {
     AppBar,
@@ -49,7 +51,7 @@ import {
     StyledInputBase,
     styles__smallLoggedDrawerBar
 } from '../../../../../styles/Application/ui/logged/styles__smallLoggedDrawerBar';
-import { startLoadProducts } from '../../../../../actions/products';
+
 
 
 export const SmallLoggedDrawerBar = () => {
@@ -142,10 +144,10 @@ export const SmallLoggedDrawerBar = () => {
     return (
         <Box sx={styles__smallLoggedDrawerBar(sm, md, lg, xl)}>
 
-            <DialogLogout
+            {/* <DialogLogout
                 dialogLogoutOpen={dialogLogoutOpen}
                 setDialogLogoutOpen={setDialogLogoutOpen}
-            />
+            /> */}
 
 
             <AppBar

@@ -14,11 +14,17 @@ import { Button, Divider, Typography } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-import google_logo from '../../../assets/google_logo.png';
+import {
+    startGoogleLogin,
+    StartLogin,
+    startRegister
+} from '../../../store/thunks/auth';
 
-import { startGoogleLogin, StartLogin, startRegister } from '../../../actions/auth';
 import { useForm } from '../../../hooks/useForm';
+
 import { styles__register } from '../../../styles/Application/auth/styles__register';
+
+import google_logo from '../../../assets/google_logo.png';
 
 
 export const RegisterScreen = () => {
@@ -135,29 +141,29 @@ export const RegisterScreen = () => {
                 </Container>
 
                 <div id='registerButtonContainer'>
-                <Container>
-                    <Button
-                        type="submit"
-                        id="submitButton"
-                        variant="outlined"
-                        onClick={handleRegister}
-                    >Registrarse</Button>
-                </Container>
+                    <Container>
+                        <Button
+                            type="submit"
+                            id="submitButton"
+                            variant="outlined"
+                            onClick={handleRegister}
+                        >Registrarse</Button>
+                    </Container>
                 </div>
 
                 <div id='loginButtonContainer'>
-                <GoogleLogin
-                    clientId="263099325228-55asn431srakct5pegne7a7go6hjctq6.apps.googleusercontent.com"
-                    render={renderProps => (
-                        <button className='google-button' onClick={renderProps.onClick} disabled={renderProps.disabled}>Ingresar con Google<img className='google-button__icon' alt='google_logo' src={google_logo} /></button>
-                    )}
-                    buttonText="Login"
-                    onSuccess={handleGoogleLogin}
-                    onFailure={handleGoogleLogin}
-                    cookiePolicy={'single_host_origin'}
-                />
+                    <GoogleLogin
+                        clientId="263099325228-55asn431srakct5pegne7a7go6hjctq6.apps.googleusercontent.com"
+                        render={renderProps => (
+                            <button className='google-button' onClick={renderProps.onClick} disabled={renderProps.disabled}>Ingresar con Google<img className='google-button__icon' alt='google_logo' src={google_logo} /></button>
+                        )}
+                        buttonText="Login"
+                        onSuccess={handleGoogleLogin}
+                        onFailure={handleGoogleLogin}
+                        cookiePolicy={'single_host_origin'}
+                    />
 
-                <Link className='Link' to="/login"> Ya tienes una cuenta ? - Ingresar </Link>
+                    <Link className='Link' to="/login"> Ya tienes una cuenta ? - Ingresar </Link>
                 </div>
 
             </Box>

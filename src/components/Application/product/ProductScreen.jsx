@@ -18,12 +18,15 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
 import { Footer } from '../ui/Footer';
-import { startDeletedCart, startUpdatedCart } from '../../../actions/cart';
-import { uiOpenDialogDelete, uiOpenProductModalEdit } from '../../../actions/ui';
-import { activeProduct } from '../../../actions/products';
-import { styles__productScreen } from '../../../styles/Application/product/styles__productScreen';
 import { ProductModalView } from './ProductModalView';
 import { ProductTabNav } from './ProductTabNav';
+
+import { startDeletedCart, startUpdatedCart } from '../../../store/thunks/cart';
+import { uiOpenDialogDelete, uiOpenProductModalEdit } from '../../../store/slices/uiSlice';
+import { activeProduct } from '../../../store/slices/productSlice';
+
+import { styles__productScreen } from '../../../styles/Application/product/styles__productScreen';
+
 
 
 export const ProductScreen = () => {

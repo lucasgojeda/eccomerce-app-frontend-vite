@@ -1,14 +1,31 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
+import { configureStore } from '@reduxjs/toolkit';
 
-import { rootReducer } from '../reducers/rootReducer';
+import { authSlice } from './slices/authSlice';
+import { binSlice } from './slices/binSlice';
+import { cartSlice } from './slices/cartSlice';
+import { categoriesSlice } from './slices/categoriesSlice';
+import { dashboardSlice } from './slices/dashboardSlice';
+import { notificationsSlice } from './slices/notificationsSlice';
+import { productSlice } from './slices/productSlice';
+import { recordsSlice } from './slices/recordsSlice';
+import { saleSlice } from './slices/saleSlice';
+import { uiSlice } from './slices/uiSlice';
+import { userSlice } from './slices/userSlice';
 
 
-const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
-
-export const store = createStore(
-    rootReducer,
-    composeEnhancers(
-        applyMiddleware(thunk)
-    )
-);
+export const store = configureStore({
+  reducer: {
+    
+      auth: authSlice.reducer,
+      product: productSlice.reducer,
+      ui: uiSlice.reducer,
+      users: userSlice.reducer,
+      sales: saleSlice.reducer,
+      records: recordsSlice.reducer,
+      notifications: notificationsSlice.reducer,
+      dashboard: dashboardSlice.reducer,
+      cart: cartSlice.reducer,
+      categories: categoriesSlice.reducer,
+      bin: binSlice.reducer,
+  },
+})

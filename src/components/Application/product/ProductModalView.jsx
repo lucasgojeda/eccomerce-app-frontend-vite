@@ -13,6 +13,7 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+
 import { styles__productModalView } from '../../../styles/Application/product/styles__productModalView';
 
 export const ProductModalView = ({ modalViewOpen,

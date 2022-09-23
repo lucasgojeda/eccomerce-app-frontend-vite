@@ -11,6 +11,7 @@ import IconButton from '@mui/material/IconButton';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Badge from '@mui/material/Badge';
 import { useTheme } from '@mui/material/styles';
+
 import { styles__notificationsMenu } from '../../../../../styles/Application/ui/ui/styles__notificationsMenu';
 
 
@@ -21,11 +22,11 @@ export const NotificationsMenu = () => {
 
     const { notifications } = useSelector(state => state.notifications);
 
-    var badgeNotifications = (notifications.filter( n => n.status)).length;
+    var badgeNotifications = (notifications?.filter( n => n.status))?.length;
     
     useEffect(() => {
     
-        badgeNotifications = (notifications.filter( n => n.status)).length;
+        badgeNotifications = (notifications?.filter( n => n.status))?.length;
     }, [notifications]);
 
 
