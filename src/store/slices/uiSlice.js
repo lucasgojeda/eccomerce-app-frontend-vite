@@ -25,7 +25,36 @@ export const uiSlice = createSlice({
   reducers: {
     uiLogout: (state) => {
 
-      // state = initialState;
+      state.modalProductAdd = false;
+      state.modalProductEdit = false;
+      state.addProductProgress = false;
+      state.modalUserAdd = false;
+      state.modalUserEdit = false;
+      state.successAlert = {
+        status: false,
+        title: ''
+      };
+      state.errorAlert = {
+        status: false,
+        title: ''
+      };
+      state.progressBackdrop = { status: false };
+      state.dialogDelete = false;
+      state.dialogFields = { status: false };
+      state.recordModal = false;
+      state.categoriesModal = false;
+      state.tableLoading = false;
+    },
+
+    /* TABLES */
+
+    uiStartTableLoading: (state) => {
+
+      state.tableLoading = true;
+    },
+    uiStopTableLoading: (state) => {
+
+      state.tableLoading = false;
     },
 
     /* ALERTS */
@@ -147,8 +176,12 @@ export const uiSlice = createSlice({
 })
 
 export const {
-  
+
   uiLogout,
+
+  /* TABLES */
+  uiStartTableLoading,
+  uiStopTableLoading,
 
   /*ALERTS */
   uiOpenSuccessAlert,

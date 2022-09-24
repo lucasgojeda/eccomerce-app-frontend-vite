@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+
 export const notificationsSlice = createSlice({
   name: 'notifications',
   initialState: {
@@ -14,12 +15,10 @@ export const notificationsSlice = createSlice({
     },
     addSale_user: (state, action) => {
 
-      state.sales_user = sortArray((action.payload.user._id === state.notifications[0].user) && state.sales_user.map(
-        e => (e._id === action.payload._id) ? action.payload : e
-      ), {
-        by: 'date_sended',
-        order: 'desc'
-      });
+      state.sales_user = (action.payload.user._id === state.notifications[0].user) && state.sales_user.map(
+        e => (e._id === action.payload._id) ? action.payload : e)
+
+      state.sales_user.sort((a, b) => a.date_sended - b.date_sended);
     },
     addNotification: (state, action) => {
 
@@ -36,7 +35,8 @@ export const notificationsSlice = createSlice({
     },
     notificationsLogout: (state) => {
 
-      // initialState;
+      state.notifications = [];
+      state.sales_user = [];
     },
 
   },

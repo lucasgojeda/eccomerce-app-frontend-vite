@@ -6,6 +6,7 @@ export const authSlice = createSlice({
     checking: true,
     uid: null,
     name: null,
+    role: null,
   },
   reducers: {
     authLogin: (state, action) => {
@@ -13,6 +14,7 @@ export const authSlice = createSlice({
       state.checking = false;
       state.uid = action.payload.uid;
       state.name = action.payload.name;
+      state.role = action.payload.role;
     },
     authCheckingFinish: (state) => {
 
@@ -22,6 +24,7 @@ export const authSlice = createSlice({
 
       state.uid = null;
       state.name = null;
+      state.role = null;
       state.checking = false;
     },
 

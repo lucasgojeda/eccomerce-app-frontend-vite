@@ -4,7 +4,7 @@ import { authSlice } from './slices/authSlice';
 import { binSlice } from './slices/binSlice';
 import { cartSlice } from './slices/cartSlice';
 import { categoriesSlice } from './slices/categoriesSlice';
-import { dashboardSlice } from './slices/dashboardSlice';
+import { staticsSlice } from './slices/staticsSlice';
 import { notificationsSlice } from './slices/notificationsSlice';
 import { productSlice } from './slices/productSlice';
 import { recordsSlice } from './slices/recordsSlice';
@@ -23,7 +23,7 @@ export const store = configureStore({
       sales: saleSlice.reducer,
       records: recordsSlice.reducer,
       notifications: notificationsSlice.reducer,
-      dashboard: dashboardSlice.reducer,
+      statics: staticsSlice.reducer,
       cart: cartSlice.reducer,
       categories: categoriesSlice.reducer,
       bin: binSlice.reducer,

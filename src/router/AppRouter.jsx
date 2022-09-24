@@ -10,11 +10,12 @@ import {
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 
-import { LoginScreen } from '../components/Application/auth/LoginScreen';
-import { RegisterScreen } from '../components/Application/auth/RegisterScreen';
-import { Home } from '../components/Application/home/Home';
-import { NavbarLogged } from '../components/Application/ui/navbar/logged/NavbarLogged';
-import { NavbarUnlogged } from '../components/Application/ui/navbar/unlogged/NavbarUnlogged';
+// import { LoginScreen } from '../components/Application/auth/LoginScreen';
+// import { RegisterScreen } from '../components/Application/auth/RegisterScreen';
+// import { Home } from '../components/Application/home/Home';
+// import { NavbarLogged } from '../components/Application/ui/navbar/logged/NavbarLogged';
+// import { NavbarUnlogged } from '../components/Application/ui/navbar/unlogged/NavbarUnlogged';
+// import { ProductScreen } from '../components/Application/product/ProductScreen';
 
 import { startChecking } from '../store/thunks/auth';
 import { startLoadSales } from '../store/thunks/sales';
@@ -25,13 +26,19 @@ import { startLoadProducts } from '../store/thunks/products';
 
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
-import { ProductScreen } from '../components/Application/product/ProductScreen';
+import { LoginPage, RegisterPage } from '../components/auth';
+import { NavbarLogged, NavbarUnlogged, ProgressBackdrop } from '../components/ui';
+import { HomePage } from '../components/home';
+import { CartPage } from '../components/cart';
+import { NotificationsPage } from '../components/notifications';
+import { ProductPage } from '../components/product';
+
 
 // import { ErrorAlert } from '../components/dashboard/ui/alerts/ErrorAlert';
 // import { SuccessAlert } from '../components/dashboard/ui/alerts/SuccessAlert';
-import { ProgressBackdrop } from '../components/dashboard/ui/progress/ProgressBackdrop';
-import { CartScreen } from '../components/Application/cart/CartScreen';
-import { NotificationsScreen } from '../components/Application/notifications/NotificationsScreen';
+// import { ProgressBackdrop } from '../components/dashboard/ui/progress/ProgressBackdrop';
+// import { CartScreen } from '../components/Application/cart/CartScreen';
+// import { NotificationsScreen } from '../components/Application/notifications/NotificationsScreen';
 
 
 
@@ -82,7 +89,7 @@ export const AppRouter = () => {
                 <Route path="login" element={
                     <PublicRoute isAutenticated={!!uid}>
                         <>
-                            <LoginScreen />
+                            <LoginPage />
                         </>
                     </PublicRoute>
                 } />
@@ -90,7 +97,7 @@ export const AppRouter = () => {
                 <Route path="register" element={
                     <PublicRoute isAutenticated={!!uid}>
                         <>
-                            <RegisterScreen />
+                            <RegisterPage />
                         </>
                     </PublicRoute>
                 } />
@@ -99,7 +106,7 @@ export const AppRouter = () => {
                     <>
 
                         {(uid) ? <NavbarLogged /> : <NavbarUnlogged />}
-                        <Home />
+                        <HomePage />
                     </>
 
                 } />
@@ -109,7 +116,7 @@ export const AppRouter = () => {
                     <PrivateRoute isAutenticated={!!uid}>
 
                         {(uid) ? <NavbarLogged /> : <NavbarUnlogged />}
-                        <CartScreen />
+                        <CartPage />
 
                     </PrivateRoute>
                 } />
@@ -118,7 +125,7 @@ export const AppRouter = () => {
                     <PrivateRoute isAutenticated={!!uid}>
 
                         {(uid) ? <NavbarLogged /> : <NavbarUnlogged />}
-                        <NotificationsScreen />
+                        <NotificationsPage />
 
                     </PrivateRoute>
                 } />
@@ -126,7 +133,7 @@ export const AppRouter = () => {
                 <Route path="/product/:id" element={
                     <>
                         {(uid) ? <NavbarLogged /> : <NavbarUnlogged />}
-                        <ProductScreen />
+                        <ProductPage />
                     </>
 
                 } />

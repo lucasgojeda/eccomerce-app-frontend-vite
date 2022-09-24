@@ -7,7 +7,7 @@ export const productSlice = createSlice({
     activeProduct: false,
   },
   reducers: {
-    activeProduct: (state, action) => {
+    setActiveProduct: (state, action) => {
 
       state.activeProduct = action.payload;
     },
@@ -49,14 +49,15 @@ export const productSlice = createSlice({
     },
     productsLogout: (state) => {
 
-      // initialState
+      state.products = [];
+      state.activeProduct = false;
     },
 
   },
 })
 
 export const {
-  activeProduct,
+  setActiveProduct,
   clearActiveProduct,
   clearFilteredProducts,
   loadProducts,

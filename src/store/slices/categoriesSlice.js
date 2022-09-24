@@ -4,6 +4,7 @@ export const categoriesSlice = createSlice({
   name: 'categories',
   initialState: {
     categories: [],
+    activeCategory: false
   },
   reducers: {
     loadCategories: (state, action) => {
@@ -29,6 +30,19 @@ export const categoriesSlice = createSlice({
         e => (e._id !== action.payload._id) && e
       );
     },
+    setActiveCategory: (state, action) => {
+
+      state.activeCategory = { ...action.payload };
+    },
+    clearActiveCategory: (state) => {
+
+      state.activeCategory = false;
+    },
+    logoutCategories: (state) => {
+
+      state.categories = [];
+      state.activeCategory = false;
+    }
   },
 })
 
@@ -36,4 +50,7 @@ export const {
   loadCategories,
   addNewCategory,
   updateCategory,
+  logoutCategories,
+  setActiveCategory,
+  clearActiveCategory,
   deleteCategory, } = categoriesSlice.actions;

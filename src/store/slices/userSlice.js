@@ -3,11 +3,11 @@ import { createSlice } from '@reduxjs/toolkit';
 export const userSlice = createSlice({
   name: 'users',
   initialState: {
-    products: [],
-    activeProduct: false,
+    users: [],
+    activeUser: false,
   },
   reducers: {
-    activeUser: (state, action) => {
+    setActiveUser: (state, action) => {
 
       state.activeUser = { ...action.payload };
     },
@@ -15,13 +15,14 @@ export const userSlice = createSlice({
 
       state.activeUser = false;
     },
-    loadUsers: (state) => {
+    loadUsers: (state, action) => {
 
       state.users = action.payload;
     },
     usersLogout: (state) => {
 
-      // initialState
+      state.users = [];
+      state.activeUser = false;
     },
     addUser: (state, action) => {
 
@@ -48,7 +49,7 @@ export const userSlice = createSlice({
 })
 
 export const {
-  activeUser,
+  setActiveUser,
   clearActiveUser,
   loadUsers,
   usersLogout,
