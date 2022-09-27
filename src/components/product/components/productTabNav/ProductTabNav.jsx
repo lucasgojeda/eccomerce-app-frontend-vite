@@ -6,7 +6,9 @@ import Box from '@mui/material/Box';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-import { styles__productTabNav } from '../../../styles/Application/product/styles__productTabNav';
+import { styles__productTabNav } from '../../../../styles/Application/product/styles__productTabNav';
+
+import './ProductTabNav.scss';
 
 
 export const ProductTabNav = ({ setValue, value }) => {

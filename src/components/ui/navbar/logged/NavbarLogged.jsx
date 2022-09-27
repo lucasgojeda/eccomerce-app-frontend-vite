@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 
 import queryString from 'query-string';
@@ -10,36 +9,10 @@ import { useTheme } from '@mui/material/styles';
 import { LargueLoggedBar } from './LargueLoggedBar';
 import { SmallLoggedDrawerBar } from './SmallLoggedDrawerBar';
 
-import { startLoadProducts } from '../../../../store/thunks/products';
+import { useProductsStore } from '../../../../hooks';
 
 
 export const NavbarLogged = () => {
-
-  const dispatch = useDispatch();
-  const location = useLocation();
-
-  const { products } = useSelector(state => state.product);
-
-  const { q = '' } = queryString.parse(location.search);
-  const { c = '' } = queryString.parse(location.search);
-  let { page: pagePath = 1 } = queryString.parse(location.search);
-
-  useEffect(() => {
-
-
-    (!products)
-
-      ? dispatch(startLoadProducts(q, Number(pagePath)))
-
-      : ((c !== '')
-
-        ? dispatch(startLoadProducts(c, Number(pagePath)))
-
-        : dispatch(startLoadProducts(q, Number(pagePath)))
-      )
-
-  }, [location.search]);
-
 
   const theme = useTheme();
   const sm = useMediaQuery(theme.breakpoints.down('sm'));

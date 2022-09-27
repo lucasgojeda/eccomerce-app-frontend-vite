@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router';
 
 import queryString from 'query-string';
@@ -22,18 +21,19 @@ import HomeIcon from '@mui/icons-material/Home';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-import { CategoriesBar } from '../../../ui';
+import { useAuthStore } from '../../../../hooks';
 
-import { startLogout } from '../../../../store/thunks/auth';
+import { CategoriesBar } from '../../../ui';
 
 import { styles__largueUnloggedBar } from '../../../../styles/Application/ui/unlogged/styles__largueUnloggedBar';
 
 
 export const LargueUnloggedBar = () => {
 
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
+
+    const { startLogout } = useAuthStore();
 
     const { q = '' } = queryString.parse(location.search);
     const { c = '' } = queryString.parse(location.search);

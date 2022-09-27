@@ -22,6 +22,7 @@ import { Footer } from '../../ui';
 
 import {
     useAuthStore,
+    useCategoriesStore,
     useProductsStore,
     useStaticsStore
 } from '../../../hooks';
@@ -32,6 +33,10 @@ import {
     StyledInputBase,
     styles__home
 } from '../../../styles/Application/home/styles__home';
+
+import './HomePage.scss';
+import { BestProducts } from '../components/bestProducts/BestProducts';
+import { CategoriesSection } from '../components/categoriesSection/CategoriesSection';
 
 
 export const HomePage = () => {
@@ -46,18 +51,11 @@ export const HomePage = () => {
         startLoadProducts
     } = useProductsStore();
 
+    const { categories } = useCategoriesStore();
+
     const { dashboardProducts } = useStaticsStore();
 
-    var type = '';
 
-    const { q = '' } = queryString.parse(location.search);
-    const { c = '' } = queryString.parse(location.search);
-    let { page: pagePath = 1 } = queryString.parse(location.search);
-
-    const [searchText, setSearchText] = useState(q);
-    const [flagSearch, setFlagSearch] = useState(0);
-    const [filterBy, setFilterBy] = useState('price');
-    const [orderBy, setOrderBy] = useState('asc');
 
     const theme = useTheme();
     const sm = useMediaQuery(theme.breakpoints.down('sm'));
@@ -65,160 +63,31 @@ export const HomePage = () => {
     const xl = useMediaQuery(theme.breakpoints.down('xl'));
     const lg = useMediaQuery(theme.breakpoints.down('lg'));
 
+    var type = '';
+    const { q = '' } = queryString.parse(location.search);
+    const { c = '' } = queryString.parse(location.search);
+    let { page: pagePath = 1 } = queryString.parse(location.search);
+
+    const [searchText, setSearchText] = useState(q);
+    const [flagSearch, setFlagSearch] = useState(0);
+    const [filterBy, setFilterBy] = useState('price');
+    const [orderBy, setOrderBy] = useState('desc');
 
 
-    // Filters and search
-    useEffect(() => {
-
-        startLoadProducts(filterBy, orderBy, searchText, pagePath);
-
-    }, [filterBy, orderBy, flagSearch, pagePath]);
-
-
-    const handlePaginationChange = (e, value) => {
-
-        console.log(value)
-
-        let url = '';
-
-        if (c !== '') {
-
-            url += `?c=${c}`
-        } else {
-
-            if (q !== '') {
-
-                url += `?q=${q}`
-            }
-        }
-
-        (!url.includes('?')) ? url += `?page=${value}` : url += `&page=${value}`;
-
-        navigate(url)
-    }
-
-    // Search
-    const handleInputChange = (e) => {
-        e.preventDefault();
-        setSearchText(e.target.value)
-    }
-
-    const handleSearch = (e) => {
-        e.preventDefault();
-
-        if (searchText !== '') {
-
-            setFlagSearch(flagSearch + 1);
-        }
-
-
-    }
-
-    //Filter
-    const handleOrderByChange = (e) => {
-        e.preventDefault();
-
-        setOrderBy(e.target.value)
-    }
 
 
 
     return (
-        <>
+        <div className='container_HomePage'>
 
-            {
-                (dashboardProducts)
-                    ?
-                    <>
-                        <Container sx={styles__home(sm, md, lg, xl)}>
+            <BestProducts />
 
-                            {
-                                (!sm)
-                                &&
-                                <Container id='containerFilterAndSearch'>
-                                    <Container id='filterContainer'>
-                                        <FormControl id="FormControl">
+            <CategoriesSection />
 
-                                            <InputLabel id="demo-simple-select-label">Ordenar por</InputLabel>
+            {/* <div className='containerCards'>
+                <Cards />
+            </div> */}
 
-                                            <Select
-                                                labelId="demo-simple-select-label"
-                                                id="demo-simple-select"
-                                                value={orderBy}
-                                                defaultValue={'ascendent'}
-                                                label="orderBy"
-                                                onChange={handleOrderByChange}
-                                            >
-                                                <MenuItem value={'asc'}>Menor precio</MenuItem>
-                                                <MenuItem value={'desc'}>Mayor precio</MenuItem>
-                                            </Select>
-
-                                        </FormControl>
-                                    </Container>
-
-                                    <Box id='containerSearch'>
-
-
-                                        <Search>
-                                            <SearchIconWrapper>
-                                                <SearchIcon />
-                                            </SearchIconWrapper>
-
-                                            <form onSubmit={handleSearch}>
-                                                <StyledInputBase
-                                                    onChange={handleInputChange}
-                                                    type='text'
-                                                    name='searchText'
-                                                    autoComplete='off'
-                                                    value={searchText}
-                                                />
-                                            </form>
-
-                                            {
-                                                (searchText !== '')
-                                                &&
-                                                <IconButton
-                                                    id='closeIcon'
-                                                    onClick={() => setSearchText('')}
-                                                    color="inherit"
-                                                >
-                                                    <CloseIcon />
-                                                </IconButton>
-                                            }
-                                        </Search>
-                                    </Box>
-                                </Container>
-                            }
-
-                            <Box id='containerCards'>
-
-                                <Cards />
-
-                            </Box>
-                            {
-                                (products && products?.length !== 0)
-                                &&
-                                <Stack
-                                    id='stack'
-                                    spacing={2}>
-                                    <Pagination
-                                        aria-current='page'
-                                        defaultPage={1}
-                                        page={Number(pagePath)}
-                                        count={Math.ceil(parseInt(dashboardProducts) / 8)}
-                                        onChange={handlePaginationChange}
-
-                                    />
-                                </Stack>
-                            }
-
-                        </Container>
-                        <Footer />
-                    </>
-                    :
-                    <>
-                    </>
-            }
-        </>
+        </div>
     );
 };

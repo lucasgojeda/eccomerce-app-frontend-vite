@@ -1,16 +1,16 @@
 import axios from 'axios';
 
-import { getEnvironmets } from '../helpers/getEnvironmets';
+import { getEnvironmets } from '../helpers';
 
 const { VITE_REACT_APP_API_URL } = getEnvironmets();
 
 
-const dashboardApi = axios.create({
+const ecommerceApi = axios.create({
     baseURL: VITE_REACT_APP_API_URL
 });
 
 // Todo: configurar interceptores
-dashboardApi.interceptors.request.use( config => {
+ecommerceApi.interceptors.request.use( config => {
 
     config.headers = {
         ...config.headers,
@@ -20,7 +20,7 @@ dashboardApi.interceptors.request.use( config => {
     return config;
 })
 
-export default dashboardApi;
+export default ecommerceApi;
 
 
 

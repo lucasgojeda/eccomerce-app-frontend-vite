@@ -19,6 +19,8 @@ import {
 
 import { styles__categoriesBar } from '../../../styles/Application/ui/ui/styles__categoriesBar';
 
+import './CategoriesBar.scss';
+
 
 export const CategoriesBar = () => {
 

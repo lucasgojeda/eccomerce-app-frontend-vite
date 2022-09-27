@@ -18,6 +18,8 @@ import { useNotificationsStore } from '../../../hooks';
 
 import { styles__notificationsScreen } from '../../../styles/Application/notifications/styles__notificationsScreen';
 
+import './NotificationsPage.scss';
+
 moment.locale('es');
 
 

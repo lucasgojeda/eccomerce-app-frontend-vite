@@ -24,6 +24,8 @@ import {
 
 import { styles__cartScreen } from '../../../styles/Application/cart/styles__cartScreen';
 
+import './CartPage.scss';
+
 
 export const CartPage = () => {
 
@@ -208,7 +210,7 @@ export const CartPage = () => {
                     Finalizar Compra
                 </Button>
             </Container>
-            <Footer />
+            {/* <Footer /> */}
         </Box>
     );
 };

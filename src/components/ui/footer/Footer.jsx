@@ -11,8 +11,11 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-import { styles__footer } from '../../../styles/Application/ui/styles__footer';
 import { useProductsStore, useStaticsStore } from '../../../hooks';
+
+import { styles__footer } from '../../../styles/Application/ui/styles__footer';
+
+import './Footer.scss';
 
 
 export const Footer = () => {

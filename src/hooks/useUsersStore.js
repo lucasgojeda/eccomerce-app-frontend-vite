@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import dashboardApi from '../api/dashboardApi';
+import ecommerceApi from '../api/ecommerceApi';
 
 import { addBinUser } from "../store/slices/binSlice";
 
@@ -44,7 +44,7 @@ export const useUsersStore = () => {
 
         try {
             dispatch(uiStartTableLoading());
-            const { data: { msg, results } } = await dashboardApi.get(`users/${term}?page=${page}&filterBy=${filterBy}&orderBy=${orderBy}`);
+            const { data: { msg, results } } = await ecommerceApi.get(`users/${term}?page=${page}&filterBy=${filterBy}&orderBy=${orderBy}`);
 
 
             if (msg === 'OK') {
@@ -74,7 +74,7 @@ export const useUsersStore = () => {
 
         try {
 
-            const { data: { msg, user, record } } = await dashboardApi.post('users', _user);
+            const { data: { msg, user, record } } = await ecommerceApi.post('users', _user);
 
 
             if (msg === "OK") {
@@ -107,7 +107,7 @@ export const useUsersStore = () => {
 
         try {
 
-            const { data: { msg, user, record } } = await dashboardApi.put(`users/${_user._id}`, { user: _user });
+            const { data: { msg, user, record } } = await ecommerceApi.put(`users/${_user._id}`, { user: _user });
 
 
 
@@ -144,7 +144,7 @@ export const useUsersStore = () => {
 
             dispatch(uiOpenProgressBackdrop());
 
-            const { data: { msg, user, record } } = await dashboardApi.delete(`users/${_user._id}`, {});
+            const { data: { msg, user, record } } = await ecommerceApi.delete(`users/${_user._id}`, {});
 
 
             if (msg === "OK") {

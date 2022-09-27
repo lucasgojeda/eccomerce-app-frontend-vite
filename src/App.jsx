@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { store } from './store/store';
 import { AppRouter } from './router/AppRouter';
 
-import './App.css';
+import './styles/styles.scss';
 
 
 export const App = () => { 

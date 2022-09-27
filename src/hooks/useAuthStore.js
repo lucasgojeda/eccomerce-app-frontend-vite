@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import dashboardApi from '../api/dashboardApi';
+import ecommerceApi from '../api/ecommerceApi';
 
 import { usersLogout } from "../store/slices/userSlice";
 import { recordsLogout } from "../store/slices/recordsSlice";
@@ -42,7 +42,7 @@ export const useAuthStore = () => {
 
             dispatch(uiOpenProgressBackdrop());
 
-            const { data: { token, user, msg } } = await dashboardApi.post('auth/login', { email, password });
+            const { data: { token, user, msg } } = await ecommerceApi.post('auth/login', { email, password });
 
             if (token) {
 
@@ -76,7 +76,7 @@ export const useAuthStore = () => {
         try {
             dispatch(uiOpenProgressBackdrop());
 
-            const { data } = await dashboardApi.post('users', { name, email, password, role });
+            const { data } = await ecommerceApi.post('users', { name, email, password, role });
 
             console.log(data);
 
@@ -117,7 +117,7 @@ export const useAuthStore = () => {
 
         try {
 
-            const { data } = await dashboardApi.get('auth/renew');
+            const { data } = await ecommerceApi.get('auth/renew');
 
             const {
                 msg,
@@ -201,7 +201,7 @@ export const useAuthStore = () => {
         try {
             dispatch(uiOpenProgressBackdrop());
 
-            const { data } = await dashboardApi.post('auth/google', { id_token });
+            const { data } = await ecommerceApi.post('auth/google', { id_token });
 
             const { msg, user, token } = data;
 

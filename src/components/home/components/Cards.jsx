@@ -31,6 +31,8 @@ import {
 
 import { styles__cardsMainHome } from '../../../styles/Application/home/styles__cardsMainHome';
 
+import './Cards.scss';
+
 
 export const Cards = () => {
 
@@ -178,7 +180,7 @@ export const Cards = () => {
     return (
         <>
             {
-                (products && products.length !== 0)
+                (products.length !== 0)
                     ?
                     cleanProducts[0].map((e, i) => (
                         <Card

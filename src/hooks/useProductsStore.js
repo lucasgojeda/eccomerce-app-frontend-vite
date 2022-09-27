@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import dashboardApi from '../api/dashboardApi';
+import ecommerceApi from '../api/ecommerceApi';
 
 import {
     addBinProduct,
@@ -47,7 +47,7 @@ export const useProductsStore = () => {
 
             dispatch(uiStartTableLoading());
 
-            const { data } = await dashboardApi.get(`products/${term}?page=${page}&filterBy=${filterBy}&orderBy=${orderBy}`);
+            const { data } = await ecommerceApi.get(`products/${term}?page=${page}&filterBy=${filterBy}&orderBy=${orderBy}`);
 
             const { msg, results } = data;
 
@@ -85,7 +85,7 @@ export const useProductsStore = () => {
 
             const productNew = { ..._product, category: category.name };
 
-            const { data: { msg, product, record } } = await dashboardApi.post('products', productNew);
+            const { data: { msg, product, record } } = await ecommerceApi.post('products', productNew);
 
             console.log({ msg, product, record });
 
@@ -124,7 +124,7 @@ export const useProductsStore = () => {
 
             const productNew = { ..._product, category: category.name }
 
-            const { data } = await dashboardApi.put(`products/${_product._id}`, { product: productNew });
+            const { data } = await ecommerceApi.put(`products/${_product._id}`, { product: productNew });
 
             console.log(data);
 
@@ -166,7 +166,7 @@ export const useProductsStore = () => {
 
             dispatch(uiOpenProgressBackdrop());
 
-            const { data: { msg, record, product } } = await dashboardApi.delete(`products/${_product._id}`, {});
+            const { data: { msg, record, product } } = await ecommerceApi.delete(`products/${_product._id}`, {});
 
             console.log({ msg, record, product });
 

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import dashboardApi from '../api/dashboardApi';
+import ecommerceApi from '../api/ecommerceApi';
 
 import { cartLogout } from "../store/slices/cartSlice";
 
@@ -39,7 +39,7 @@ export const useSalesStore = () => {
 
         try {
             dispatch(uiStartTableLoading());
-            const { data: { msg, results } } = await dashboardApi.get(`sales/${term}?page=${page}&filterBy=${filterBy}&orderBy=${orderBy}`);
+            const { data: { msg, results } } = await ecommerceApi.get(`sales/${term}?page=${page}&filterBy=${filterBy}&orderBy=${orderBy}`);
 
 
             if (msg === 'OK') {
@@ -75,7 +75,7 @@ export const useSalesStore = () => {
 
             dispatch(uiOpenProgressBackdrop());
 
-            const { data: { msg, sale } } = await dashboardApi.post('sales', {});
+            const { data: { msg, sale } } = await ecommerceApi.post('sales', {});
 
             console.log({ msg, sale });
 
@@ -105,7 +105,7 @@ export const useSalesStore = () => {
 
         try {
 
-            const { data: { msg, results, notification } } = await dashboardApi.put(`sales/${id}`, {});
+            const { data: { msg, results, notification } } = await ecommerceApi.put(`sales/${id}`, {});
 
             console.log({ msg, results, notification })
 

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import dashboardApi from '../api/dashboardApi';
+import ecommerceApi from '../api/ecommerceApi';
 
 import {
     loadNotifications,
@@ -24,7 +24,7 @@ export const useNotificationsStore = () => {
 
         try {
 
-            const { data: { msg, sales, notifications } } = await dashboardApi.get('notifications');
+            const { data: { msg, sales, notifications } } = await ecommerceApi.get('notifications');
 
             console.log({ msg, sales, notifications })
 
@@ -49,7 +49,7 @@ export const useNotificationsStore = () => {
 
         try {
 
-            const { data: { msg, notification } } = await dashboardApi.put(`notifications/${_notification._id}`, {});
+            const { data: { msg, notification } } = await ecommerceApi.put(`notifications/${_notification._id}`, {});
             
 
             console.log({ msg, notification });

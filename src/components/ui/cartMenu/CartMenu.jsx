@@ -20,8 +20,7 @@ import {
     useCartStore
 } from '../../../hooks';
 
-import { styles__cartMenu } from '../../../styles/Application/ui/ui/styles__cartMenu';
-
+import './CartMenu.scss';
 
 export const CartMenu = () => {
 
@@ -54,117 +53,109 @@ export const CartMenu = () => {
     // Cart menu
     const handleCartMenu = (event) => {
 
-        if (sm) {
-            navigate(`/cart`)
-        } else {
-
-            setAnchorCartMenu(event.currentTarget);
-        }
+        navigate(`/cart`);
     };
 
     const handleCloseCartMenu = () => {
+        
         setAnchorCartMenu(null);
     };
 
     return (
-        <Box sx={styles__cartMenu(sm, md, lg, xl)}>
-            {
-                (location.pathname !== '/cart')
-                &&
-                <>
-                    <Menu
-                        anchorEl={anchorCartMenu}
-                        anchorOrigin={{
-                            vertical: 'top',
-                            horizontal: 'right',
-                        }}
-                        keepMounted
-                        transformOrigin={{
-                            vertical: 'top',
-                            horizontal: 'right',
-                        }}
-                        open={Boolean(anchorCartMenu)}
-                        onClose={handleCloseCartMenu}
-                    >
-                        <Container id='cartMenu'>
+        <Box sx={{
+            visibility: (location.pathname === '/cart') && 'hidden'
+        }}>
+            <Menu
+                anchorEl={anchorCartMenu}
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'center',
+                }}
+                keepMounted
+                transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'center',
+                }}
+                open={Boolean(anchorCartMenu)}
+                onClose={handleCloseCartMenu}
+            >
+                <Container className='cartMenu'>
 
 
-                            {
-                                cartProducts.map(
-                                    (e, i) =>
-                                        <MenuItem
-                                            key={e._id}
-                                        >
-                                            <Container
-                                                id='menuItemContainer'
-                                                onClick={() => {
-                                                    navigate(`/product/${e._id}`)
-                                                    handleCloseCartMenu()
-                                                }}
-                                            >
-                                                <Image
-                                                    id='productCartImage'
-                                                    cloudName="the-kings-company"
-                                                    publicId={e.img[0].imageUrl}
-                                                    alt='Product' />
-                                                {e.name.split(" ")[0]} {e.name.split(" ")[1]}...
-                                            </Container>
-                                            <IconButton
-                                                id='deleteIconFromMenuCart'
-                                                size="large"
-                                                aria-label="account of current user"
-                                                aria-controls="menu-appbar"
-                                                aria-haspopup="true"
-                                                onClick={() => handleDeleteCart({ cart: e })}
-                                                color="inherit"
-                                            >
-                                                <CloseIcon />
-                                            </IconButton>
-
-                                        </MenuItem>
-                                )
-                            }
-                        </Container>
-
-                        {
-                            (cartProducts.length)
-                                ?
+                    {
+                        cartProducts.map(
+                            (e, i) =>
                                 <MenuItem
-                                    id='goToTheCartButton'
-                                    onClick={() => navigate(`/cart`)}
+                                    key={e._id}
                                 >
-                                    <Typography>
-                                        Ir al carrito
+                                    <Container
+                                        id='menuItemContainer'
+                                        onClick={() => {
+                                            navigate(`/product/${e._id}`)
+                                            handleCloseCartMenu()
+                                        }}
+                                    >
+                                        <Image
+                                            id='productCartImage'
+                                            cloudName="the-kings-company"
+                                            publicId={e.img[0].imageUrl}
+                                            alt='Product' />
+                                        {e.name.split(" ")[0]} {e.name.split(" ")[1]}...
+                                    </Container>
+                                    <IconButton
+                                        id='deleteIconFromMenuCart'
+                                        size="large"
+                                        aria-label="account of current user"
+                                        aria-controls="menu-appbar"
+                                        aria-haspopup="true"
+                                        onClick={() => handleDeleteCart({ cart: e })}
+                                        color="inherit"
+                                    >
+                                        <CloseIcon />
+                                    </IconButton>
 
-                                    </Typography>
                                 </MenuItem>
-                                :
-                                <MenuItem id='thereIsNotAnyProduct'>
-                                    <Typography>
-                                        Aún no hay ningún producto en el carrito!
-                                    </Typography>
-                                </MenuItem>
-                        }
-                    </Menu>
+                        )
+                    }
+                </Container>
 
-                    <IconButton
-                        size="large"
-                        edge="end"
-                        color="inherit"
-
-                        id='shoppingCartBagleIcon'
-                        onClick={handleCartMenu}
-                    >
-                        <Badge
-                            badgeContent={badgeNumber}
-                            color="warning"
+                {
+                    (cartProducts.length)
+                        ?
+                        <MenuItem
+                            id='goToTheCartButton'
+                            onClick={() => navigate(`/cart`)}
                         >
-                            <ShoppingCartIcon sx={{
-                            }} />
-                        </Badge>
-                    </IconButton>
-                </>
-            }
+                            <Typography>
+                                Ir al carrito
+
+                            </Typography>
+                        </MenuItem>
+                        :
+                        <MenuItem id='thereIsNotAnyProduct'>
+                            <Typography>
+                                Aún no hay ningún producto en el carrito!
+                            </Typography>
+                        </MenuItem>
+                }
+            </Menu>
+
+            <IconButton
+                size="large"
+                edge="end"
+                color="inherit"
+
+                id='shoppingCartBagleIcon'
+                onClick={handleCartMenu}
+            >
+                <Badge
+                    badgeContent={badgeNumber}
+                    color="warning"
+                >
+                    <ShoppingCartIcon sx={{
+                    }} />
+                </Badge>
+            </IconButton>
         </Box>
     );
 };

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router';
 
 import queryString from 'query-string';
@@ -31,8 +30,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 
-import { startLogout } from '../../../../store/thunks/auth';
-import { startLoadProducts } from '../../../../store/thunks/products';
+import { useAuthStore, useProductsStore } from '../../../../hooks';
 
 import {
     AppBar,
@@ -46,14 +44,18 @@ import {
 
 export const SmallUnloggedDrawerBar = () => {
 
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
 
     const { q = '' } = queryString.parse(location.search);
     const { c = '' } = queryString.parse(location.search);
 
-    const { role } = useSelector(state => state.auth);
+    const {
+        role,
+        startLogout,
+    } = useAuthStore();
+
+    const { startLoadProducts } = useProductsStore();
 
     const theme = useTheme();
     const sm = useMediaQuery(theme.breakpoints.down('sm'));
@@ -85,7 +87,7 @@ export const SmallUnloggedDrawerBar = () => {
 
             navigate(`?q=${searchText}`)
 
-            dispatch(startLoadProducts(searchText))
+            startLoadProducts(searchText);
         }
 
         handleDrawerClose();
@@ -95,7 +97,7 @@ export const SmallUnloggedDrawerBar = () => {
 
     const handleLogout = () => {
         handleDrawerClose();
-        dispatch(startLogout());
+        startLogout();
     }
 
 

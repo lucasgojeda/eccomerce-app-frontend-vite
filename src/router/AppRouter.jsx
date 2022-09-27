@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import {
     Routes,
     Route,
@@ -17,12 +16,14 @@ import CircularProgress from '@mui/material/CircularProgress';
 // import { NavbarUnlogged } from '../components/Application/ui/navbar/unlogged/NavbarUnlogged';
 // import { ProductScreen } from '../components/Application/product/ProductScreen';
 
-import { startChecking } from '../store/thunks/auth';
-import { startLoadSales } from '../store/thunks/sales';
-import { startLoadStatistics } from '../store/thunks/dashboard';
-import { startLoadNotifications } from '../store/thunks/notifications';
-import { startLoadCategories } from '../store/thunks/categories';
-import { startLoadProducts } from '../store/thunks/products';
+import {
+    useAuthStore,
+    useCategoriesStore,
+    useNotificationsStore,
+    useProductsStore,
+    useSalesStore,
+    useStaticsStore
+} from '../hooks';
 
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
@@ -45,25 +46,43 @@ import { ProductPage } from '../components/product';
 
 export const AppRouter = () => {
 
-    const dispatch = useDispatch();
+    const {
+        uid,
+        checking,
+        role,
+        startChecking,
+    } = useAuthStore();
 
-    const { uid, checking, role } = useSelector(state => state.auth);
-    const { products } = useSelector(state => state.product);
-    const { categories } = useSelector(state => state.categories);
+    const {
+        products,
+        startLoadProducts,
+    } = useProductsStore();
+
+    const {
+        categories,
+        startLoadCategories,
+    } = useCategoriesStore();
+
+    const { startLoadSales } = useSalesStore();
+
+    const { startLoadStatistics } = useStaticsStore();
+
+    const { startLoadNotifications } = useNotificationsStore();
+
 
     useEffect(() => {
 
-        dispatch(startChecking());
-        dispatch(startLoadProducts())
-        dispatch(startLoadCategories())
-        dispatch(startLoadSales())
-        dispatch(startLoadStatistics())
-        dispatch(startLoadNotifications());
+        startChecking();
+        // startLoadProducts()
+        startLoadCategories()
+        // startLoadSales()
+        startLoadStatistics()
+        startLoadNotifications();
 
-    }, [dispatch]);
+    }, []);
 
 
-    if (checking || !products || !categories) {
+    if (checking || !categories) {
 
         return <Backdrop
             sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import dashboardApi from '../api/dashboardApi';
+import ecommerceApi from '../api/ecommerceApi';
 
 import {
     loadDashboardBinProducts,
@@ -29,7 +29,7 @@ export const useStaticsStore = () => {
 
         try {
 
-            const { data: { msg, results } } = await dashboardApi.get('dashboard/logged');
+            const { data: { msg, results } } = await ecommerceApi.get('dashboard/logged');
 
 
             if (msg === 'OK') {

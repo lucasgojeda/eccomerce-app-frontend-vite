@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router';
-
+import { Link } from 'react-router-dom';
 // import { GoogleLogin } from 'react-google-login';
 
 import Box from '@mui/material/Box';
@@ -13,28 +12,25 @@ import { Button, Divider, Typography } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-import { useAuthStore, useForm } from '../../../hooks';
+import { useAuthStore, useForm } from '../../../../hooks';
 
-import { styles__register } from '../../../styles/Application/auth/styles__register';
+import { styles__login } from '../../../../styles/Application/auth/styles__login';
+
+import './LoginPage.scss';
 
 
-export const RegisterPage = () => {
+export const LoginPage = () => {
 
     const navigate = useNavigate();
 
-    const {
-        StartLogin,
-        startGoogleLogin,
-        startRegister
-    } = useAuthStore();
+    const { StartLogin, startGoogleLogin } = useAuthStore();
 
-    const [formRegisterValues, handleRegisterInputChange] = useForm({
-        rName: '',
-        rEmail: '',
-        rPassword: ''
+    const [formLoginValues, handleLoginInputChange] = useForm({
+        lEmail: '',
+        lPassword: ''
 
     });
-    const { rName, rEmail, rPassword } = formRegisterValues;
+    const { lEmail, lPassword } = formLoginValues;
 
     const theme = useTheme();
     const sm = useMediaQuery(theme.breakpoints.down('sm'));
@@ -42,13 +38,6 @@ export const RegisterPage = () => {
     const xl = useMediaQuery(theme.breakpoints.down('xl'));
     const lg = useMediaQuery(theme.breakpoints.down('lg'));
 
-
-    const handleRegister = (e) => {
-        e.preventDefault();
-
-        startRegister(rName, rEmail, rPassword);
-
-    }
 
     const handleModLogin = (e) => {
         e.preventDefault();
@@ -68,6 +57,12 @@ export const RegisterPage = () => {
         StartLogin('admin_test@test.com', '123456');
 
     }
+    const handleLogin = (e) => {
+        e.preventDefault();
+
+        StartLogin(lEmail, lPassword);
+
+    }
 
     // const handleGoogleLogin = (response) => {
 
@@ -77,10 +72,11 @@ export const RegisterPage = () => {
     // }
 
 
-    return (
 
-        <Container sx={styles__register(sm, md, lg, xl)}
+    return (
+        <Container sx={styles__login(sm, md, lg, xl)}
             maxWidth="sm">
+
             <IconButton
                 id='buttonHome'
                 size="large"
@@ -90,6 +86,7 @@ export const RegisterPage = () => {
             >
                 <HomeIcon />
             </IconButton>
+
             <Box
                 id='loginContainer'
                 component="form"
@@ -98,56 +95,48 @@ export const RegisterPage = () => {
             >
 
                 <Typography fontSize={20} id='title' variant="body2" color="text.primary">
-                    Crear nueva cuenta
+                    Iniciar sesión
                 </Typography>
-
 
                 <Container id='container'>
 
                     <div>
-                        <TextField
-                            required
-                            id='name'
-                            variant='outlined'
-                            label="Nombre"
-                            name='rName'
-                            value={rName}
-                            onChange={handleRegisterInputChange}
-                        />
 
                         <TextField
                             required
                             variant='outlined'
                             label="Email"
-                            name='rEmail'
-                            value={rEmail}
-                            onChange={handleRegisterInputChange}
+                            name='lEmail'
+                            value={lEmail}
+                            onChange={handleLoginInputChange}
                         />
 
                         <TextField
                             required
                             variant='outlined'
                             label="Contraseña"
-                            name='rPassword'
-                            value={rPassword}
-                            onChange={handleRegisterInputChange}
+                            name='lPassword'
+                            value={lPassword}
+                            onChange={handleLoginInputChange}
                         />
 
                     </div>
                 </Container>
 
-                <div id='registerButtonContainer'>
+
+                <div id='ingresarButtonContainer'>
                     <Container>
                         <Button
                             type="submit"
                             id="submitButton"
                             variant="outlined"
-                            onClick={handleRegister}
-                        >Registrarse</Button>
+                            onClick={handleLogin}
+                        >Ingresar</Button>
                     </Container>
                 </div>
 
                 <div id='loginButtonContainer'>
+
                     {/* <GoogleLogin
                         clientId="263099325228-55asn431srakct5pegne7a7go6hjctq6.apps.googleusercontent.com"
                         render={renderProps => (
@@ -158,8 +147,7 @@ export const RegisterPage = () => {
                         onFailure={handleGoogleLogin}
                         cookiePolicy={'single_host_origin'}
                     /> */}
-
-                    <Link className='Link' to="/login"> Ya tienes una cuenta ? - Ingresar </Link>
+                    <Link className='Link' to="/register"> No tienes una cuenta ? - Registrarse </Link>
                 </div>
 
             </Box>
@@ -169,7 +157,7 @@ export const RegisterPage = () => {
                 <Button className='button' id="moderator" onClick={handleModLogin}>moderador</Button>
                 <Button className='button' id="admin" onClick={handleAdminLogin}>admin</Button>
             </Container>
-        </Container>
+        </Container >
+    )
+}
 
-    );
-};

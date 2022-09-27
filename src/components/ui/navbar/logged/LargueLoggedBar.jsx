@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router';
 
 import queryString from 'query-string';
@@ -18,11 +17,14 @@ import MenuIcon from '@mui/icons-material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import SearchIcon from '@mui/icons-material/Search';
+import CloseIcon from '@mui/icons-material/Close';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-import { startLogout } from '../../../../store/thunks/auth';
+import { useAuthStore, useProductsStore } from '../../../../hooks';
 // import { clearFilteredProducts } from '../../../../../store/thunks/products';
 
 import { CategoriesBar } from '../../../ui';
@@ -30,23 +32,30 @@ import { CartMenu } from '../../../ui';
 import { NotificationsMenu } from '../../../ui';
 // import { DialogLogout } from '../../../../dashboard/ui/alerts/DialogLogout';
 
-import { styles__largueLoggedBar } from '../../../../styles/Application/ui/logged/styles__largueLoggedBar';
+// import { styles__largueLoggedBar } from '../../../../styles/Application/ui/logged/styles__largueLoggedBar';
+import './LargueLoggedBar.scss';
+
+import {
+  Search,
+  SearchIconWrapper,
+  StyledInputBase,
+  styles__home
+} from '../../../../styles/Application/home/styles__home';
+import { SearchBar } from './components/searchBar/SearchBar';
+import { MenuDrawer } from './components/menuDrawer/MenuDrawer';
 
 
 export const LargueLoggedBar = () => {
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { q = '' } = queryString.parse(location.search);
-  const { c = '' } = queryString.parse(location.search);
-
-  const { uid, role, name } = useSelector(state => state.auth);
-
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [dialogLogoutOpen, setDialogLogoutOpen] = useState(false);
-
+  const {
+    uid,
+    role,
+    name,
+    startLogout,
+  } = useAuthStore();
 
   const theme = useTheme();
   const sm = useMediaQuery(theme.breakpoints.down('sm'));
@@ -56,117 +65,29 @@ export const LargueLoggedBar = () => {
 
 
 
-  // Normal menu
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
 
-  const handleLogout = () => {
-    setDialogLogoutOpen(true);
-    handleClose();
-  }
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
   return (
-    <Box sx={styles__largueLoggedBar(sm, md, lg, xl)}>
-      {/* <DialogLogout
-        dialogLogoutOpen={dialogLogoutOpen}
-        setDialogLogoutOpen={setDialogLogoutOpen}
-      /> */}
-      <AppBar id='appBar'>
-        <Toolbar id='toolBar'>
+    <div
+      className='container_largueLoggedBar'
+    >
+      <div className='container_Menu'>
+        <MenuDrawer />
+      </div>
 
+      <div className='container_items'>
 
-          <IconButton
-            id='buttonHome'
-            color="inherit"
-            edge="start"
-            onClick={() => navigate('/?page=1')}
-          >
-            <HomeIcon />
-
-          </IconButton>
-          {
-            (role !== 'USER_ROLE')
-            &&
-            <>
-              {
-                (!md)
-                  ?
-                  <Typography
-                    id='dashboardTypography'
-                    variant="p"
-                    component="div"
-                    onClick={() => navigate('/dashboard')}
-                  >
-
-                    Panel de control
-
-                  </Typography>
-                  :
-                  <DashboardIcon
-                    onClick={() => navigate('/dashboard')}
-                    id='dashboardIcon'
-                  />
-              }
-            </>
-          }
-
+        <div className='container_cartMenu'>
           <CartMenu />
-
           <NotificationsMenu />
+        </div>
 
-          <div>
-            <IconButton
-              id='accountCircleIcon'
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleMenu}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-            >
-              <MenuItem onClick={handleClose}>My perfil</MenuItem>
-              <MenuItem onClick={handleLogout}>Cerrar sesión</MenuItem>
-            </Menu>
-          </div>
-          {
-            (!md)
-            &&
-            <Typography
-              id='nameTypography'
-              edge="end"
-              variant="p"
-              component="div"
-            >
-              {name}
-            </Typography>
-          }
+        <div className='container_Search'>
+          <SearchBar />
+        </div>
 
-        </Toolbar>
-      </AppBar>
+      </div>
 
-      <CategoriesBar />
-
-    </Box >
+    </div>
   );
-};
+}; 

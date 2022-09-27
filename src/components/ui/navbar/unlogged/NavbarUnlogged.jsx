@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 
 import queryString from 'query-string';
@@ -10,15 +9,17 @@ import { useTheme } from '@mui/material/styles';
 import { LargueUnloggedBar } from './LargueUnloggedBar';
 import { SmallUnloggedDrawerBar } from './SmallUnloggedDrawerBar';
 
-import { startLoadProducts } from '../../../../store/thunks/products';
+import { useProductsStore } from '../../../../hooks';
 
 
 export const NavbarUnlogged = () => {
 
-  const dispatch = useDispatch();
   const location = useLocation();
 
-  const { products } = useSelector(state => state.product);
+  const {
+    products,
+    startLoadProducts,
+  } = useProductsStore();
 
   const { q = '' } = queryString.parse(location.search);
   const { c = '' } = queryString.parse(location.search);
@@ -29,13 +30,13 @@ export const NavbarUnlogged = () => {
 
     (!products)
 
-      ? dispatch(startLoadProducts(q, Number(pagePath)))
+      ? startLoadProducts(q, Number(pagePath))
 
       : ((c !== '')
 
-        ? dispatch(startLoadProducts(c, Number(pagePath)))
+        ? startLoadProducts(c, Number(pagePath))
 
-        : dispatch(startLoadProducts(q, Number(pagePath)))
+        : startLoadProducts(q, Number(pagePath))
       )
 
   }, [location.search]);

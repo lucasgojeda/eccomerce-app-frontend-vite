@@ -1,0 +1,124 @@
+.container_Menu {
+
+    width: 25vw !important;
+
+    .menuIcon {
+
+        font-size: 30px;
+        cursor: pointer;
+    }
+
+    .container_menuIcons {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        h1 {
+            font-size: 18px;
+        }
+
+        h1:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+
+.backshadow {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 50;
+}
+
+.container_DrawerMenu {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+    height: 100vh;
+    width: 40vw;
+    background-color: rgb(245, 241, 241);
+    box-shadow: 2.5px 2.5px 5px rgba(153, 153, 153, 0.445);
+    z-index: 100;
+
+    // background-color: #fff;
+
+    .container_DataUser {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        height: 10vh;
+        width: 90%;
+        color: #fff;
+        background-color: #8E44AD;
+        box-shadow: 2.5px 2.5px 5px rgba(141, 68, 173, 0.452);
+        border-radius: 25px;
+        margin-top: 2.5vh;
+        padding-left: 1.5vw;
+
+        font-size: 8px;
+        font-weight: 500;
+
+        .MuiSvgIcon-root {
+            font-size: 45px;
+            color: #fff;
+        }
+    }
+
+    .container_MenuItems {
+
+        width: 90%;
+        height: 20vh;
+        margin-top: 2.5vh;
+        overflow: hidden;
+
+        border-radius: 20px;
+        background: #e0e0e065;
+        box-shadow: inset 5px 5px 10px #e0e0e065,
+            inset -5px -5px 10px #e0e0e065;
+
+        ul {
+
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+
+            margin: 0;
+            padding: 0;
+
+            li {
+                display: flex;
+                align-items: center;
+                justify-content: start;
+
+                font-size: 14px;
+                font-weight: 700;
+                font-family: 'Work Sans', sans-serif, Arial, Helvetica;
+                color: #000;
+                list-style: none;
+
+                width: 100%;
+                height: 10vh;
+                padding-left: 1.5vw;
+
+            }
+
+            li:hover {
+                cursor: pointer;
+                background-color: #3498DB;
+                color: #fff;
+                transition: all 0.2s ease;
+            }
+        }
+    }
+}

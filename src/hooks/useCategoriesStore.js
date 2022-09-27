@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import dashboardApi from '../api/dashboardApi';
+import ecommerceApi from '../api/ecommerceApi';
 
 import {
     addNewCategory,
@@ -29,7 +29,7 @@ export const useCategoriesStore = () => {
 
         try {
 
-            const { data: { categories: _categories, msg } } = await dashboardApi.get('categories');
+            const { data: { categories: _categories, msg } } = await ecommerceApi.get('categories');
 
 
             if (_categories) {
@@ -60,7 +60,7 @@ export const useCategoriesStore = () => {
 
             try {
 
-                const { data: { msg, category } } = await dashboardApi.post('categories', name);
+                const { data: { msg, category } } = await ecommerceApi.post('categories', name);
 
 
                 if (msg === "OK") {
@@ -90,7 +90,7 @@ export const useCategoriesStore = () => {
 
         try {
 
-            const { data: { msg, category } } = await dashboardApi.put(`categories/${_category._id}`, category);
+            const { data: { msg, category } } = await ecommerceApi.put(`categories/${_category._id}`, category);
 
 
             console.log(data);
@@ -127,7 +127,7 @@ export const useCategoriesStore = () => {
             dispatch(uiOpenProgressBackdrop());
 
 
-            const { data: { msg, category } } = await dashboardApi.delete(`categories/${_category._id}`, {});
+            const { data: { msg, category } } = await ecommerceApi.delete(`categories/${_category._id}`, {});
 
             console.log(data);
 

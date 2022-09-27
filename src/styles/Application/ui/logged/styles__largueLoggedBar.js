@@ -61,13 +61,15 @@ const largueLoggedBar__lgBox = () => ({
   margin: 0,
   padding: 0,
   overflow: 'hidden',
+  borderColor: 'none',
+  background: 'none',
   '& #appBar': {
     position: 'fixed',
     width: '100%',
     height: '10vh',
     margin: 0,
     padding: 0,
-    backgroundColor: '#154360'
+    backgroundColor: 'none',
   },
   '& #toolBar': {
     display: 'flex',

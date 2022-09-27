@@ -24,11 +24,12 @@ import {
 } from '../../../hooks';
 
 import { Footer } from '../../ui';
-import { ProductTabNav } from '../components/ProductTabNav';
-import { ProductModalView } from '../components/ProductModalView';
+import { ProductTabNav } from '../components/productTabNav/ProductTabNav';
+import { ProductModalView } from '../components/productModalView/ProductModalView';
 
 import { styles__productScreen } from '../../../styles/Application/product/styles__productScreen';
 
+import './ProductPage.scss';
 
 
 export const ProductPage = () => {
@@ -449,18 +450,18 @@ export const ProductPage = () => {
                     }
 
 
-                    {
+                    {/* {
                         (sm)
                         &&
                         <Footer />
-                    }
+                    } */}
                 </Box>
             </Container>
-            {
+            {/* {
                 (!sm)
                 &&
                 <Footer />
-            }
+            } */}
         </>
     );
 };

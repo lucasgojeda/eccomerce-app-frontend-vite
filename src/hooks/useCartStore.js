@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import dashboardApi from '../api/dashboardApi';
+import ecommerceApi from '../api/ecommerceApi';
 
 import {
     deleteCartProduct,
@@ -23,7 +23,7 @@ export const useCartStore = () => {
 
         try {
 
-            const { data: { msg, product } } = await dashboardApi.put(`users/cart/${id}`, _cart);
+            const { data: { msg, product } } = await ecommerceApi.put(`users/cart/${id}`, _cart);
 
             console.log({ msg, product });
 
@@ -53,7 +53,7 @@ export const useCartStore = () => {
 
         try {
 
-            const { data: { msg, product } } = await dashboardApi.delete(`users/cart/${id}`, _cart);
+            const { data: { msg, product } } = await ecommerceApi.delete(`users/cart/${id}`, _cart);
             
 
             console.log({ msg, product });

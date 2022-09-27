@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import dashboardApi from '../api/dashboardApi';
+import ecommerceApi from '../api/ecommerceApi';
 
 import {
     clearActiveRecord,
@@ -23,7 +23,7 @@ export const useRecordsStore = () => {
 
         try {
             dispatch(uiStartTableLoading());
-            const { data: { msg, results } } = await dashboardApi.get(`records/${term}?page=${page}&filterBy=${filterBy}&orderBy=${orderBy}`);
+            const { data: { msg, results } } = await ecommerceApi.get(`records/${term}?page=${page}&filterBy=${filterBy}&orderBy=${orderBy}`);
 
             if (msg === 'OK') {
 
@@ -51,7 +51,7 @@ export const useRecordsStore = () => {
     const startDeleteRecords = async () => {
 
         try {
-            const { data: { msg } } = await dashboardApi.delete('records', {});
+            const { data: { msg } } = await ecommerceApi.delete('records', {});
 
             if (msg === 'OK') {
 

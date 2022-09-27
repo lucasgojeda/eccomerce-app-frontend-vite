@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import dashboardApi from '../api/dashboardApi';
+import ecommerceApi from '../api/ecommerceApi';
 
 import { addProduct } from "../store/slices/productSlice";
 import { addNewRecord } from "../store/slices/recordsSlice";
@@ -55,7 +55,7 @@ export const useBinStore = () => {
         try {
             dispatch(uiStartTableLoading());
 
-            const { data: { msg, results } } = await dashboardApi.get(`bin/products/${term}?page=${page}&filterBy=${filterBy}&orderBy=${orderBy}`);
+            const { data: { msg, results } } = await ecommerceApi.get(`bin/products/${term}?page=${page}&filterBy=${filterBy}&orderBy=${orderBy}`);
 
             if (msg === 'OK') {
 
@@ -86,7 +86,7 @@ export const useBinStore = () => {
 
             dispatch(uiOpenProgressBackdrop());
 
-            const { data: { record, msg } } = await dashboardApi.put(`bin/products/${activeBinProduct._id}`, {});
+            const { data: { record, msg } } = await ecommerceApi.put(`bin/products/${activeBinProduct._id}`, {});
 
             console.log({ record, msg });
 
@@ -132,7 +132,7 @@ export const useBinStore = () => {
 
             dispatch(uiOpenProgressBackdrop());
 
-            const { data: { record, msg } } = await dashboardApi.delete(`bin/products/${product._id}`, {});
+            const { data: { record, msg } } = await ecommerceApi.delete(`bin/products/${product._id}`, {});
 
             console.log({ record, msg });
 
@@ -185,7 +185,7 @@ export const useBinStore = () => {
 
         try {
             dispatch(uiStartTableLoading());
-            const { data: { msg, results } } = await dashboardApi.get(`bin/users/${term}?page=${page}&filterBy=${filterBy}&orderBy=${orderBy}`);
+            const { data: { msg, results } } = await ecommerceApi.get(`bin/users/${term}?page=${page}&filterBy=${filterBy}&orderBy=${orderBy}`);
 
 
             if (msg === 'OK') {
@@ -217,7 +217,7 @@ export const useBinStore = () => {
 
             dispatch(uiOpenProgressBackdrop());
 
-            const { data: { msg, record } } = await dashboardApi.put(`bin/users/${activeBinUser._id}`, {});
+            const { data: { msg, record } } = await ecommerceApi.put(`bin/users/${activeBinUser._id}`, {});
 
             console.log({ msg, record });
 
@@ -260,7 +260,7 @@ export const useBinStore = () => {
 
             dispatch(uiOpenProgressBackdrop());
 
-            const { data: { msg, record } } = await dashboardApi.delete(`bin/users/${user._id}`, {});
+            const { data: { msg, record } } = await ecommerceApi.delete(`bin/users/${user._id}`, {});
 
             console.log({ msg, record });
 

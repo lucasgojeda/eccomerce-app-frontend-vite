@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 
 import Typography from '@mui/material/Typography';
 import MenuItem from '@mui/material/MenuItem';
@@ -13,14 +12,17 @@ import Badge from '@mui/material/Badge';
 import { useTheme } from '@mui/material/styles';
 
 import { styles__notificationsMenu } from '../../../styles/Application/ui/ui/styles__notificationsMenu';
+import { useNotificationsStore } from '../../../hooks';
+
+import './NotificationsMenu.scss';
 
 
 export const NotificationsMenu = () => {
 
-    const dispatch = useDispatch();
     const navigate = useNavigate();
+    const location = useLocation();
 
-    const { notifications } = useSelector(state => state.notifications);
+    const { notifications } = useNotificationsStore();
 
     var badgeNotifications = (notifications?.filter( n => n.status))?.length;
     
@@ -38,7 +40,9 @@ export const NotificationsMenu = () => {
 
 
     return (
-        <Box sx={styles__notificationsMenu(sm, md, lg, xl)}>
+        <Box sx={{
+            visibility: (location.pathname === '/notifications') && 'hidden'
+        }}>
             <IconButton
                 id='notificationsBagleIcon'
                 color="inherit"

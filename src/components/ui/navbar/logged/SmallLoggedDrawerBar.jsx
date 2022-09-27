@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router';
 
 import queryString from 'query-string';
@@ -36,8 +35,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 import { Container } from '@mui/material';
 
-import { startLogout } from '../../../../store/thunks/auth';
-import { startLoadProducts } from '../../../../store/thunks/products';
+import { useAuthStore, useProductsStore } from '../../../../hooks';
 
 import { CartMenu } from '../../../ui';
 import { NotificationsMenu } from '../../../ui';
@@ -56,7 +54,6 @@ import {
 
 export const SmallLoggedDrawerBar = () => {
 
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -64,7 +61,12 @@ export const SmallLoggedDrawerBar = () => {
     const { c = '' } = queryString.parse(location.search);
     let { page: pagePath = 1 } = queryString.parse(location.search);
 
-    const { role } = useSelector(state => state.auth);
+    const {
+        role,
+        startLogout,
+    } = useAuthStore();
+
+    const { startLoadProducts } = useProductsStore();
 
     const theme = useTheme();
     const sm = useMediaQuery(theme.breakpoints.down('sm'));
@@ -84,7 +86,7 @@ export const SmallLoggedDrawerBar = () => {
     // Filters and search
     useEffect(() => {
 
-        dispatch(startLoadProducts(filterBy, orderBy, searchText, pagePath));
+        startLoadProducts(filterBy, orderBy, searchText, pagePath);
 
     }, [filterBy, orderBy, flagSearch, pagePath]);
 
@@ -202,8 +204,8 @@ export const SmallLoggedDrawerBar = () => {
                                 open={Boolean(anchorEl)}
                                 onClose={handleClose}
                             >
-                                <MenuItem onClick={(e) => handleOrderBy( e, 'asc')}>Menor precio</MenuItem>
-                                <MenuItem onClick={(e) => handleOrderBy( e, 'desc')}>Mayor precio</MenuItem>
+                                <MenuItem onClick={(e) => handleOrderBy(e, 'asc')}>Menor precio</MenuItem>
+                                <MenuItem onClick={(e) => handleOrderBy(e, 'desc')}>Mayor precio</MenuItem>
                             </Menu>
 
                             <SearchIcon />

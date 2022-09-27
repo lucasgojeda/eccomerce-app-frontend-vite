@@ -151,6 +151,7 @@ const cardsMainHome__lgBox = (conditionHover, e, i, cartProducts, role) => ({
   marginTop: '2.5%',
   objectFit: 'contain',
   overflow: 'cover',
+  backgroundColor: 'rgb(255, 255, 255)',
   '& #imageContainer': {
     display: 'flex',
     justifyContent: 'center',

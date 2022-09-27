@@ -1,16 +1,18 @@
-import { useSelector } from 'react-redux';
-
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
+import { useUiStore } from '../../../hooks';
+
 // import { styles__progress } from '../../../../styles/dashboard/ui/progress/styles__progress';
+
+import './ProgressBackdrop.scss';
+
 
 export const ProgressBackdrop = () => {
 
-  const { progressBackdrop } = useSelector(state => state.ui);
-
+  const { progressBackdrop } = useUiStore();
 
   const theme = useTheme();
   const sm = useMediaQuery(theme.breakpoints.down('sm'));
