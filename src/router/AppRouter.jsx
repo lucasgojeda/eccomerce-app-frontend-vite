@@ -2,46 +2,30 @@ import React, { useEffect } from 'react';
 import {
     Routes,
     Route,
-    BrowserRouter,
-    Navigate
+    BrowserRouter
 } from "react-router-dom";
 
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 
-// import { LoginScreen } from '../components/Application/auth/LoginScreen';
-// import { RegisterScreen } from '../components/Application/auth/RegisterScreen';
-// import { Home } from '../components/Application/home/Home';
-// import { NavbarLogged } from '../components/Application/ui/navbar/logged/NavbarLogged';
-// import { NavbarUnlogged } from '../components/Application/ui/navbar/unlogged/NavbarUnlogged';
-// import { ProductScreen } from '../components/Application/product/ProductScreen';
-
 import {
     useAuthStore,
     useCategoriesStore,
     useNotificationsStore,
-    useProductsStore,
-    useSalesStore,
     useStaticsStore
 } from '../hooks';
 
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
-import { LoginPage, RegisterPage } from '../components/auth';
-import { NavbarLogged, NavbarUnlogged, ProgressBackdrop } from '../components/ui';
-import { HomePage } from '../components/home';
-import { CartPage } from '../components/cart';
-import { NotificationsPage } from '../components/notifications';
-import { ProductPage } from '../components/product';
 
-
+import { LoginPage, RegisterPage } from '../Application/auth';
+import { NavbarLogged, NavbarUnlogged, ProgressBackdrop } from '../Application/ui';
+import { HomePage } from '../Application/home';
+import { CartPage } from '../Application/cart';
+import { NotificationsPage } from '../Application/notifications';
+import { ProductPage } from '../Application/product';
 // import { ErrorAlert } from '../components/dashboard/ui/alerts/ErrorAlert';
 // import { SuccessAlert } from '../components/dashboard/ui/alerts/SuccessAlert';
-// import { ProgressBackdrop } from '../components/dashboard/ui/progress/ProgressBackdrop';
-// import { CartScreen } from '../components/Application/cart/CartScreen';
-// import { NotificationsScreen } from '../components/Application/notifications/NotificationsScreen';
-
-
 
 
 export const AppRouter = () => {
@@ -54,16 +38,9 @@ export const AppRouter = () => {
     } = useAuthStore();
 
     const {
-        products,
-        startLoadProducts,
-    } = useProductsStore();
-
-    const {
         categories,
         startLoadCategories,
     } = useCategoriesStore();
-
-    const { startLoadSales } = useSalesStore();
 
     const { startLoadStatistics } = useStaticsStore();
 
@@ -73,9 +50,7 @@ export const AppRouter = () => {
     useEffect(() => {
 
         startChecking();
-        // startLoadProducts()
         startLoadCategories()
-        // startLoadSales()
         startLoadStatistics()
         startLoadNotifications();
 
