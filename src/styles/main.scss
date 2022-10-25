@@ -16,8 +16,7 @@
 @import './Application/home/pages/HomePage';
 @import './Application/home/components/bestProducts/BestProducts';
 @import './Application/home/components/cartProduct/CardProduct';
-@import './Application/home/components/categoriesSection/CategoriesSection';
-@import './Application/home/components/categoriesSection/components/Category';
+@import './Application/home/components/category/Category';
 
 // Notifications
 @import './Application/notifications/pages/NotificationsPage';
@@ -27,7 +26,11 @@
 @import './Application/Product/components/productModalView/ProductModalView';
 @import './Application/product/components/productTabNav/ProductTabNav';
 
+// Search
+@import './Application/search/pages/SearchPage';
+
 // Ui > Navbar
+@import './Application/ui/navbar/unlogged/LargueUnloggedBar';
 @import './Application/ui/navbar/logged/LargueLoggedBar';
 @import './Application/ui/navbar/logged/components/menuDrawer/MenuDrawer';
 @import './Application/ui/navbar/logged/components/searchInput/components/FilterMenu';

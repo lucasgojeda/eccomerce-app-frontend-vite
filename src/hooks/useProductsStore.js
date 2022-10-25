@@ -39,7 +39,42 @@ export const useProductsStore = () => {
     const { products, activeProduct } = useSelector(state => state.product);
 
 
-    const startLoadProducts = async (filterBy, orderBy, searchText, page = 1) => {
+    const startLoadProductsByCategories = async () => {
+
+        // const term = (searchText !== '' && searchText) ? searchText : 'home';
+
+        try {
+
+            // dispatch(uiStartTableLoading());
+
+            const { data } = await ecommerceApi.get('products/productsByCategories');
+
+            const { msg, results } = data;
+
+            if (msg === 'OK') {
+
+
+                console.log(results)
+
+                // dispatch(loadProducts(filteredProducts));
+
+                // window.scroll(0, 0);
+
+                // dispatch(uiStopTableLoading());
+
+            } else {
+                // dispatch(uiStopTableLoading());
+                console.log(msg);
+            }
+
+
+        } catch (error) {
+            // dispatch(uiStopTableLoading());
+            console.log(error);
+        }
+    }
+
+    const startLoadProducts = async (filterBy, orderBy, searchText) => {
 
         const term = (searchText !== '' && searchText) ? searchText : 'home';
 
@@ -47,7 +82,11 @@ export const useProductsStore = () => {
 
             dispatch(uiStartTableLoading());
 
-            const { data } = await ecommerceApi.get(`products/${term}?page=${page}&filterBy=${filterBy}&orderBy=${orderBy}`);
+            const { data } = await ecommerceApi.get(`products/productsSearchEcommerce/${term}?filterBy=${filterBy}&orderBy=${orderBy}`);
+            
+            const { data: data2 } = await ecommerceApi.get(`ranking/bestProducts`);
+
+            console.log(data2)
 
             const { msg, results } = data;
 
@@ -221,6 +260,7 @@ export const useProductsStore = () => {
         activeProduct,
 
         //* Métodos
+        startLoadProductsByCategories,
         startLoadProducts,
         productStartAddNew,
         productStartUpdated,

@@ -1,0 +1,29 @@
+.container_SearchPage {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+
+  .container_cards {
+    width: 80%;
+    min-height: 30vh;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+    margin-top: 15vh;
+    
+    .container_SearchCard {
+
+      margin-bottom: 5vh;
+      margin-left: 2.5vh;
+      margin-right: 2.5vh;
+    }
+
+  }
+}

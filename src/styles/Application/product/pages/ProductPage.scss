@@ -3,7 +3,8 @@
     .container_ProductPage {
         background-color: #fff;
         border-radius: 5px;
-        margin-top: 20vh;
+        margin-top: 12.5vh;
+        margin-bottom: 5vh;
 
         #imagesContainer {
             width: 100%;
@@ -219,7 +220,8 @@
     .container_ProductPage {
         background-color: #fff;
         border-radius: 5px;
-        margin-top: 20vh;
+        margin-top: 12.5vh;
+        margin-bottom: 5vh;
 
         #imagesContainer {
             width: 100%;
@@ -280,6 +282,7 @@
             margin: auto;
             object-fit: cover;
             overflow-y: scroll;
+            z-index: 100;
         }
 
         #descriptionNextToImage {
@@ -335,6 +338,7 @@
             margin-right: -10%;
             padding: 7.5px;
             border-radius: 10px;
+            z-index: 110;
         }
 
         #divider {
@@ -435,7 +439,8 @@
     .container_ProductPage {
         background-color: #fff;
         border-radius: 5px;
-        margin-top: 20vh;
+        margin-top: 12.5vh;
+        margin-bottom: 5vh;
 
         #imagesContainer {
             width: 100%;
@@ -612,6 +617,7 @@
         top: 0; 
         background-color: #fff;
         margin-top: 6vh;
+        margin-bottom: 5vh;
         overflow-x: hidden;
 
         #imagesContainer {

@@ -10,11 +10,14 @@
     // background-color: blue;
     // background-color: #f7f4f4;
     background-color: $background;
+    z-index: 1000;
 
     .container_Menu {
         @include flex_center();
         width: 7.5%;
         height: 100%;
+
+        color: $font-color;
     }
 
     .container_items {
@@ -26,6 +29,8 @@
             @include flex_center();
             justify-content: space-around;
             width: 30%;
+
+            color: $font-color;
         }
 
         .container_Search {

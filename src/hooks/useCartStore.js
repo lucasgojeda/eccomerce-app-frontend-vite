@@ -1,92 +1,85 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 
-import ecommerceApi from '../api/ecommerceApi';
+import ecommerceApi from "../api/ecommerceApi";
 
 import {
-    deleteCartProduct,
-    updateCartProduct
+  deleteCartProduct,
+  updateCartProduct,
 } from "../store/slices/cartSlice";
 
 import {
-    uiCloseProgressBackdrop,
-    uiOpenErrorAlert
+  uiCloseProgressBackdrop,
+  uiOpenErrorAlert,
 } from "../store/slices/uiSlice";
 
-
 export const useCartStore = () => {
+  const dispatch = useDispatch();
+  const { cart } = useSelector((state) => state.cart);
 
-    const dispatch = useDispatch();
-    const { cart } = useSelector(state => state.cart);
+  const startUpdatedCart = async (_cart, id) => {
+    try {
+      const {
+        data: { msg, product },
+      } = await ecommerceApi.put(`users/cart/${id}`, _cart);
 
+      console.log({ msg, product });
 
-    const startUpdatedCart = async(_cart, id) => {
+      if (msg === "OK") {
+        dispatch(uiCloseProgressBackdrop());
 
-        try {
-
-            const { data: { msg, product } } = await ecommerceApi.put(`users/cart/${id}`, _cart);
-
-            console.log({ msg, product });
-
-            if (msg === 'OK') {
-
-                dispatch(uiCloseProgressBackdrop());
-
-                dispatch(updateCartProduct(product));
-
-
-            } else {
-                dispatch(uiCloseProgressBackdrop());
-                dispatch(uiOpenErrorAlert('Error trying to update the user! Talk to developer'));
-                console.log(msg);
-            }
-
-
-        } catch (error) {
-            dispatch(uiCloseProgressBackdrop());
-            dispatch(uiOpenErrorAlert('Error trying to update the user! Talk to developer'));
-            console.log(error);
-        }
-
+        dispatch(updateCartProduct(product));
+      } else {
+        dispatch(uiCloseProgressBackdrop());
+        dispatch(
+          uiOpenErrorAlert("Error trying to update the user! Talk to developer")
+        );
+        console.log(msg);
+      }
+    } catch (error) {
+      dispatch(uiCloseProgressBackdrop());
+      dispatch(
+        uiOpenErrorAlert("Error trying to update the user! Talk to developer")
+      );
+      console.log(error);
     }
+  };
 
-    const startDeletedCart = async(_cart, id) => {
+  const startDeletedCart = async (_cart, id) => {
+    try {
+    //   console.log(_cart);
 
-        try {
+      const {
+        data: { msg, product },
+      } = await ecommerceApi.delete(`users/cart/${id}/${_cart._id}`);
 
-            const { data: { msg, product } } = await ecommerceApi.delete(`users/cart/${id}`, _cart);
-            
+      
+      if (msg === "OK") {
+          dispatch(uiCloseProgressBackdrop());
 
-            console.log({ msg, product });
-
-            if (msg === 'OK') {
-
-                dispatch(uiCloseProgressBackdrop());
-
-                dispatch(deleteCartProduct(product));
-
-
-            } else {
-                dispatch(uiCloseProgressBackdrop());
-                dispatch(uiOpenErrorAlert('Error trying to update the user! Talk to developer'));
-                console.log(msg);
-            }
-
-
-        } catch (error) {
-            dispatch(uiCloseProgressBackdrop());
-            dispatch(uiOpenErrorAlert('Error trying to update the user! Talk to developer'));
-            console.log(error);
-        }
-
+        //   console.log({ msg, product });
+        dispatch(deleteCartProduct(product));
+      } else {
+        dispatch(uiCloseProgressBackdrop());
+        dispatch(
+          uiOpenErrorAlert("Error trying to update the user! Talk to developer")
+        );
+        console.log(msg);
+      }
+    } catch (error) {
+      dispatch(uiCloseProgressBackdrop());
+      dispatch(
+        uiOpenErrorAlert("Error trying to update the user! Talk to developer")
+      );
+      console.log(error);
     }
+  };
 
+  return {
+    //* Propiedades
+    cart,
 
-    return {
-        //* Propiedades
-        cart,
-
-        //* Métodos
-        startUpdatedCart,
-        startDeletedCart,
-    }
-}
+    //* Métodos
+    startUpdatedCart,
+    startDeletedCart,
+  };
+};
