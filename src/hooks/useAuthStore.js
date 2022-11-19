@@ -36,7 +36,7 @@ export const useAuthStore = () => {
     const { checking, uid, name, role } = useSelector(state => state.auth);
 
 
-    const StartLogin = async (email, password) => {
+    const StartLogin = async ({email, password}) => {
 
         try {
 
@@ -71,12 +71,12 @@ export const useAuthStore = () => {
         }
     }
 
-    const startRegister = async (name, email, password, role = 'USER_ROLE') => {
+    const StartRegister = async ({name, email, password}) => {
 
         try {
             dispatch(uiOpenProgressBackdrop());
 
-            const { data } = await ecommerceApi.post('users', { name, email, password, role });
+            const { data } = await ecommerceApi.post('users', { name, email, password });
 
             console.log(data);
 
@@ -243,7 +243,7 @@ export const useAuthStore = () => {
 
         //* Métodos
         StartLogin,
-        startRegister,
+        StartRegister,
         startChecking,
         startLogout,
         startGoogleLogin,
