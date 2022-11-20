@@ -68,7 +68,7 @@ export const Category = ({ category, index }) => {
         <Carousel
           swipeable={false}
           draggable={false}
-        //   centerMode={true}
+          //   centerMode={true}
           // showDots={true}
           responsive={responsive}
           ssr={true} // means to render carousel on server-side.

@@ -4,79 +4,117 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import EmailIcon from "@mui/icons-material/Email";
 import FacebookIcon from "@mui/icons-material/Facebook";
 
+import "./footer.css";
+
 export const Footer = () => {
   return (
-    <div className="container_Footer">
-      <div className="container_Title">
-        <h3>CONTACTO</h3>
+    <footer className="site-footer">
+      <div className="container">
+        <div className="row">
+          <div className="col-sm-12 col-md-6">
+            <h6>About</h6>
+            <p className="text-justify">
+              Scanfcode.com <i>CODE WANTS TO BE SIMPLE </i> is an initiative to
+              help the upcoming programmers with the code. Scanfcode focuses on
+              providing the most efficient code or snippets as the code wants to
+              be simple. We will help programmers build up concepts in different
+              programming languages that include C, C++, Java, HTML, CSS,
+              Bootstrap, JavaScript, PHP, Android, SQL and Algorithm.
+            </p>
+          </div>
+
+          <div className="col-xs-6 col-md-3">
+            <h6>Categories</h6>
+            <ul className="footer-links">
+              <li>
+                <a href="http://scanfcode.com/category/c-language/">C</a>
+              </li>
+              <li>
+                <a href="http://scanfcode.com/category/front-end-development/">
+                  UI Design
+                </a>
+              </li>
+              <li>
+                <a href="http://scanfcode.com/category/back-end-development/">
+                  PHP
+                </a>
+              </li>
+              <li>
+                <a href="http://scanfcode.com/category/java-programming-language/">
+                  Java
+                </a>
+              </li>
+              <li>
+                <a href="http://scanfcode.com/category/android/">Android</a>
+              </li>
+              <li>
+                <a href="http://scanfcode.com/category/templates/">Templates</a>
+              </li>
+            </ul>
+          </div>
+
+          <div className="col-xs-6 col-md-3">
+            <h6>Quick Links</h6>
+            <ul className="footer-links">
+              <li>
+                <a href="http://scanfcode.com/about/">About Us</a>
+              </li>
+              <li>
+                <a href="http://scanfcode.com/contact/">Contact Us</a>
+              </li>
+              <li>
+                <a href="http://scanfcode.com/contribute-at-scanfcode/">
+                  Contribute
+                </a>
+              </li>
+              <li>
+                <a href="http://scanfcode.com/privacy-policy/">
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a href="http://scanfcode.com/sitemap/">Sitemap</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr />
       </div>
-      <div className="container_socialmedias">
-        <div
-          className="items"
-          onClick={() =>
-            window.open("https://www.instagram.com/lucasgojeda/", "_blank")
-          }
-        >
-          <InstagramIcon />
+      <div className="container">
+        <div className="row">
+          <div className="col-md-8 col-sm-6 col-xs-12">
+            <p className="copyright-text">
+              Copyright &copy; 2017 All Rights Reserved by
+              <a href="#">Scanfcode</a>.
+            </p>
+          </div>
 
-          <h3>Instagram</h3>
-        </div>
-        <div
-          className="items"
-          onClick={() =>
-            window.open(
-              "https://api.whatsapp.com/send?phone=542213173888",
-              "_blank"
-            )
-          }
-        >
-          <WhatsAppIcon />
-
-          <h3>whatsapp</h3>
-        </div>
-        <div 
-        className="items"
-        onClick={() =>
-            window.open(
-              "https://www.linkedin.com/in/lucas-ojeda-a03372225/",
-              "_blank"
-            )
-          }
-        >
-          <LinkedInIcon />
-
-          <h3>Linkedin</h3>
-        </div>
-        <div
-          className="items"
-          onClick={() =>
-            window.open(
-              "https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=CllgCJZcRPPtpQFjcGrXKdKwprKrkBrdhGDBlfRQCBKCScqLFxmXrtrXjwdnPclVLzSvqKgVpLq",
-              "_blank"
-            )
-          }
-        >
-          <EmailIcon />
-
-          <h3>Gmail</h3>
-        </div>
-        <div
-          className="items"
-          onClick={() =>
-            window.open("https://www.facebook.com/lucas.ojeda.10888", "_blank")
-          }
-        >
-          <FacebookIcon />
-
-          <h3>Facebook</h3>
+          <div className="col-md-4 col-sm-6 col-xs-12">
+            <ul className="social-icons">
+              <li>
+                <a className="facebook" href="#">
+                  <i className="fa fa-facebook"></i>
+                </a>
+              </li>
+              <li>
+                <a className="twitter" href="#">
+                  <i className="fa fa-twitter"></i>
+                </a>
+              </li>
+              <li>
+                <a className="dribbble" href="#">
+                  <i className="fa fa-dribbble"></i>
+                </a>
+              </li>
+              <li>
+                <a className="linkedin" href="#">
+                  <i className="fa fa-linkedin"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-      <div className="container_Copyright">
-        <h3>
-          2022 | Ningún derecho reservado, robe codigo de mi repo sin
-          remordimientos.
-        </h3>
-      </div>
-    </div>
+    </footer>
   );
 };

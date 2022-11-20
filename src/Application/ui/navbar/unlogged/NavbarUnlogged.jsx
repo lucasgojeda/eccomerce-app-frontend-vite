@@ -33,7 +33,7 @@ export const NavbarUnlogged = () => {
           }}
         >
           <AccountCircleIcon sx={{ mr: "2.5px", fontSize: '18px' }} />
-          Ingresar
+          Iniciar sessión
         </Typography>
       </Box>
 

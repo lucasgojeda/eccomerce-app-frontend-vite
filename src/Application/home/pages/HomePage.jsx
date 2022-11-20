@@ -2,6 +2,7 @@ import { useEffect } from "react";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+import { Box, Divider } from "@mui/material";
 
 import { BestProducts, Category } from "../../home";
 
@@ -23,8 +24,14 @@ export const HomePage = () => {
   const lg = useMediaQuery(theme.breakpoints.down("lg"));
 
   return (
-    <div className="container_HomePage">
+    <Box className="container_HomePage">
       <BestProducts />
+
+      <Divider variant="middle" sx={{
+        width: '100%',
+        marginBottom: '20px',
+        marginTop: '20px',
+      }}/>
 
       {categories.map(
         (e, i) =>
@@ -33,6 +40,6 @@ export const HomePage = () => {
       )}
 
       <Footer />
-    </div>
+    </Box>
   );
 };
