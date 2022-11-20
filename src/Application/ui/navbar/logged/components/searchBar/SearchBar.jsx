@@ -20,6 +20,8 @@ export const Search = styled("div")(({ theme }) => ({
   marginLeft: 0,
   marginRight: 0,
   width: "auto",
+  border: "1px solid #707B7C",
+  boxShadow: "2.5px 2.5px 5px rgba(167, 164, 164, 0.2)",
 }));
 
 export const SearchIconWrapper = styled("div")(({ theme }) => ({
@@ -121,7 +123,9 @@ export const SearchBar = () => {
 
   return (
     <div className="container_Search">
-      <FilterMenu handleOrderByChange={handleOrderByChange} />
+      {pathname == "/search" && (
+        <FilterMenu handleOrderByChange={handleOrderByChange} />
+      )}
 
       <Search>
         <SearchIconWrapper>

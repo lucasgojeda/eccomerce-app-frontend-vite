@@ -6,6 +6,7 @@ import DoneOutlineIcon from "@mui/icons-material/DoneOutline";
 import IconButton from "@mui/material/IconButton";
 
 import { useAuthStore, useCartStore } from "../../../../hooks";
+import { Box } from "@mui/material";
 
 export const CardProduct = ({ product }) => {
   const navigate = useNavigate();
@@ -43,14 +44,14 @@ export const CardProduct = ({ product }) => {
   };
 
   return (
-    <div className="container_CardProduct">
+    <Box className="container_CardProduct">
       <img src={product.img[0].imageUrl} alt="" />
 
       <div className="container_IconsProduct">
         <div className="container_CartIcon">
           <div
             className="container_LabelCart"
-            onClick={() => navigate('/cart')}
+            onClick={() => navigate("/cart")}
             style={{
               display: !cartStatus && "none",
             }}
@@ -94,9 +95,11 @@ export const CardProduct = ({ product }) => {
 
         <div
           className="backShadow"
-          onClick={() => navigate(`/product/${product.category.name}/${product._id}`)}
+          onClick={() =>
+            navigate(`/product/${product.category.name}/${product._id}`)
+          }
         ></div>
       </div>
-    </div>
+    </Box>
   );
 };
