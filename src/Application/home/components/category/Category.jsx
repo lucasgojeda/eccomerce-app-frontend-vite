@@ -7,6 +7,9 @@ import IconButton from "@mui/material/IconButton";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
+
 import { useProductsStore } from "../../../../hooks";
 
 import { CardProduct } from "../../../home";
@@ -34,6 +37,12 @@ const responsive = {
 };
 
 export const Category = ({ category, index }) => {
+  const theme = useTheme();
+  const sm = useMediaQuery(theme.breakpoints.down("sm"));
+  const md = useMediaQuery(theme.breakpoints.down("md"));
+  const xl = useMediaQuery(theme.breakpoints.down("xl"));
+  const lg = useMediaQuery(theme.breakpoints.down("lg"));
+
   return (
     <Box
       sx={{
@@ -68,19 +77,13 @@ export const Category = ({ category, index }) => {
         <Carousel
           swipeable={false}
           draggable={false}
-          //   centerMode={true}
-          // showDots={true}
+          centerMode={sm ? true : false}
           responsive={responsive}
           ssr={true} // means to render carousel on server-side.
           infinite={true}
-          // autoPlay={this.props.deviceType !== "mobile" ? true : false}
           autoPlaySpeed={1000}
           keyBoardControl={true}
-          // customTransition="all .5"
-          // transitionDuration={3000}
           containerClass="carousel-container"
-          removeArrowOnDeviceType={["tablet", "mobile"]}
-          // deviceType={this.props.deviceType}
           dotListClass="custom-dot-list-style"
           itemClass="carousel-item-padding-40-px"
         >

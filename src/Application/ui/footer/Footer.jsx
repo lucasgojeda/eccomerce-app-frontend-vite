@@ -1,120 +1,286 @@
+/** Libraries */
+import { styled } from "@mui/material/styles";
+import { Box } from "@mui/system";
+
+/** Material IU - Icons */
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import EmailIcon from "@mui/icons-material/Email";
 import FacebookIcon from "@mui/icons-material/Facebook";
 
-import "./footer.css";
+/** Material IU - Custom components */
+const FooterStiled = styled("footer")(({ theme }) => ({
+  width: "100%",
+  backgroundColor: "#26272b",
+  display: "flex",
+  alignItems: "center",
+  flexDirection: "column",
+  padding: "45px 0 20px",
+  fontSize: "15px",
+  lineHeight: "24px",
+  color: "#737373",
+  overflowX: "hidden",
+  hr: {
+    borderTopColor: "#bbb",
+    opacity: "0.5",
+  },
+  a: {
+    color: "#737373",
+    textDecoration: "none",
+  },
+  li: {
+    listStyle: "none",
+  },
+}));
+
+const SectionsContainer = styled("div")(({ theme }) => ({
+  width: "85%",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  flexDirection: "row",
+  [theme.breakpoints.down("sm")]: {
+    flexWrap: "wrap",
+  },
+  [theme.breakpoints.down("md")]: {
+    flexWrap: "wrap",
+  },
+  [theme.breakpoints.down("lg")]: {
+    flexWrap: "no-wrap",
+  },
+}));
+
+const MainSection = styled("div")(({ theme }) => ({
+  minHeight: "190px",
+  display: "flex",
+  alignItems: "start",
+  justifyContent: "flex-start",
+  flexDirection: "column",
+  padding: "5px",
+  [theme.breakpoints.down("sm")]: {
+    width: "100%",
+  },
+  [theme.breakpoints.between("md", "lg")]: {
+    width: "85%",
+  },
+  [theme.breakpoints.between("lg", "xl")]: {
+    width: "45%",
+  },
+}));
+
+const SecondarySection = styled("div")(({ theme }) => ({
+  minHeight: "190px",
+  display: "flex",
+  alignItems: "start",
+  justifyContent: "flex-start",
+  flexDirection: "column",
+  [theme.breakpoints.down("sm")]: {
+    width: "42.5%",
+  },
+  [theme.breakpoints.between("md", "lg")]: {
+    width: "42.5%",
+  },
+  [theme.breakpoints.between("lg", "xl")]: {
+    width: "20%",
+  },
+}));
+
+const Font = styled("h6")(({ theme }) => ({
+  color: "#fff",
+  fontSize: "16px",
+  textTransform: "uppercase",
+  marginTop: "5px",
+  marginBottom: "2.5px",
+  letterSpacing: "2px",
+}));
+
+const Paragraph = styled("p")(({ theme }) => ({
+  fontSize: "15px",
+  lineHeight: "24px",
+  color: "#737373",
+}));
+
+const Divisor = styled("hr")(({ theme }) => ({
+  width: "85%",
+  marginTop: "1vh",
+  marginBottom: "2.5vh",
+}));
+
+const LastSectionContainer = styled("div")(({ theme }) => ({
+  width: "85%",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  flexDirection: "row",
+  [theme.breakpoints.down("md")]: {
+    height: "20vh",
+    justifyContent: "center",
+    flexDirection: "column-reverse",
+    flexWrap: "wrap",
+  },
+}));
+
+const IconstContainer = styled("div")(({ theme }) => ({
+  width: "25%",
+  display: "flex",
+  justifyContent: "flex-end",
+  a: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#33353d",
+    color: "#818a91",
+    fontSize: "16px",
+    lineHeight: "44px",
+    width: "44px",
+    height: "44px",
+    textAlign: "center",
+    marginRight: "8px",
+    borderRadius: "100%",
+    webkitTransition: "all 0.2s linear",
+    OTransition: "all 0.2s linear",
+    transition: "all 0.2s linear",
+    ":hover": {
+      color: "#fff",
+      backgroundColor: "#29aafe",
+    },
+  },
+  ul: {
+    display: "flex",
+    flexDirection: "row",
+    li: {
+      marginLeft: "10px",
+    },
+  },
+  [theme.breakpoints.down("md")]: {
+    width: "85%",
+    height: "10vh",
+    justifyContent: "center",
+    marginBottom: "5px",
+  },
+}));
 
 export const Footer = () => {
   return (
-    <footer className="site-footer">
-      <div className="container">
-        <div className="row">
-          <div className="col-sm-12 col-md-6">
-            <h6>About</h6>
-            <p className="text-justify">
-              Scanfcode.com <i>CODE WANTS TO BE SIMPLE </i> is an initiative to
-              help the upcoming programmers with the code. Scanfcode focuses on
-              providing the most efficient code or snippets as the code wants to
-              be simple. We will help programmers build up concepts in different
-              programming languages that include C, C++, Java, HTML, CSS,
-              Bootstrap, JavaScript, PHP, Android, SQL and Algorithm.
-            </p>
-          </div>
+    <FooterStiled>
+      <Box
+        width="100%"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <SectionsContainer>
+          <MainSection>
+            <Font>Acerca de nosotros</Font>
+            <Paragraph>
+              Latam Market es una empresa <i>innovadora</i> la cuál busca
+              mejorar la experiencia del usuario en todos los aspectos mientras
+              brinda productos de calidad importados principalmente desde China, 
+              Singapur, Taiwan, Estados Unidos y Vietnam.
+              Contamos con un catalogo de más de 16.000 productos y trabajamos con 
+              más de 360 marcas con reconocimientos de nivel internacional.
+            </Paragraph>
+          </MainSection>
 
-          <div className="col-xs-6 col-md-3">
-            <h6>Categories</h6>
+          <SecondarySection>
+            <Font>Marcas</Font>
+            <ul>
+              <li>
+                <Paragraph>Apple</Paragraph>
+              </li>
+              <li>
+                <Paragraph>Sara</Paragraph>
+              </li>
+              <li>
+                <Paragraph>Victoria Secret</Paragraph>
+              </li>
+              <li>
+                <Paragraph>Rolls Royce</Paragraph>
+              </li>
+              <li>
+                <Paragraph>Rolex</Paragraph>
+              </li>
+              <li>
+                <Paragraph>Nike</Paragraph>
+              </li>
+            </ul>
+          </SecondarySection>
+
+          <SecondarySection>
+            <Font>Clientes</Font>
             <ul className="footer-links">
               <li>
-                <a href="http://scanfcode.com/category/c-language/">C</a>
+                <Paragraph>Gobierno del Brazíl</Paragraph>
               </li>
               <li>
-                <a href="http://scanfcode.com/category/front-end-development/">
-                  UI Design
-                </a>
+                <Paragraph>Gobierno Argentino</Paragraph>
               </li>
               <li>
-                <a href="http://scanfcode.com/category/back-end-development/">
-                  PHP
-                </a>
+                <Paragraph>Carrefour</Paragraph>
               </li>
               <li>
-                <a href="http://scanfcode.com/category/java-programming-language/">
-                  Java
-                </a>
+                <Paragraph>Nini</Paragraph>
               </li>
               <li>
-                <a href="http://scanfcode.com/category/android/">Android</a>
-              </li>
-              <li>
-                <a href="http://scanfcode.com/category/templates/">Templates</a>
+                <Paragraph>Vital</Paragraph>
               </li>
             </ul>
-          </div>
+          </SecondarySection>
+        </SectionsContainer>
+      </Box>
+      <Divisor />
+      <LastSectionContainer>
+        <Box>
+          <Paragraph>
+            Copyright &copy; 2022 All Rights Reserved by
+            <a href="https://github.com/lucasgojeda" target="_blank"> lucasgojeda</a>
+            .
+          </Paragraph>
+        </Box>
 
-          <div className="col-xs-6 col-md-3">
-            <h6>Quick Links</h6>
-            <ul className="footer-links">
-              <li>
-                <a href="http://scanfcode.com/about/">About Us</a>
-              </li>
-              <li>
-                <a href="http://scanfcode.com/contact/">Contact Us</a>
-              </li>
-              <li>
-                <a href="http://scanfcode.com/contribute-at-scanfcode/">
-                  Contribute
-                </a>
-              </li>
-              <li>
-                <a href="http://scanfcode.com/privacy-policy/">
-                  Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a href="http://scanfcode.com/sitemap/">Sitemap</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <hr />
-      </div>
-      <div className="container">
-        <div className="row">
-          <div className="col-md-8 col-sm-6 col-xs-12">
-            <p className="copyright-text">
-              Copyright &copy; 2017 All Rights Reserved by
-              <a href="#">Scanfcode</a>.
-            </p>
-          </div>
-
-          <div className="col-md-4 col-sm-6 col-xs-12">
-            <ul className="social-icons">
-              <li>
-                <a className="facebook" href="#">
-                  <i className="fa fa-facebook"></i>
-                </a>
-              </li>
-              <li>
-                <a className="twitter" href="#">
-                  <i className="fa fa-twitter"></i>
-                </a>
-              </li>
-              <li>
-                <a className="dribbble" href="#">
-                  <i className="fa fa-dribbble"></i>
-                </a>
-              </li>
-              <li>
-                <a className="linkedin" href="#">
-                  <i className="fa fa-linkedin"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </footer>
+        <IconstContainer>
+          <ul>
+            <li>
+              <a
+                href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=CllgCJZcRPPtpQFjcGrXKdKwprKrkBrdhGDBlfRQCBKCScqLFxmXrtrXjwdnPclVLzSvqKgVpLq"
+                target="_blank"
+              >
+                <EmailIcon />
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.linkedin.com/in/lucas-ojeda-a03372225/"
+                target="_blank"
+              >
+                <LinkedInIcon />
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/lucasgojeda/" target="_blank">
+                <InstagramIcon />
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://api.whatsapp.com/send?phone=542213173888"
+                target="_blank"
+              >
+                <WhatsAppIcon />
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.facebook.com/lucas.ojeda.10888"
+                target="_blank"
+              >
+                <FacebookIcon />
+              </a>
+            </li>
+          </ul>
+        </IconstContainer>
+      </LastSectionContainer>
+    </FooterStiled>
   );
 };
