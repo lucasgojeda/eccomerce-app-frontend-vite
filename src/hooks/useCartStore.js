@@ -16,7 +16,7 @@ export const useCartStore = () => {
   const dispatch = useDispatch();
   const { cart } = useSelector((state) => state.cart);
 
-  const startUpdatedCart = async (_cart, id) => {
+  const startUpdatedCart = async (_cart, id, setDisableButton) => {
     try {
       const {
         data: { msg, product },
@@ -42,21 +42,23 @@ export const useCartStore = () => {
       );
       console.log(error);
     }
+
+    setDisableButton(false);
   };
 
-  const startDeletedCart = async (_cart, id) => {
+  const startDeletedCart = async (_cart, id, setDisableButton) => {
     try {
-    //   console.log(_cart);
+      //   console.log(_cart);
 
       const {
         data: { msg, product },
       } = await ecommerceApi.delete(`users/cart/${id}/${_cart._id}`);
 
-      
       if (msg === "OK") {
-          dispatch(uiCloseProgressBackdrop());
+        dispatch(uiCloseProgressBackdrop());
 
         //   console.log({ msg, product });
+        setDisableButton(false);
         dispatch(deleteCartProduct(product));
       } else {
         dispatch(uiCloseProgressBackdrop());
@@ -72,6 +74,8 @@ export const useCartStore = () => {
       );
       console.log(error);
     }
+
+    setDisableButton(false);
   };
 
   return {

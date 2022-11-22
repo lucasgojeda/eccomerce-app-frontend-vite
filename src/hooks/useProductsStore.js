@@ -86,8 +86,6 @@ export const useProductsStore = () => {
             
             const { data: data2 } = await ecommerceApi.get(`ranking/bestProducts`);
 
-            console.log(data2)
-
             const { msg, results } = data;
 
             if (msg === 'OK') {

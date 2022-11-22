@@ -31,17 +31,10 @@ import { SearchPage } from "../Application/search";
 export const AppRouter = () => {
   const { uid, checking, role, startChecking } = useAuthStore();
 
-  const { categories, startLoadCategories } = useCategoriesStore();
-
-  const { startLoadStatistics } = useStaticsStore();
-
-  const { startLoadNotifications } = useNotificationsStore();
+  const { categories } = useCategoriesStore();
 
   useEffect(() => {
     startChecking();
-    startLoadCategories();
-    startLoadStatistics();
-    startLoadNotifications();
   }, []);
 
   if (checking || !categories) {

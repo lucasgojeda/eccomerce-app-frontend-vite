@@ -7,6 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Badge from '@mui/material/Badge';
 import { useTheme } from '@mui/material/styles';
+import Tooltip from "@mui/material/Tooltip";
 
 import { useNotificationsStore } from '../../../../../../hooks';
 
@@ -48,7 +49,9 @@ export const NotificationsItem = () => {
                     badgeContent={badgeNotifications}
                     color="primary"
                 >
+                    <Tooltip title="Mis notificaciones" arrow>
                     <NotificationsIcon />
+                     </Tooltip>
                 </Badge>
             </IconButton>
         </Box>

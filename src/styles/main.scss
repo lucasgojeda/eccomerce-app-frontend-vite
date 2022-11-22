@@ -13,10 +13,7 @@
 @import './Application/cart/pages/CartPage';
 
 // Home
-@import './Application/home/pages/HomePage';
 @import './Application/home/components/bestProducts/BestProducts';
-@import './Application/home/components/cartProduct/CardProduct';
-@import './Application/home/components/category/Category';
 
 // Notifications
 @import './Application/notifications/pages/NotificationsPage';
@@ -34,9 +31,6 @@
 @import './Application/ui/navbar/logged/LargueLoggedBar';
 @import './Application/ui/navbar/logged/components/menuDrawer/MenuDrawer';
 @import './Application/ui/navbar/logged/components/searchInput/components/FilterMenu';
-
-// Ui > Footer
-@import './Application/ui/footer/Footer';
 
 // Ui > Progress
 @import './Application/ui/progress/ProgressBackdrop';

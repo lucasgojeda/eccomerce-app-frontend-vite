@@ -5,8 +5,6 @@ import { Footer } from "../../ui";
 export const SearchPage = () => {
   const { products } = useProductsStore();
 
-  console.log(products);
-
   return (
     <div className="container_SearchPage">
       {products.length === 0 || !products ? (
