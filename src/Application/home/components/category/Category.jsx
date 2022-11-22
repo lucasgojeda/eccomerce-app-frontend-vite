@@ -1,21 +1,41 @@
-import { useState } from "react";
-
+/** Libraries */
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-import IconButton from "@mui/material/IconButton";
-import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
-import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+import { Box } from "@mui/system";
+import { Typography } from "@mui/material";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 
-import { useProductsStore } from "../../../../hooks";
+import { styled } from "@mui/material/styles";
 
+/** Components */
 import { CardProduct } from "../../../home";
-import { Box } from "@mui/system";
-import { Typography } from "@mui/material";
 
+/** Material UI - Custom components */
+const CategoryContainer = styled('div')(({ theme }) => ({
+  width: "100%",
+  overflow: "visible",
+}));
+
+const CarouselContainer = styled("div")(({ theme }) => ({
+  display: "grid",
+  width: "100%",
+  height: "27.5ch",
+  overflow: "visible",
+}));
+
+const TitleContainer = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "flex-start",
+  marginLeft: "2.5%",
+  width: "97.5%",
+  height: "5vh",
+}));
+
+/** Carousel data */
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -36,44 +56,20 @@ const responsive = {
   },
 };
 
-export const Category = ({ category, index }) => {
+export const Category = ({ category }) => {
   const theme = useTheme();
   const sm = useMediaQuery(theme.breakpoints.down("sm"));
-  const md = useMediaQuery(theme.breakpoints.down("md"));
-  const xl = useMediaQuery(theme.breakpoints.down("xl"));
-  const lg = useMediaQuery(theme.breakpoints.down("lg"));
 
   return (
-    <Box
-      sx={{
-        width: "100%",
-        overflow: "visible",
-      }}
-    >
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "flex-start",
-          marginLeft: "2.5%",
-          width: "97.5%",
-          height: "5vh",
-        }}
-      >
+    <CategoryContainer>
+      <TitleContainer>
         <Typography variant="body2" fontSize={18} color="#707B7C">
           {category.name.substring(1, -1).toUpperCase() +
             category.name.substring(1)}
         </Typography>
-      </Box>
+      </TitleContainer>
 
-      <Box
-        sx={{
-          display: "grid",
-          width: "100%",
-          height: "27.5ch",
-          overflow: "visible",
-        }}
-      >
+      <CarouselContainer>
         <Carousel
           swipeable={false}
           draggable={false}
@@ -95,7 +91,7 @@ export const Category = ({ category, index }) => {
             </Box>
           ))}
         </Carousel>
-      </Box>
-    </Box>
+      </CarouselContainer>
+    </CategoryContainer>
   );
 };

@@ -2,14 +2,14 @@
 import { styled } from "@mui/material/styles";
 import { Box } from "@mui/system";
 
-/** Material IU - Icons */
+/** Material UI - Icons */
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import EmailIcon from "@mui/icons-material/Email";
 import FacebookIcon from "@mui/icons-material/Facebook";
 
-/** Material IU - Custom components */
+/** Material UI - Custom components */
 const FooterStiled = styled("footer")(({ theme }) => ({
   width: "100%",
   backgroundColor: "#26272b",
