@@ -71,7 +71,7 @@ export const SearchBar = () => {
     // Filters and search
     useEffect(() => {
 
-        startLoadProducts(filterBy, orderBy, searchText, pagePath);
+        // startLoadProducts(filterBy, orderBy, searchText, pagePath);
 
     }, [filterBy, orderBy, flagSearch, pagePath]);
 

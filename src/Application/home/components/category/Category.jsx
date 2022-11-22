@@ -8,13 +8,16 @@ import { Typography } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 
+import Skeleton from "@mui/material/Skeleton";
+import Stack from "@mui/material/Stack";
+
 import { styled } from "@mui/material/styles";
 
 /** Components */
 import { CardProduct } from "../../../home";
 
 /** Material UI - Custom components */
-const CategoryContainer = styled('div')(({ theme }) => ({
+const CategoryContainer = styled("div")(({ theme }) => ({
   width: "100%",
   overflow: "visible",
 }));
@@ -70,27 +73,74 @@ export const Category = ({ category }) => {
       </TitleContainer>
 
       <CarouselContainer>
-        <Carousel
-          swipeable={false}
-          draggable={false}
-          centerMode={sm ? true : false}
-          responsive={responsive}
-          ssr={true} // means to render carousel on server-side.
-          infinite={true}
-          autoPlaySpeed={1000}
-          keyBoardControl={true}
-          containerClass="carousel-container"
-          dotListClass="custom-dot-list-style"
-          itemClass="carousel-item-padding-40-px"
-        >
-          {category.products.map((e, i) => (
-            <Box key={i}>
-              <CardProduct
-                product={{ ...e, category: { name: category.name } }}
+        {category.products?.length !== 0 ? (
+          <Carousel
+            swipeable={false}
+            draggable={false}
+            centerMode={sm ? true : false}
+            responsive={responsive}
+            ssr={true} // means to render carousel on server-side.
+            infinite={true}
+            keyBoardControl={true}
+            containerClass="carousel-container"
+            dotListClass="custom-dot-list-style"
+            itemClass="carousel-item-padding-40-px"
+          >
+            {category.products.map((e, i) => (
+              <Box key={i}>
+                <CardProduct
+                  product={{ ...e, category: { name: category.name } }}
+                />
+              </Box>
+            ))}
+          </Carousel>
+        ) : (
+          <Carousel
+            swipeable={false}
+            draggable={false}
+            centerMode={sm ? true : false}
+            responsive={responsive}
+            ssr={true} // means to render carousel on server-side.
+            infinite={true}
+            keyBoardControl={true}
+            containerClass="carousel-container"
+            dotListClass="custom-dot-list-style"
+            itemClass="carousel-item-padding-40-px"
+          >
+            <Stack spacing={1}>
+              <Skeleton
+                variant="rectangular"
+                width="20ch"
+                height="20ch"
+                animation="wave"
               />
-            </Box>
-          ))}
-        </Carousel>
+            </Stack>
+            <Stack spacing={1}>
+              <Skeleton
+                variant="rectangular"
+                width="20ch"
+                height="20ch"
+                animation="wave"
+              />
+            </Stack>
+            <Stack spacing={1}>
+              <Skeleton
+                variant="rectangular"
+                width="20ch"
+                height="20ch"
+                animation="wave"
+              />
+            </Stack>
+            <Stack spacing={1}>
+              <Skeleton
+                variant="rectangular"
+                width="20ch"
+                height="20ch"
+                animation="wave"
+              />
+            </Stack>
+          </Carousel>
+        )}
       </CarouselContainer>
     </CategoryContainer>
   );

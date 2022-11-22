@@ -10,7 +10,7 @@ import { BestProducts, Category } from "../../home";
 import { Footer } from "../../ui";
 
 /** Custom hooks */
-import { useCategoriesStore, useProductsStore } from "../../../hooks";
+import { useCategoriesStore } from "../../../hooks";
 
 /** Material UI - Custom components */
 const HomeContainer = styled("div")(({ theme }) => ({
@@ -26,13 +26,23 @@ const HomeContainer = styled("div")(({ theme }) => ({
   backgroundColor: "#fff",
 }));
 
+const skeletonArray = [
+  {
+    name: "",
+    products: [],
+  },
+  {
+    name: "",
+    products: [],
+  },
+  {
+    name: "",
+    products: [],
+  },
+];
+
 export const HomePage = () => {
   const { categories } = useCategoriesStore();
-  const { startLoadProductsByCategories } = useProductsStore();
-
-  useEffect(() => {
-    startLoadProductsByCategories();
-  }, []);
 
   return (
     <HomeContainer>
@@ -47,10 +57,20 @@ export const HomePage = () => {
         }}
       />
 
-      {categories.map(
-        (e, i) =>
-          e.products.length !== 0 &&
-          e.name !== "Preba" && <Category key={i} category={e} />
+      {categories.length !== 0 ? (
+        <>
+          {categories.map(
+            (e, i) =>
+              e.products.length !== 0 &&
+              e.name !== "Preba" && <Category key={i} category={e} />
+          )}
+        </>
+      ) : (
+        <>
+          {skeletonArray.map((e, i) => (
+            <Category key={i} category={e} />
+          ))}
+        </>
       )}
 
       <Footer />
