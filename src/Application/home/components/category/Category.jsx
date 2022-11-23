@@ -110,7 +110,7 @@ export const Category = ({ category }) => {
             <Stack spacing={1}>
               <Skeleton
                 variant="rectangular"
-                width={(sm) ? "15ch" : "20ch"}
+                width={(sm) ? "17.5ch" : "20ch"}
                 height="20ch"
                 animation="wave"
               />
@@ -118,7 +118,7 @@ export const Category = ({ category }) => {
             <Stack spacing={1}>
               <Skeleton
                 variant="rectangular"
-                width={(sm) ? "15ch" : "20ch"}
+                width={(sm) ? "17.5ch" : "20ch"}
                 height="20ch"
                 animation="wave"
               />
@@ -126,7 +126,7 @@ export const Category = ({ category }) => {
             <Stack spacing={1}>
               <Skeleton
                 variant="rectangular"
-                width={(sm) ? "15ch" : "20ch"}
+                width={(sm) ? "17.5ch" : "20ch"}
                 height="20ch"
                 animation="wave"
               />
@@ -134,7 +134,7 @@ export const Category = ({ category }) => {
             <Stack spacing={1}>
               <Skeleton
                 variant="rectangular"
-                width={(sm) ? "15ch" : "20ch"}
+                width={(sm) ? "17.5ch" : "20ch"}
                 height="20ch"
                 animation="wave"
               />

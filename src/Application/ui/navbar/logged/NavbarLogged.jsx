@@ -10,7 +10,8 @@ import HomeIcon from "@mui/icons-material/Home";
 import { useNavigate } from "react-router";
 import { styled } from "@mui/material/styles";
 import MovilMenuLogged from "./components/swipeableMenuDrawer/MovilMenuLogged";
-// import { DialogLogout } from '../../../../dashboard/ui/alerts/DialogLogout';
+import { useState } from "react";
+import { DialogLogout } from '../../../ui';
 
 /** Material UI - Custom components */
 const Navbar = styled("nav")(({ theme }) => ({
@@ -34,8 +35,6 @@ const FirstIconsContainer = styled("div")(({ theme }) => ({
   marginLeft: "1.5vw",
   width: "25vw",
   "& .MuiSvgIcon-root": {
-    mr: "2.5px",
-    ml: "2.5px",
     color: "#707B7C",
     cursor: "pointer",
   },
@@ -51,6 +50,7 @@ const SecondIconsContainer = styled("div")(({ theme }) => ({
   width: "60%",
   [theme.breakpoints.down("sm")]: {
     width: "85%",
+    justifyContent: "center",
   },
 }));
 
@@ -92,42 +92,57 @@ export const NavbarLogged = () => {
 
   const { startLogout } = useAuthStore();
 
+  const [dialogLogoutOpen, setDialogLogoutOpen] = useState(false);
+
   return (
-    <Navbar>
-      <MenuContainer>
-        <MovilMenuLogged />
-      </MenuContainer>
+    <>
+      <DialogLogout
+        dialogLogoutOpen={dialogLogoutOpen}
+        setDialogLogoutOpen={setDialogLogoutOpen}
+        handleCloseMenu={() => {}}
+      />
+      <Navbar>
+        <MenuContainer>
+          <MovilMenuLogged />
+        </MenuContainer>
 
-      <FirstIconsContainer>
-        <Tooltip title="Ir al inicio" arrow>
-          <HomeIcon sx={{ fontSize: "25px" }} onClick={() => navigate("/")} />
-        </Tooltip>
+        <FirstIconsContainer>
+          <Tooltip title="Ir al inicio" arrow>
+            <HomeIcon
+              sx={{ fontSize: "25px", mr: "1vw" }}
+              onClick={() => navigate("/")}
+            />
+          </Tooltip>
 
-        <Divider
-          orientation="vertical"
-          flexItem
-          sx={{
-            height: "2.5vh",
-            color: "#000",
-          }}
-        />
+          <Divider
+            orientation="vertical"
+            flexItem
+            sx={{
+              height: "2.5vh",
+              color: "#000",
+            }}
+          />
 
-        <Tooltip title="Cerrar sesión" arrow>
-          <LogoutIcon sx={{ fontSize: "22.5px" }} onClick={startLogout} />
-        </Tooltip>
-      </FirstIconsContainer>
+          <Tooltip title="Cerrar sesión" arrow>
+            <LogoutIcon
+              sx={{ fontSize: "22.5px", ml: "1vw" }}
+              onClick={() => setDialogLogoutOpen(true)}
+            />
+          </Tooltip>
+        </FirstIconsContainer>
 
-      <SecondIconsContainer>
-        <CartItemContainer>
-          <CartItem />
+        <SecondIconsContainer>
+          <CartItemContainer>
+            <CartItem />
 
-          <NotificationsItem />
-        </CartItemContainer>
+            <NotificationsItem />
+          </CartItemContainer>
 
-        <SearchContainer>
-          <SearchBar />
-        </SearchContainer>
-      </SecondIconsContainer>
-    </Navbar>
+          <SearchContainer>
+            <SearchBar />
+          </SearchContainer>
+        </SecondIconsContainer>
+      </Navbar>
+    </>
   );
 };

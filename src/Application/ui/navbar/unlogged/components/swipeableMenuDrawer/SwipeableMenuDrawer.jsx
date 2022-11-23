@@ -32,6 +32,7 @@ const TitleContainer = styled("div")(({ theme }) => ({
   width: "100%",
   height: "5vh",
   marginTop: '2.5vh',
+  marginBottom: "2.5vh",
 }));
 
 export default function SwipeableMenuDrawer() {
@@ -78,6 +79,7 @@ export default function SwipeableMenuDrawer() {
         <SwipeableDrawer
           anchor={"left"}
           open={stateMenu}
+          onOpen={() => {}}
           onClose={handleCloseMenu}
         >
           <Box sx={{ width: "75vw" }}>

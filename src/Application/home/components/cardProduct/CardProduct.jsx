@@ -39,7 +39,7 @@ const ProductContainer = styled("div")(({ theme }) => ({
       visibility: "visible",
     },
     "& .TitlePriceContainer": {
-      visibility: "visible",
+      backgroundColor: "rgba(84, 153, 199, 0.85)",
     },
   },
 }));
@@ -132,8 +132,7 @@ const TitlePriceContainer = styled("div")(({ theme }) => ({
   justifyContent: "center",
   padding: "7.5px",
   borderRadius: "15px",
-  backgroundColor: "#5499c7",
-  visibility: "hidden",
+  backgroundColor: "rgba(84, 153, 199, 0.65)",
   h3: {
     fontSize: "12px",
     color: "#fff",

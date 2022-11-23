@@ -164,19 +164,18 @@ export const useAuthStore = () => {
       localStorage.removeItem("token");
 
       dispatch(authLogout());
-      dispatch(usersLogout());
-      dispatch(usersBinLogout());
-      dispatch(productsBinLogout());
-      dispatch(recordsLogout());
-      dispatch(salesLogout());
-      dispatch(staticsLogout());
       dispatch(cartLogout());
       dispatch(notificationsLogout());
 
-      dispatch(uiCloseProgressBackdrop());
+      setTimeout(() => {
+        dispatch(uiCloseProgressBackdrop());
+      }, 1500);
     } catch (error) {
       console.log(error);
-      dispatch(uiCloseProgressBackdrop());
+
+      setTimeout(() => {
+        dispatch(uiCloseProgressBackdrop());
+      }, 1500);
     }
   };
 

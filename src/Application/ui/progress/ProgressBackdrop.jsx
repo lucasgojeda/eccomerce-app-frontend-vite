@@ -12,8 +12,17 @@ export const ProgressBackdrop = () => {
     <Backdrop
       className="container_ProgressBackdrop"
       open={progressBackdrop.status}
+      sx={{
+        zIndex: (theme) => theme.zIndex.drawer + 1000,
+      }}
     >
-      <CircularProgress color="inherit" size="80px" sx={{ display: "block" }} />
+      <CircularProgress
+        color="inherit"
+        size="80px"
+        sx={{
+          display: "block",
+        }}
+      />
     </Backdrop>
   );
 };

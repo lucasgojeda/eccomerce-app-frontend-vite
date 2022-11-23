@@ -11,3 +11,5 @@ export * from './navbar/logged/components/searchBar/SearchBar';
 export * from './navbar/logged/components/searchBar/components/FilterMenu';
 
 export * from './navbar/unlogged/NavbarUnlogged';
+
+export * from './alerts/DialogLogout';
