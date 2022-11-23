@@ -63,7 +63,7 @@ const responsive = {
 };
 
 export const BestProducts = () => {
-  const { products } = useProductsStore();
+  const { bestProducts } = useProductsStore();
 
   const theme = useTheme();
   const sm = useMediaQuery(theme.breakpoints.down("sm"));
@@ -92,7 +92,7 @@ export const BestProducts = () => {
       </TitleContainer>
 
       <CarouselContainer>
-        {products.length !== 0 ? (
+        {bestProducts.length !== 0 ? (
           <Carousel
             swipeable={false}
             draggable={false}
@@ -114,14 +114,11 @@ export const BestProducts = () => {
             dotListClass="custom-dot-list-style"
             itemClass="carousel-item-padding-40-px"
           >
-            {products.map(
-              (e, i) =>
-                i < 3 && (
-                  <Box key={i} sx={{ marginLeft: handleFixMargin() }}>
-                    <CardProduct product={e} />
-                  </Box>
-                )
-            )}
+            {bestProducts.map((e, i) => (
+              <Box key={i} sx={{ marginLeft: handleFixMargin() }}>
+                <CardProduct product={e.product} />
+              </Box>
+            ))}
           </Carousel>
         ) : (
           <Carousel

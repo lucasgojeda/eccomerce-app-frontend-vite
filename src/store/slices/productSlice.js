@@ -4,6 +4,7 @@ export const productSlice = createSlice({
   name: 'product',
   initialState: {
     products: [],
+    bestProducts: [],
     activeProduct: false,
   },
   reducers: {
@@ -22,6 +23,10 @@ export const productSlice = createSlice({
     loadProducts: (state, action) => {
 
       state.products = [...action.payload];
+    },
+    loadBestProducts: (state, action) => {
+
+      state.bestProducts = [...action.payload];
     },
     loadFilteredProducts: (state, action) => {
 
@@ -50,6 +55,7 @@ export const productSlice = createSlice({
     productsLogout: (state) => {
 
       state.products = [];
+      state.bestProducts = [];
       state.activeProduct = false;
     },
 
@@ -65,4 +71,5 @@ export const {
   addProduct,
   updateProduct,
   deleteProduct,
+  loadBestProducts,
   productsLogout, } = productSlice.actions;

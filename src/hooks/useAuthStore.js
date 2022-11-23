@@ -60,6 +60,8 @@ export const useAuthStore = () => {
         );
         dispatch(loadCart(user.cart));
 
+        startLoadNotifications();
+
         dispatch(uiCloseProgressBackdrop());
       } else {
         dispatch(uiCloseProgressBackdrop());
@@ -98,6 +100,8 @@ export const useAuthStore = () => {
         );
         dispatch(loadCart(user.cart));
 
+        startLoadNotifications();
+
         dispatch(uiCloseProgressBackdrop());
       } else {
         errors !== undefined && console.log(errors);
@@ -131,8 +135,6 @@ export const useAuthStore = () => {
         );
         dispatch(loadCart(cart));
 
-        startLoadProducts('price', 'desc', '', 1);
-        startLoadCategories();
         startLoadNotifications();
       } else {
         if (msg === "invalid token.") {
@@ -198,6 +200,8 @@ export const useAuthStore = () => {
           })
         );
         dispatch(loadCart(user.cart));
+
+        startLoadNotifications();
 
         dispatch(uiCloseProgressBackdrop());
       } else {
