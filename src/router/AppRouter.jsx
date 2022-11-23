@@ -8,6 +8,7 @@ import {
   useAuthStore,
   useCategoriesStore,
   useNotificationsStore,
+  useProductsStore,
   useStaticsStore,
 } from "../hooks";
 
@@ -31,9 +32,12 @@ import { SearchPage } from "../Application/search";
 export const AppRouter = () => {
   const { uid, checking, role, startChecking } = useAuthStore();
 
-  const { categories } = useCategoriesStore();
+  const { startLoadBestProducts } = useProductsStore();
+  const { categories, startLoadCategories } = useCategoriesStore();
 
   useEffect(() => {
+    startLoadBestProducts();
+    startLoadCategories();
     startChecking();
   }, []);
 

@@ -1,0 +1,164 @@
+/** Libraries */
+import * as React from "react";
+import { useLocation, useNavigate } from "react-router";
+
+import Box from "@mui/material/Box";
+import { Typography } from "@mui/material";
+import SwipeableDrawer from "@mui/material/SwipeableDrawer";
+import Divider from "@mui/material/Divider";
+
+import styled from "@emotion/styled";
+
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+
+import IconButton from "@mui/material/IconButton";
+
+import Badge from "@mui/material/Badge";
+
+/** Material UI - Icons */
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import MenuIcon from "@mui/icons-material/Menu";
+import MailIcon from "@mui/icons-material/Mail";
+import InboxIcon from "@mui/icons-material/MoveToInbox";
+import HomeIcon from "@mui/icons-material/Home";
+import LoginIcon from "@mui/icons-material/Login";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import LogoutIcon from "@mui/icons-material/Logout";
+import {
+  useAuthStore,
+  useCartStore,
+  useNotificationsStore,
+} from "../../../../../../hooks";
+
+const TitleContainer = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  width: "100%",
+  height: "5vh",
+  marginTop: "2.5vh",
+}));
+
+export default function MovilMenuLogged() {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+
+  const { startLogout } = useAuthStore();
+
+  const [stateMenu, setStateMenu] = React.useState(false);
+
+  /** Cart badge */
+  const { cart: cartProducts } = useCartStore();
+
+  const badgeNumber = cartProducts.length;
+
+  /** Notifications badge */
+  const { notifications } = useNotificationsStore();
+
+  const badgeNotifications = notifications?.filter((n) => n.status)?.length;
+
+  const handleCloseMenu = () => {
+    setStateMenu(false);
+  };
+
+  const handleHomeButton = () => {
+    handleCloseMenu();
+    navigate("/");
+  };
+
+  const handleCartButton = () => {
+    handleCloseMenu();
+    navigate("/cart");
+  };
+
+  const handleNotificationsButton = () => {
+    handleCloseMenu();
+    navigate("/notifications");
+  };
+
+  const handleLogOutButton = () => {
+    handleCloseMenu();
+    startLogout();
+  };
+
+  return (
+    <div>
+      <React.Fragment>
+        <IconButton
+          className="DoneOutlineIcon"
+          size="small"
+          edge="end"
+          color="inherit"
+          onClick={() => setStateMenu(true)}
+        >
+          <MenuIcon />
+        </IconButton>
+        <SwipeableDrawer
+          anchor={"left"}
+          open={stateMenu}
+          onClose={handleCloseMenu}
+        >
+          <Box sx={{ width: "75vw" }}>
+            <TitleContainer>
+              <Typography variant="body2" fontSize={17} color="inherit">
+                Menú
+              </Typography>
+            </TitleContainer>
+            <Divider />
+            {pathname !== "/" && (
+              <List onClick={handleHomeButton}>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <HomeIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Inicio" />
+                  </ListItemButton>
+                </ListItem>
+              </List>
+            )}
+            <List onClick={handleCartButton}>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <Badge badgeContent={badgeNumber} color="warning">
+                      <ShoppingCartIcon />
+                    </Badge>
+                  </ListItemIcon>
+                  <ListItemText primary="Ir al carrito" />
+                </ListItemButton>
+              </ListItem>
+            </List>
+            <List onClick={handleNotificationsButton}>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <Badge badgeContent={badgeNotifications} color="primary">
+                      <NotificationsIcon />
+                    </Badge>
+                  </ListItemIcon>
+                  <ListItemText primary="Ver notificaciones" />
+                </ListItemButton>
+              </ListItem>
+            </List>
+            <List onClick={handleLogOutButton}>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <LogoutIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Cerrar sesión" />
+                </ListItemButton>
+              </ListItem>
+            </List>
+          </Box>
+        </SwipeableDrawer>
+      </React.Fragment>
+    </div>
+  );
+}
