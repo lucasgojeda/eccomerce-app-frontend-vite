@@ -57,6 +57,12 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+export const CloseIconButton = styled(IconButton)(({ theme }) => ({
+  position: "absolute",
+  top: 0,
+  left: "85%",
+}));
+
 export const SearchBar = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -143,13 +149,9 @@ export const SearchBar = () => {
         </form>
 
         {searchText !== "" && (
-          <IconButton
-            className="closeIcon"
-            onClick={handleCloseButton}
-            color="inherit"
-          >
+          <CloseIconButton onClick={handleCloseButton} color="inherit">
             <CloseIcon />
-          </IconButton>
+          </CloseIconButton>
         )}
       </Search>
     </div>

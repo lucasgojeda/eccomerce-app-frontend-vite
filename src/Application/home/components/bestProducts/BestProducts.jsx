@@ -116,7 +116,7 @@ export const BestProducts = () => {
           >
             {bestProducts.map((e, i) => (
               <Box key={i} sx={{ marginLeft: handleFixMargin() }}>
-                <CardProduct product={e.product} />
+                <CardProduct product={e} />
               </Box>
             ))}
           </Carousel>
@@ -137,13 +137,13 @@ export const BestProducts = () => {
               "superLargeDesktop",
             ]}
             containerClass="carousel-container"
-            dotListClass="custom-dot-list-style"
+            dotListClass="custom-dot-list-style"width={(sm) ? "17.5ch" : "20ch"}
             itemClass="carousel-item-padding-40-px"
           >
             <Stack spacing={1}>
               <Skeleton
                 variant="rectangular"
-                width="20ch"
+                width={(sm) ? "17.5ch" : "20ch"}
                 height="20ch"
                 animation="wave"
               />
@@ -151,7 +151,7 @@ export const BestProducts = () => {
             <Stack spacing={1}>
               <Skeleton
                 variant="rectangular"
-                width="20ch"
+                width={(sm) ? "17.5ch" : "20ch"}
                 height="20ch"
                 animation="wave"
               />
@@ -159,7 +159,23 @@ export const BestProducts = () => {
             <Stack spacing={1}>
               <Skeleton
                 variant="rectangular"
-                width="20ch"
+                width={(sm) ? "17.5ch" : "20ch"}
+                height="20ch"
+                animation="wave"
+              />
+            </Stack>
+            <Stack spacing={1}>
+              <Skeleton
+                variant="rectangular"
+                width={(sm) ? "17.5ch" : "20ch"}
+                height="20ch"
+                animation="wave"
+              />
+            </Stack>
+            <Stack spacing={1}>
+              <Skeleton
+                variant="rectangular"
+                width={(sm) ? "17.5ch" : "20ch"}
                 height="20ch"
                 animation="wave"
               />

@@ -5,10 +5,12 @@ import { styled } from "@mui/material/styles";
 
 /** Material UI - Icons */
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import HomeIcon from "@mui/icons-material/Home";
 
 /** Components */
 import { SearchBar } from "../../../ui";
 import SwipeableMenuDrawer from "./components/swipeableMenuDrawer/SwipeableMenuDrawer";
+import { Divider, Tooltip } from "@mui/material";
 
 /** Material UI - Custom components */
 const Navbar = styled("nav")(({ theme }) => ({
@@ -31,6 +33,10 @@ const IconsContainer = styled("div")(({ theme }) => ({
   flexDirection: "row",
   marginLeft: "1.5vw",
   width: "25vw",
+  "& .MuiSvgIcon-root": {
+    color: "#707B7C",
+    cursor: "pointer",
+  },
   [theme.breakpoints.down("sm")]: {
     display: "none",
   },
@@ -72,12 +78,28 @@ export const NavbarUnlogged = () => {
   return (
     <Navbar>
       <MenuContainer>
-      <SwipeableMenuDrawer />
+        <SwipeableMenuDrawer />
       </MenuContainer>
 
       <IconsContainer>
+        <Tooltip title="Ir al inicio" arrow>
+          <HomeIcon
+            sx={{ fontSize: "25px", mr: "1vw" }}
+            onClick={() => navigate("/")}
+          />
+        </Tooltip>
+
+        <Divider
+          orientation="vertical"
+          flexItem
+          sx={{
+            height: "2.5vh",
+            color: "#000",
+          }}
+        />
+
         <Font variant="body2" onClick={() => navigate("login")}>
-          <AccountCircleIcon sx={{ mr: "2.5px", fontSize: "18px" }} />
+          <AccountCircleIcon sx={{ fontSize: "22.5px", ml: "1vw", mr: '2.5px' }} />
           Iniciar sessión
         </Font>
       </IconsContainer>
