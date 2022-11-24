@@ -1,17 +1,22 @@
+/** Libraries */
+import { useState } from "react";
+import { useNavigate } from "react-router";
+
+import { Divider } from "@mui/material";
+import Tooltip from "@mui/material/Tooltip";
+
+import { styled } from "@mui/material/styles";
+
+/** Material UI - Icons */
+import HomeIcon from "@mui/icons-material/Home";
+import LogoutIcon from "@mui/icons-material/Logout";
+
+/** Components */
 import { CartItem } from "../../../ui";
 import { NotificationsItem } from "../../../ui";
 import { SearchBar } from "../../../ui";
-import { MenuDrawer } from "../../../ui";
-import LogoutIcon from "@mui/icons-material/Logout";
-import { Box, Divider, Typography } from "@mui/material";
-import { useAuthStore } from "../../../../hooks";
-import Tooltip from "@mui/material/Tooltip";
-import HomeIcon from "@mui/icons-material/Home";
-import { useNavigate } from "react-router";
-import { styled } from "@mui/material/styles";
-import MovilMenuLogged from "./components/swipeableMenuDrawer/MovilMenuLogged";
-import { useState } from "react";
 import { DialogLogout } from '../../../ui';
+import { MovilMenu } from "../../../ui";
 
 /** Material UI - Custom components */
 const Navbar = styled("nav")(({ theme }) => ({
@@ -90,8 +95,6 @@ const MenuContainer = styled("div")(({ theme }) => ({
 export const NavbarLogged = () => {
   const navigate = useNavigate();
 
-  const { startLogout } = useAuthStore();
-
   const [dialogLogoutOpen, setDialogLogoutOpen] = useState(false);
 
   return (
@@ -103,7 +106,7 @@ export const NavbarLogged = () => {
       />
       <Navbar>
         <MenuContainer>
-          <MovilMenuLogged />
+          <MovilMenu />
         </MenuContainer>
 
         <FirstIconsContainer>

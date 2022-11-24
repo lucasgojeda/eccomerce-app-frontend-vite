@@ -1,4 +1,2 @@
-
-
-export * from './pages/login/LoginPage';
-export * from './pages/register/RegisterPage';
+export * from "./pages/login/LoginPage";
+export * from "./pages/register/RegisterPage";

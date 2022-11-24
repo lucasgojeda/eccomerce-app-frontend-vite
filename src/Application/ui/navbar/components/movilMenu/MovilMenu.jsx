@@ -22,8 +22,6 @@ import Badge from "@mui/material/Badge";
 /** Material UI - Icons */
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MenuIcon from "@mui/icons-material/Menu";
-import MailIcon from "@mui/icons-material/Mail";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
 import HomeIcon from "@mui/icons-material/Home";
 import LoginIcon from "@mui/icons-material/Login";
 import NotificationsIcon from "@mui/icons-material/Notifications";
@@ -33,8 +31,8 @@ import {
   useAuthStore,
   useCartStore,
   useNotificationsStore,
-} from "../../../../../../hooks";
-import { DialogLogout } from "../../../../../ui";
+} from "../../../../../hooks";
+import { DialogLogout } from "../../../../ui";
 
 const TitleContainer = styled("div")(({ theme }) => ({
   display: "flex",
@@ -46,11 +44,11 @@ const TitleContainer = styled("div")(({ theme }) => ({
   marginBottom: "2.5vh",
 }));
 
-export default function MovilMenuLogged() {
+export const MovilMenu = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  const { startLogout } = useAuthStore();
+  const { uid } = useAuthStore();
 
   const [stateMenu, setStateMenu] = React.useState(false);
   const [dialogLogoutOpen, setDialogLogoutOpen] = React.useState(false);
@@ -74,6 +72,7 @@ export default function MovilMenuLogged() {
     navigate("/");
   };
 
+  /** Logged */
   const handleCartButton = () => {
     handleCloseMenu();
     navigate("/cart");
@@ -85,8 +84,18 @@ export default function MovilMenuLogged() {
   };
 
   const handleLogOutButton = () => {
-
     setDialogLogoutOpen(true);
+  };
+
+  /** Unlogged */
+  const handleLoginButton = () => {
+    navigate("/login");
+    handleCloseMenu();
+  };
+
+  const handleRegisterButton = () => {
+    navigate("/register");
+    handleCloseMenu();
   };
 
   return (
@@ -130,42 +139,69 @@ export default function MovilMenuLogged() {
               </ListItem>
             </List>
           )}
-          <List onClick={handleCartButton}>
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <Badge badgeContent={badgeNumber} color="warning">
-                    <ShoppingCartIcon />
-                  </Badge>
-                </ListItemIcon>
-                <ListItemText primary="Ir al carrito" />
-              </ListItemButton>
-            </ListItem>
-          </List>
-          <List onClick={handleNotificationsButton}>
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <Badge badgeContent={badgeNotifications} color="primary">
-                    <NotificationsIcon />
-                  </Badge>
-                </ListItemIcon>
-                <ListItemText primary="Ver notificaciones" />
-              </ListItemButton>
-            </ListItem>
-          </List>
-          <List onClick={handleLogOutButton}>
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <LogoutIcon />
-                </ListItemIcon>
-                <ListItemText primary="Cerrar sesión" />
-              </ListItemButton>
-            </ListItem>
-          </List>
+          {uid ? (
+            <>
+              <List onClick={handleCartButton}>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <Badge badgeContent={badgeNumber} color="warning">
+                        <ShoppingCartIcon />
+                      </Badge>
+                    </ListItemIcon>
+                    <ListItemText primary="Ir al carrito" />
+                  </ListItemButton>
+                </ListItem>
+              </List>
+              <List onClick={handleNotificationsButton}>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <Badge badgeContent={badgeNotifications} color="primary">
+                        <NotificationsIcon />
+                      </Badge>
+                    </ListItemIcon>
+                    <ListItemText primary="Ver notificaciones" />
+                  </ListItemButton>
+                </ListItem>
+              </List>
+              <List onClick={handleLogOutButton}>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <LogoutIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Cerrar sesión" />
+                  </ListItemButton>
+                </ListItem>
+              </List>
+            </>
+          ) : (
+            <>
+              <List onClick={handleLoginButton}>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <AccountCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Iniciar sesión" />
+                  </ListItemButton>
+                </ListItem>
+              </List>
+              <List onClick={handleRegisterButton}>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <LoginIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Registrarse" />
+                  </ListItemButton>
+                </ListItem>
+              </List>
+            </>
+          )}
         </Box>
       </SwipeableDrawer>
     </React.Fragment>
   );
-}
+};
