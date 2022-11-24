@@ -9,7 +9,7 @@ import HomeIcon from "@mui/icons-material/Home";
 
 /** Components */
 import { SearchBar } from "../../../ui";
-import SwipeableMenuDrawer from "./components/swipeableMenuDrawer/SwipeableMenuDrawer";
+import { MovilMenu } from "../../../ui";
 import { Divider, Tooltip } from "@mui/material";
 
 /** Material UI - Custom components */
@@ -43,6 +43,7 @@ const IconsContainer = styled("div")(({ theme }) => ({
 }));
 
 const Font = styled("div")(({ theme }) => ({
+  minWidth: '150px',
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -78,7 +79,7 @@ export const NavbarUnlogged = () => {
   return (
     <Navbar>
       <MenuContainer>
-        <SwipeableMenuDrawer />
+        <MovilMenu />
       </MenuContainer>
 
       <IconsContainer>

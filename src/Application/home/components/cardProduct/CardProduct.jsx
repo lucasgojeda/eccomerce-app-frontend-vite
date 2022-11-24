@@ -149,12 +149,13 @@ export const CardProduct = ({ product }) => {
   const navigate = useNavigate();
 
   const [cartStatus, setCartStatus] = useState(false);
-  const [disableButton, setDisableButton] = useState(false); 
+  const [disableButton, setDisableButton] = useState(false);
 
   const { uid } = useAuthStore();
 
   const { cart, startUpdatedCart, startDeletedCart } = useCartStore();
 
+  /** Check if the product is on the user cart */
   useEffect(() => {
     const result = cart.filter((e) => e._id === product._id);
 
@@ -170,6 +171,7 @@ export const CardProduct = ({ product }) => {
     navigate("/cart");
   };
 
+  /** Add a product to the cart */
   const handleAddCart = (e) => {
     e.stopPropagation();
     setDisableButton(true);
@@ -180,6 +182,7 @@ export const CardProduct = ({ product }) => {
     }
   };
 
+  /** Quit a product of the cart */
   const handleDeleteCart = (e) => {
     e.stopPropagation();
     setDisableButton(true);

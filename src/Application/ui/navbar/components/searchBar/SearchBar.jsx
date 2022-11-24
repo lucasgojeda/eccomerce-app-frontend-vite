@@ -1,17 +1,21 @@
+/** Libraries */
 import { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router";
+
+import InputBase from "@mui/material/InputBase";
+import queryString from "query-string";
 
 import { styled } from "@mui/material/styles";
-import InputBase from "@mui/material/InputBase";
 
+/** Material UI - Iconst */
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
-import queryString from "query-string";
 
-import { useProductsStore } from "../../../../../../hooks";
+/** Custom hooks */
+import { useProductsStore } from "../../../../../hooks";
 
-import { FilterMenu } from "../../../../../ui";
-
+/** Material UI - Custom components */
 export const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -56,45 +60,79 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+export const CloseIconButton = styled(IconButton)(({ theme }) => ({
+  position: "absolute",
+  top: 0,
+  left: "85%",
+}));
+
+/** TODO: Implementar sistema de busquedas. */
 export const SearchBar = () => {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+
   const { startLoadProducts } = useProductsStore();
 
   const { q = "" } = queryString.parse(location.search);
   const { c = "" } = queryString.parse(location.search);
   let { page: pagePath = 1 } = queryString.parse(location.search);
 
+  /** Text to search */
   const [searchText, setSearchText] = useState(q);
-  const [flagSearch, setFlagSearch] = useState(0);
+
+  /** Filters */
   const [filterBy, setFilterBy] = useState("price");
   const [orderBy, setOrderBy] = useState("desc");
 
-  // Filters and search
+  /** Flag to refresh search */
+  const [flagSearch, setFlagSearch] = useState(0);
+
+  /** Filters and search */
   useEffect(() => {
     // startLoadProducts(filterBy, orderBy, searchText, pagePath);
   }, [filterBy, orderBy, flagSearch, pagePath]);
 
-  // Search
+  useEffect(() => {
+    if (searchText === "") {
+      if (pathname === "/search") {
+        navigate("/search");
+        setFlagSearch(flagSearch + 1);
+      }
+    }
+  }, [searchText]);
+
+  /** Search */
   const handleInputChange = (e) => {
     e.preventDefault();
     setSearchText(e.target.value);
   };
 
+  const handleCloseButton = () => {
+    setSearchText("");
+  };
+
   const handleSearch = (e) => {
     e.preventDefault();
 
+    if (pathname !== "search") {
+      navigate("/search");
+    }
+
     if (searchText !== "") {
+      navigate(`/search?q=${searchText}`);
+      setFlagSearch(flagSearch + 1);
+    } else {
       setFlagSearch(flagSearch + 1);
     }
   };
 
-  //Filter
+  /** Filter */
   const handleOrderByChange = (value) => {
     setOrderBy(value);
   };
 
   return (
     <div className="container_Search">
-      <FilterMenu handleOrderByChange={handleOrderByChange} />
 
       <Search>
         <SearchIconWrapper>
@@ -112,13 +150,9 @@ export const SearchBar = () => {
         </form>
 
         {searchText !== "" && (
-          <IconButton
-            className="closeIcon"
-            onClick={() => setSearchText("")}
-            color="inherit"
-          >
+          <CloseIconButton onClick={handleCloseButton} color="inherit">
             <CloseIcon />
-          </IconButton>
+          </CloseIconButton>
         )}
       </Search>
     </div>

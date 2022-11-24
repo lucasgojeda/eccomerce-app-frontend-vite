@@ -1,12 +1,17 @@
 /** Libraries */
 import React from "react";
-import { Link as LinkRouter } from "react-router-dom";
+import { Link as LinkRouter, useNavigate } from "react-router-dom";
 
 import { Box, Button, Grid, Link, TextField, Typography } from "@mui/material";
+import Tooltip from "@mui/material/Tooltip";
+
+import { styled } from "@mui/material/styles";
 
 import { useFormik } from "formik";
 
 import { GoogleLogin } from "react-google-login";
+
+import HomeIcon from "@mui/icons-material/Home";
 
 /** Custom hooks */
 import { useAuthStore } from "../../../../hooks";
@@ -14,7 +19,116 @@ import { useAuthStore } from "../../../../hooks";
 /** Helpers */
 import { YupRegisterValidations } from "../../../../helpers";
 
+/** Material UI - Custom components */
+const LoginContainer = styled("div")(({ theme }) => ({
+  width: "100%",
+  height: "100vh",
+  minHeight: "650px",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+}));
+
+const SecondContainer = styled("div")(({ theme }) => ({
+  width: "100%",
+  height: "100%",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  overflow: "hidden",
+}));
+
+const HomeIconContainer = styled("div")(({ theme }) => ({
+  position: "absolute",
+  left: 0,
+  top: 0,
+  width: "100%",
+  minHeight: "5vh",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "flex-start",
+  "& .MuiSvgIcon-root": {
+    fontSize: "25px",
+    color: "#707B7C",
+    cursor: "pointer",
+    marginLeft: "1.5vw",
+    marginTop: "3.5vh",
+  },
+  [theme.breakpoints.down("sm")]: {
+    "& .MuiSvgIcon-root": {
+      fontSize: "35px",
+      marginLeft: "2vw",
+      marginTop: "1.5vh",
+    },
+  },
+}));
+
+const ImageContainer = styled("div")(({ theme }) => ({
+  width: "100%",
+  minHeight: "40vh",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  mb: 1,
+  [theme.breakpoints.down("sm")]: {
+    mb: 0,
+  },
+}));
+
+const Image = styled("img")(({ theme }) => ({
+  maxWidth: "30ch",
+  objectFit: "cover",
+  objectPosition: "20% 10%",
+  [theme.breakpoints.down("sm")]: {
+    maxWidth: "80%",
+    maxHeight: "30ch",
+  },
+}));
+
+const RegisterButton = styled(Button)(({ theme }) => ({
+  mt: 2,
+  mb: 1,
+  backgroundColor: "#2AE3C8",
+  ":hover": {
+    backgroundColor: "#00DFC0",
+  },
+}));
+
+const GoogleButton = styled(GoogleLogin)(({ theme }) => ({
+  display: "block",
+  margin: "auto",
+  marginTop: "2.5vh",
+  height: "7vh",
+  minWidth: "190px",
+  minHeight: "65px",
+  backgroundColor: "#fff",
+  color: "#737373",
+  borderWidth: 0,
+  borderRadius: "2px",
+  whiteSpace: "nowrap",
+  boxShadow: "1px 1px 1px 1px rgba(0,0,0,0.25)",
+  transitionProperty: "background-color box-shadow",
+  transitionDuration: "150ms",
+  transitionTimingFunction: "ease-in-out",
+  padding: 0,
+  transform: "scale(1.4)",
+  ":hover": {
+    boxShadow: "1px 4px 5px 1px rgba(0,0,0,0.2)",
+    outline: "none",
+    transform: "scale(1.4) skewX(-0.4deg)",
+    cursor: "pointer",
+  },
+  ":active": {
+    outline: "none",
+    boxShadow: "1px 4px 5px 1px rgba(0,0,0,0.3)",
+    transitionDuration: "10ms",
+  },
+}));
+
 export const RegisterPage = () => {
+  const navigate = useNavigate();
+
   const { StartRegister, startGoogleLogin } = useAuthStore();
 
   const formik = useFormik({
@@ -34,46 +148,23 @@ export const RegisterPage = () => {
   const handleGoogleLogin = (response) => {
     const { tokenId } = response;
 
-    if(tokenId) return startGoogleLogin(tokenId);
+    if (tokenId) return startGoogleLogin(tokenId);
   };
 
   return (
-    <Box
-      width="100%"
-      height="100vh"
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-    >
-      <Box
-        width="100%"
-        height="100%"
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
-        overflow="hidden"
-      >
-        <Box
-          width="100%"
-          minHeight="40vh"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          sx={{
-            "& img": {
-              maxWidth: "30ch",
-              objectFit: "cover",
-              objectPosition: "20% 10%",
-            },
-            mb: 1,
-          }}
-        >
-          <img
+    <LoginContainer>
+      <SecondContainer>
+        <HomeIconContainer>
+          <Tooltip title="Ir al inicio" arrow>
+            <HomeIcon onClick={() => navigate("/")} />
+          </Tooltip>
+        </HomeIconContainer>
+        <ImageContainer>
+          <Image
             src="https://res.cloudinary.com/the-kings-company/image/upload/v1668874026/user-ecommerce/login-register/online-shop-ecommerce-svgrepo-com_siy5pd.svg"
             alt=""
           />
-        </Box>
+        </ImageContainer>
 
         <Box
           component="form"
@@ -96,7 +187,6 @@ export const RegisterPage = () => {
                 fullWidth
                 id="name"
                 label="Nombre"
-                autoFocus
                 value={formik.values.name}
                 onChange={formik.handleChange}
                 error={formik.touched.name && Boolean(formik.errors.name)}
@@ -135,83 +225,23 @@ export const RegisterPage = () => {
               />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{
-                  mt: 2,
-                  mb: 1,
-                  backgroundColor: "#2AE3C8",
-                  ":hover": {
-                    backgroundColor: "#00DFC0",
-                  },
-                }}
-              >
+              <RegisterButton type="submit" fullWidth variant="contained">
                 Registrarse
-              </Button>
+              </RegisterButton>
             </Grid>
           </Grid>
-          <Grid
-            container
-            justifyContent="center"
-            sx={{
-              "& .google-button": {
-                display: "block",
-                margin: "auto",
-                marginTop: "2.5vh",
-                height: "7vh",
-                minWidth: "200px",
-                backgroundColor: "#fff",
-                color: "#737373",
-                borderWidth: 0,
-                borderRadius: "2px",
-                whiteSpace: "nowrap",
-                boxShadow: "1px 1px 1px 1px rgba(0,0,0,0.25)",
-                transitionProperty: "background-color box-shadow",
-                transitionDuration: "150ms",
-                transitionTimingFunction: "ease-in-out",
-                padding: 0,
-                transform: "scale(1.4)",
-                ":hover": {
-                  boxShadow: "1px 4px 5px 1px rgba(0,0,0,0.2)",
-                  outline: "none",
-                  transform: "scale(1.4) skewX(-0.4deg)",
-                  cursor: "pointer",
-                },
-                ":active": {
-                  outline: "none",
-                  boxShadow: "1px 4px 5px 1px rgba(0,0,0,0.3)",
-                  transitionDuration: "10ms",
-                },
-              },
-              "& .google-button__icon": {
-                display: "inline-block",
-                verticalAlign: "middle",
-                margin: "0px 0 8px 8px",
-                marginTop: "5px",
-                width: "18px",
-                height: "18px",
-                boxSizing: "border-box",
-              },
-            }}
-          >
+          <Grid container justifyContent="center">
             <Grid item>
               <GoogleLogin
                 clientId="263099325228-55asn431srakct5pegne7a7go6hjctq6.apps.googleusercontent.com"
                 render={(renderProps) => (
-                  <button
+                  <GoogleButton
                     className="google-button"
                     onClick={renderProps.onClick}
                     disabled={renderProps.disabled}
                   >
                     Ingresar con Google
-                    <img
-                      className="google-button__icon"
-                      alt="google_logo"
-                      src="https://res.cloudinary.com/the-kings-company/image/upload/v1668874652/user-ecommerce/login-register/google_logo_wnezxw.png"
-                    />
-                  </button>
+                  </GoogleButton>
                 )}
                 buttonText="Login"
                 onSuccess={handleGoogleLogin}
@@ -230,7 +260,7 @@ export const RegisterPage = () => {
             </Grid>
           </Grid>
         </Box>
-      </Box>
-    </Box>
+      </SecondContainer>
+    </LoginContainer>
   );
 };

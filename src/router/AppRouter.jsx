@@ -48,7 +48,7 @@ export const AppRouter = () => {
         open={true}
       >
         <CircularProgress
-          color="inherit"
+          color="primary"
           size="80px"
           sx={{ display: "block" }}
         />

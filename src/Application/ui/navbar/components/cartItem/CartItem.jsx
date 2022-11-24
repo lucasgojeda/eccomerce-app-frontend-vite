@@ -1,12 +1,17 @@
+/** Libraries */
 import { useLocation, useNavigate } from "react-router";
 
 import { Box } from "@mui/material";
-import IconButton from "@mui/material/IconButton";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+
 import Badge from "@mui/material/Badge";
 import Tooltip from "@mui/material/Tooltip";
 
-import { useCartStore } from "../../../../../../hooks";
+/** Material UI - Icons */
+import IconButton from "@mui/material/IconButton";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+
+/** Custom hooks */
+import { useCartStore } from "../../../../../hooks";
 
 export const CartItem = () => {
   const navigate = useNavigate();
@@ -14,6 +19,7 @@ export const CartItem = () => {
 
   const { cart: cartProducts } = useCartStore();
 
+  /** Check quantity of products on user cart */
   const badgeNumber = cartProducts.length;
 
   const handleCartMenu = () => {

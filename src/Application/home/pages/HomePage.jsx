@@ -1,6 +1,4 @@
 /** Libraries */
-import { useEffect } from "react";
-
 import { Divider } from "@mui/material";
 
 import { styled } from "@mui/material/styles";
@@ -26,6 +24,7 @@ const HomeContainer = styled("div")(({ theme }) => ({
   backgroundColor: "#fff",
 }));
 
+/** Mock data */
 const skeletonArray = [
   {
     name: "",

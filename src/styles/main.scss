@@ -5,10 +5,6 @@
 
 /* Components */
 
-// Auth
-@import './Application/auth/pages/login/LoginPage';
-@import './Application/auth/pages/register/RegisterPage';
-
 // Cart
 @import './Application/cart/pages/CartPage';
 
@@ -22,12 +18,3 @@
 
 // Search
 @import './Application/search/pages/SearchPage';
-
-// Ui > Navbar
-@import './Application/ui/navbar/unlogged/LargueUnloggedBar';
-@import './Application/ui/navbar/logged/LargueLoggedBar';
-@import './Application/ui/navbar/logged/components/menuDrawer/MenuDrawer';
-@import './Application/ui/navbar/logged/components/searchInput/components/FilterMenu';
-
-// Ui > Progress
-@import './Application/ui/progress/ProgressBackdrop';

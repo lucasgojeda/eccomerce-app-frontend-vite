@@ -1,15 +1,13 @@
+export * from "./alerts/DialogLogout";
 
+export * from "./footer/Footer";
 
-export * from './footer/Footer';
-export * from './progress/ProgressBackdrop';
+export * from "./navbar/logged/NavbarLogged";
+export * from "./navbar/unlogged/NavbarUnlogged";
 
-export * from './navbar/logged/NavbarLogged';
-export * from './navbar/logged/components/cartItem/CartItem';
-export * from './navbar/logged/components/menuDrawer/MenuDrawer';
-export * from './navbar/logged/components/notificationsItem/NotificationsItem';
-export * from './navbar/logged/components/searchBar/SearchBar';
-export * from './navbar/logged/components/searchBar/components/FilterMenu';
+export * from "./navbar/components/cartItem/CartItem";
+export * from "./navbar/components/movilMenu/MovilMenu";
+export * from "./navbar/components/notificationsItem/NotificationsItem";
+export * from "./navbar/components/searchBar/SearchBar";
 
-export * from './navbar/unlogged/NavbarUnlogged';
-
-export * from './alerts/DialogLogout';
+export * from "./progress/ProgressBackdrop";
