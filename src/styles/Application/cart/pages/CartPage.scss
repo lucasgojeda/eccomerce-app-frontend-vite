@@ -1,48 +1,48 @@
 // xl
 @media (min-width: 1200px) {
   .container_CartPage {
-    width: 100%;
-    margin-top: 20vh;
-    margin-bottom: 12.5vh;
+    // width: 100%;
+    // margin-top: 20vh;
+    // margin-bottom: 12.5vh;
 
     #closeIcon {
       display: flex;
       justify-self: flex-end;
     }
 
-    #productsContainer {
-      background-color: #fff;
-      width: 60%;
-      height: 50vh;
-      overflow-y: scroll;
-      margin-top: 1.5%;
-      padding: 2.5% 2.5% 2.5% 0;
-      border-radius: 5px;
-    }
+    // #productsContainer {
+    //   background-color: #fff;
+    //   width: 60%;
+    //   height: 50vh;
+    //   overflow-y: scroll;
+    //   margin-top: 1.5%;
+    //   padding: 2.5% 2.5% 2.5% 0;
+    //   border-radius: 5px;
+    // }
 
-    #boxProducts {
-      display: flex;
-      justify-content: space-between;
-    }
+    // #boxProducts {
+    //   display: flex;
+    //   justify-content: space-between;
+    // }
 
-    #deleteProductIcon {
-      display: flex;
-      align-items: center;
-      width: 5%;
-      height: auto;
+    // #deleteProductIcon {
+    //   display: flex;
+    //   align-items: center;
+    //   width: 5%;
+    //   height: auto;
 
-      &:hover {
-        background: none;
-      }
+    //   &:hover {
+    //     background: none;
+    //   }
 
-      .MuiSvgIcon-root {
-        &:hover {
-          background-color: rgba(0, 0, 0, 0.03);
-          border-radius: 30px;
-          padding: 10px;
-        }
-      }
-    }
+    //   .MuiSvgIcon-root {
+    //     &:hover {
+    //       background-color: rgba(0, 0, 0, 0.03);
+    //       border-radius: 30px;
+    //       padding: 10px;
+    //     }
+    //   }
+    // }
 
     #containerProduct {
       display: flex;
