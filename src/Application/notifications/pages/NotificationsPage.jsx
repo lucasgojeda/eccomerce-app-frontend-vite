@@ -1,3 +1,4 @@
+/** Libraries */
 import moment from "moment";
 import "moment-timezone";
 import "moment/locale/es";
@@ -5,16 +6,85 @@ import "moment/locale/es";
 import Box from "@mui/material/Box";
 import Tooltip from "@mui/material/Tooltip";
 import Container from "@mui/material/Container";
-import { Typography } from "@mui/material";
-import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
-import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import { Divider, Typography } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
+import Skeleton from "@mui/material/Skeleton";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 
+import { styled } from "@mui/material/styles";
+
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+
+/** Material UI - Icons */
+import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+
+/** Components */
 import { useNotificationsStore } from "../../../hooks";
+
+/** Custom hooks */
 import { Footer } from "../../ui";
+
+/** Material UI - Custom components */
+const NotificationsPageContaiener = styled("div")(({ theme }) => ({
+  width: "100%",
+  height: "100vh",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  flexDirection: "column",
+  marginTop: "10vh",
+  marginBottom: "5vh",
+  [theme.breakpoints.down("sm")]: {
+    marginBottom: "0",
+  },
+}));
+
+const TableContaiener = styled("div")(({ theme }) => ({
+  width: "80%",
+  height: "87.5vh",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  flexDirection: "column",
+  overflowX: "cover",
+  [theme.breakpoints.down("sm")]: {
+    width: "calc(100% - 2px)",
+  },
+}));
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: "#1976d2",
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const PaginationContaiener = styled("div")(({ theme }) => ({
+  width: "100%",
+  height: "7.5vh",
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  backgroundColor: "#1976d2",
+  color: "#fff",
+  borderTop: "1px solid rgba(98, 101, 103, 0.25)",
+  "& .MuiSvgIcon-root": {
+    fontSize: "45px",
+    color: "#fff",
+  },
+}));
 
 moment.locale("es");
 
@@ -36,65 +106,76 @@ export const NotificationsPage = () => {
 
   return (
     <>
-      <Box className="container_NotificationsPage">
-        <Container id="containerHeader">
-          <Typography id="products">{"Cantidad de productos"}</Typography>
-
-          <Typography id="price">{"Total a pagar"}</Typography>
-
-          <Typography id="date">{"Fecha del envío"}</Typography>
-
-          <IconButton
-            size="large"
-            aria-label="account of current user"
-            aria-controls="menu-appbar"
-            aria-haspopup="true"
-            // onClick={(event) => handleSendedButton(event, e)}
-            color="inherit"
-            id="productMenuIcon"
-            sx={{
-              visibility: "hidden",
-            }}
-          >
-            <CheckBoxOutlineBlankIcon />
-          </IconButton>
-        </Container>
-
-        <Container id="notificationsContainer">
-          <>
-            {sales_user?.length !== 0 ? (
-              <>
+      <NotificationsPageContaiener>
+        <TableContaiener>
+          {sales_user?.length !== 0 && sales_user !== null ? (
+            <Table aria-label="customized table">
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell align="left">
+                    Cantidad de productos
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    Total a pagar
+                  </StyledTableCell>
+                  {!sm && !md && (
+                    <StyledTableCell align="center">
+                      Fecha del envio
+                    </StyledTableCell>
+                  )}
+                  <StyledTableCell align="center"></StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
                 {sales_user?.map(
-                  (e) =>
+                  (e, i) =>
                     e.date_sended && (
-                      <div key={e._id}>
+                      <>
                         {notifications.map(
                           (n) =>
                             n.sale === e._id && (
-                              <Box key={n._id} id="boxNotifications">
-                                <Container
-                                  id="containerNotification"
+                              <TableRow
+                                width="100%"
+                                key={e.id}
+                                sx={{
+                                  backgroundColor: n.status
+                                    ? "#fff"
+                                    : "rgba(166, 172, 175, 0.4)",
+                                }}
+                              >
+                                <TableCell
+                                  align="left"
+                                  component="th"
+                                  scope="row"
                                   sx={{
-                                    backgroundColor:
-                                      n.status && "rgba(555,5,5,0.25)",
+                                    color: n.status ? "#000" : "#626567",
                                   }}
                                 >
-                                  <Typography id="products">
-                                    {`${e.cart?.length} produtos`}
-                                  </Typography>
-
-                                  <Typography id="price">
-                                    {`$${new Intl.NumberFormat("es-IN").format(
-                                      e.total_price
-                                    )}`}
-                                  </Typography>
-
-                                  <Typography id="date">
+                                  {`${e.cart?.length} produtos`}
+                                </TableCell>
+                                <TableCell
+                                  align="center"
+                                  sx={{
+                                    color: n.status ? "#000" : "#626567",
+                                  }}
+                                >
+                                  {`$${new Intl.NumberFormat("es-IN").format(
+                                    e.total_price
+                                  )}`}
+                                </TableCell>
+                                {!sm && !md && (
+                                  <TableCell
+                                    align="center"
+                                    sx={{
+                                      color: n.status ? "#000" : "#626567",
+                                    }}
+                                  >
                                     {moment(e?.date_sended)
                                       .tz("America/Argentina/Buenos_Aires")
                                       .format("LLL")}
-                                  </Typography>
-
+                                  </TableCell>
+                                )}
+                                <TableCell align="center">
                                   {n.status ? (
                                     <Tooltip title="Marcar como visto" arrow>
                                       <IconButton
@@ -106,7 +187,7 @@ export const NotificationsPage = () => {
                                           handleSendedButton(event, n)
                                         }
                                         color="inherit"
-                                        id="productMenuIcon"
+                                        sx={{ maxHeight: "20px" }}
                                       >
                                         <CheckBoxOutlineBlankIcon />
                                       </IconButton>
@@ -119,27 +200,61 @@ export const NotificationsPage = () => {
                                       aria-haspopup="true"
                                       color="inherit"
                                       disabled={true}
-                                      id="productMenuIcon"
+                                      sx={{ maxHeight: "20px" }}
                                     >
                                       <CheckBoxIcon />
                                     </IconButton>
                                   )}
-                                </Container>
-                              </Box>
+                                </TableCell>
+                              </TableRow>
                             )
                         )}
-                      </div>
+                      </>
                     )
                 )}
-              </>
-            ) : (
-              <Typography variant="body1">
-                No hay ningúna notificación aún!
-              </Typography>
-            )}
-          </>
-        </Container>
-      </Box>
+              </TableBody>
+            </Table>
+          ) : (
+            <Box width={sm ? "90%" : "100"}>
+              <Skeleton height={80} animation="wave" />
+              <Skeleton height={80} animation="wave" />
+              <Skeleton height={80} animation="wave" />
+              <Skeleton height={80} animation="wave" />
+              <Skeleton height={80} animation={false} />
+              <Skeleton height={80} animation={false} />
+              <Skeleton height={80} animation={false} />
+              <Skeleton height={80} animation={false} />
+              <Skeleton height={80} animation={false} />
+              <Skeleton height={80} animation={false} />
+            </Box>
+          )}
+          <PaginationContaiener>
+            <Tooltip title="Página anterior" arrow>
+              <IconButton
+                color="primary"
+                component="span"
+                // disabled={users?.previousPage === null ? true : false}
+                // onClick={handlePreviusPage}
+              >
+                <ArrowLeftIcon />
+              </IconButton>
+            </Tooltip>
+            <Typography color="#fff" fontSize="16px" variant="body2">
+              Página 1{/* Page {page} */}
+            </Typography>
+            <Tooltip title="Página siguiente" arrow>
+              <IconButton
+                color="primary"
+                component="span"
+                // disabled={users?.nextPage === null ? true : false}
+                // onClick={handleNextPage}
+              >
+                <ArrowRightIcon />
+              </IconButton>
+            </Tooltip>
+          </PaginationContaiener>
+        </TableContaiener>
+      </NotificationsPageContaiener>
       <Footer />
     </>
   );
