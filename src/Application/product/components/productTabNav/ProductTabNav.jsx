@@ -30,12 +30,7 @@ export const ProductTabNav = ({ setValue, value }) => {
         aria-label="Tabs where selection follows focus"
         selectionFollowsFocus
       >
-        {
-          (sm || md)
-          &&
-          <Tab label="Detalles" />
-        }
-
+        <Tab label="Detalles" />
         <Tab label="Envio" />
         <Tab label="Devolución" />
       </Tabs>

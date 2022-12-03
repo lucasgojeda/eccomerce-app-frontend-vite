@@ -34,8 +34,8 @@ const ImagesIndex = styled("div")(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#fff',
-    color: '#000',
+    backgroundColor: 'none',
+    color: theme.palette.white.main,
     fontSize: '24px',
     width: '10vh',
     height: '5vh',
@@ -55,7 +55,7 @@ const CloseIconButton = styled(IconButton)(({ theme }) => ({
         backgroundColor: 'rgba(333, 333, 333, 0.1)',
     },
     '.MuiSvgIcon-root': {
-        color: '#fff',
+        color: theme.palette.white.light,
         fontSize: '40px',
         padding: '10px',
 
@@ -106,7 +106,7 @@ const ArrowLeftIconButton = styled(IconButton)(({ theme }) => ({
         backgroundColor: 'rgba(333, 333, 333, 0.1)',
     },
     '.MuiSvgIcon-root': {
-        color: '#fff',
+        color: theme.palette.white.light,
         fontSize: '70px',
     },
     [theme.breakpoints.down("sm")]: {
@@ -119,7 +119,7 @@ const ArrowRightIconButton = styled(IconButton)(({ theme }) => ({
         backgroundColor: 'rgba(333, 333, 333, 0.1)',
     },
     '.MuiSvgIcon-root': {
-        color: '#fff',
+        color: theme.palette.white.light,
         fontSize: '70px',
     },
     [theme.breakpoints.down("sm")]: {

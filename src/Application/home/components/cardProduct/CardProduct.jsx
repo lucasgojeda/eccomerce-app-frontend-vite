@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
+import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 
 import { styled } from "@mui/material/styles";
@@ -9,7 +10,6 @@ import { styled } from "@mui/material/styles";
 /** Material UI - Icons */
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import DoneOutlineIcon from "@mui/icons-material/DoneOutline";
-import IconButton from "@mui/material/IconButton";
 import ClearIcon from "@mui/icons-material/Clear";
 
 /** Custom hooks */

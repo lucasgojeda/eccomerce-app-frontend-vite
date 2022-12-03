@@ -10,11 +10,14 @@ import IconButton from "@mui/material/IconButton";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 
+import Tooltip from "@mui/material/Tooltip";
+
 import { styled } from "@mui/material/styles";
 
 /** Material UI - Icons */
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import DoneOutlineIcon from "@mui/icons-material/DoneOutline";
+import ClearIcon from "@mui/icons-material/Clear";
 
 /** Components */
 import { ProductTabNav } from "../../product";
@@ -30,7 +33,7 @@ import {
 
 /** Material UI - Custom components */
 const ProductPageContainer = styled("div")(({ theme }) => ({
-  backgroundColor: '#fff',
+  backgroundColor: theme.palette.white.main,
   borderRadius: '5px',
   marginTop: '12.5vh',
   marginBottom: '5vh',
@@ -38,7 +41,7 @@ const ProductPageContainer = styled("div")(({ theme }) => ({
     position: 'relative',
     left: 0,
     top: 0,
-    backgroundColor: '#fff',
+    backgroundColor: theme.palette.white.main,
     marginTop: '6vh',
     marginBottom: '5vh',
     overflowX: 'hidden',
@@ -50,20 +53,21 @@ const ImagesContainer = styled("div")(({ theme }) => ({
   height: '50ch',
   display: 'flex',
   flexWrap: 'wrap',
-  justifyContent: 'space-between',
+  justifyContent: 'center',
   marginTop: '2.5vh',
   marginBottom: '2.5vh',
   [theme.breakpoints.between("sm", "md")]: {
-    justifyContent: 'center',
   },
 }));
 
 const ProductImagesToShowContainer = styled("div")(({ theme }) => ({
   display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
   flexWrap: 'wrap',
   maxWidth: '10%',
   maxHeight: '50ch',
-  marginLeft: '5%',
+  // marginLeft: '5%',
   marginTop: '5vh',
 }));
 
@@ -79,20 +83,23 @@ const ProductImageContainer = styled('div')(({ theme }) => ({
   maxHeight: '45ch',
   margin: 'auto',
   [theme.breakpoints.down("sm")]: {
-    width: '100%',
     height: '50ch',
     margin: 'auto',
-    // marginBottom: '12.5%',
   }
 }));
 
 const IconsContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'flex-end',
+  justifyContent: 'center',
   width: '100%',
-  maxHeight: '50px',
+  height: '5vh',
+  marginBottom: '20px',
   zIndex: 100,
+  [theme.breakpoints.down("sm")]: {
+    position: 'absolute',
+    left: 0,
+  }
 }));
 
 const ImagesIndexContainer = styled('div')(({ theme }) => ({
@@ -103,27 +110,29 @@ const ImagesIndex = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  backgroundColor: '#fff',
-  color: '#000',
+  backgroundColor: theme.palette.white.main,
+  color: theme.palette.black.main,
   fontSize: '24px',
   width: '10vh',
   height: '5vh',
   borderRadius: '20px',
   zIndex: 100,
+  transition: 'all .5s ease',
 }));
 
 const ProductImage = styled(Image)(({ theme }) => ({
   width: '45ch',
   height: '45ch',
   objectFit: 'contain',
-  marginLeft: '8%',
   cursor: 'pointer',
   img: {
     width: '45ch',
     height: '45ch',
+    transition: 'all 4s ease-in-out',
   },
   [theme.breakpoints.down("sm")]: {
     width: '100%',
+    marginTop: '30px',
     display: 'flex',
     alignItems: 'start',
     height: '45ch',
@@ -138,57 +147,82 @@ const ProductImage = styled(Image)(({ theme }) => ({
 
 const IconButtonsContainer = styled('div')(({ theme }) => ({
   display: 'flex',
-  justifyContent: 'flex-end',
+  justifyContent: 'space-around',
   alignItems: 'center',
-  width: '75%',
+  width: '100%',
 }));
 
 const GoToCartButton = styled(Button)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  backgroundColor: '#F29102',
+  backgroundColor: theme.palette.orange.light,
   borderRadius: '10px',
   marginRight: '2.5%',
-  color: '#fff',
+  color: theme.palette.white.main,
   height: '75%',
   width: '45%',
   zIndex: 100,
+  ':hover': {
+    backgroundColor: theme.palette.orange.main,
+  },
+  [theme.breakpoints.down("sm")]: {
+    minWidth: '120px'
+  }
 }));
 
 const ButtonsContainer = styled('div')(({ theme }) => ({
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
-  maxWidth: '50px',
-  maxHeight: '50px',
+  width: '5vw',
+  height: '5vh',
   marginRight: '15%',
+  ':hover': {
+    '& .clearIconButton': {
+      visibility: 'visible'
+    },
+    '& .successIconButton': {
+      visibility: 'hidden'
+    }
+  }
 }));
 
 const ShoppingCartIconButton = styled(IconButton)(({ theme }) => ({
   position: 'absolute',
-  color: '#F29102',
+  color: theme.palette.orange.main,
   zIndex: 100,
 }));
 
 const SuccessCartIconButton = styled(IconButton)(({ theme }) => ({
   position: 'absolute',
-  color: '#0B5345',
+  color: theme.palette.green.main,
   zIndex: 100,
+}));
+
+const ClearCartIconButton = styled(IconButton)(({ theme }) => ({
+  position: 'absolute',
+  color: theme.palette.gray.main,
+  zIndex: 100,
+  visibility: 'hidden',
 }));
 
 const PriceContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'flex-end',
-  marginTop: '2.5vh',
+  marginTop: '-5vh',
+  [theme.breakpoints.down("sm")]: {
+    position: 'absolute',
+    left: '55vw',
+    marginTop: 0,
+  },
 }));
 
 const PriceFont = styled(Typography)(({ theme }) => ({
-  backgroundColor: '#F29102',
+  backgroundColor: theme.palette.blue.light,
   color: '#fff',
   fontSize: '18px',
-  marginTop: '-10%',
-  marginRight: '-10%',
+
   padding: '7.5px',
   borderRadius: '10px',
   zIndex: 110,
@@ -198,7 +232,7 @@ const DescriptionNextToImageContainer = styled('div')(({ theme }) => ({
   position: 'relative',
   top: '5%',
   display: 'block',
-  backgroundColor: '#fff',
+  backgroundColor: theme.palette.white.main,
   borderRadius: '5px',
   width: '25%',
   height: '45ch',
@@ -220,7 +254,7 @@ const DescriptionNextToImageFont = styled(Typography)(({ theme }) => ({
 }));
 
 const NameFont = styled(Typography)(({ theme }) => ({
-  backgroundColor: '#fff',
+  backgroundColor: theme.palette.white.main,
   marginTop: '2.5vh',
   marginBottom: '2.5vh',
   padding: '0 2.5% 0 2.5%',
@@ -230,7 +264,7 @@ const NameFont = styled(Typography)(({ theme }) => ({
 
 const DescriptionContainer = styled('div')(({ theme }) => ({
   display: 'block',
-  backgroundColor: '#fff',
+  backgroundColor: theme.palette.white.main,
   borderRadius: '5px',
   width: '100%',
   minHeight: '10ch',
@@ -268,6 +302,20 @@ export const ProductPage = () => {
   const theme = useTheme();
   const sm = useMediaQuery(theme.breakpoints.down("sm"));
   const md = useMediaQuery(theme.breakpoints.down("md"));
+  
+  const [cartStatus, setCartStatus] = useState(false);
+  const [disableButton, setDisableButton] = useState(false);
+  
+  /** Check if the product is on the user cart */
+  useEffect(() => {
+   const result = cartProducts.filter((e) => e._id === id);
+
+   if (result.length !== 0) {
+     setCartStatus(true);
+   } else {
+     setCartStatus(false);
+   }
+ }, [cartProducts]);
 
   const [touchStart, setTouchStart] = useState({
     touchX: 0,
@@ -365,21 +413,33 @@ export const ProductPage = () => {
   };
 
   const handleAddCart = () => {
-    if (role) {
-      startUpdatedCart(
-        { _id: product[0]._id, name: product[0].name, img: product[0].img },
-        uid
-      );
-    } else {
+    setDisableButton(true);
+    if (!uid) {
       navigate("/login");
+    } else {
+      startUpdatedCart({
+        _id: product[0]._id,
+        name: product[0].name,
+        img: product[0].img
+      },
+        uid,
+        setDisableButton);
     }
   };
 
   const handleDeleteCart = () => {
-    startDeletedCart(
-      { _id: product[0]._id, name: product[0].name, img: product[0].img },
-      uid
-    );
+    setDisableButton(true);
+    if (!uid) {
+      navigate("/login");
+    } else {
+      startDeletedCart({
+        _id: product[0]._id,
+        name: product[0].name,
+        img: product[0].img
+      },
+        uid,
+        setDisableButton);
+    }
   };
 
   const handleImageSelected = (e, newImageSelected, i) => {
@@ -405,7 +465,7 @@ export const ProductPage = () => {
       <Container>
         <ProductPageContainer>
           <ImagesContainer>
-            {!md && (
+            {!sm && (
               <ProductImagesToShowContainer>
                 {img.map((e, i) => (
                   <Container
@@ -433,7 +493,7 @@ export const ProductPage = () => {
 
             <ProductImageContainer>
               <IconsContainer>
-                {(sm || md) && (
+                {(sm) && (
                   <ImagesIndexContainer>
                     <ImagesIndex>
                       <Typography fontSize={18} variant="body2">
@@ -448,11 +508,7 @@ export const ProductPage = () => {
                   <GoToCartButton
                     onClick={() => navigate("/cart")}
                     sx={{
-                      visibility:
-                        cartProducts?.filter((event) => event._id === id)
-                          .length !== 0 && cartProducts
-                          ? "visible"
-                          : "hidden",
+                      visibility: cartStatus ? "visible" : "hidden",
                     }}
                   >
                     <Typography fontSize={12} variant="body2">
@@ -460,45 +516,58 @@ export const ProductPage = () => {
                     </Typography>
                   </GoToCartButton>
 
-                  <ButtonsContainer>
+
+                  <ButtonsContainer className='buttonsContainer'>
+                  <Tooltip title="Añadir al carrito" arrow>
                     <ShoppingCartIconButton
                       aria-label="account of current user"
                       aria-controls="menu-appbar"
                       aria-haspopup="true"
                       color="inherit"
+                      disabled={disableButton}
                       onClick={handleAddCart}
                       sx={{
-                        visibility: role
-                          ? cartProducts?.filter(
-                            (event) => event._id === id && cartProducts
-                          ).length === 0
-                            ? "visible"
-                            : "hidden"
-                          : "visible",
+                        display: cartStatus && "none",
                       }}
                     >
                       <ShoppingCartIcon />
                     </ShoppingCartIconButton>
+                  </Tooltip>
 
                     <SuccessCartIconButton
+                      className='successIconButton'
                       aria-label="account of current user"
                       aria-controls="menu-appbar"
                       aria-haspopup="true"
                       color="inherit"
-                      onClick={handleDeleteCart}
                       sx={{
-                        visibility:
-                          cartProducts?.filter((event) => event._id === id)
-                            .length !== 0 && cartProducts
-                            ? "visible"
-                            : "hidden",
+                        display: (disableButton || !cartStatus) && "none",
+                        visibility: cartStatus ? "visible" : "hidden",
                       }}
                     >
                       <DoneOutlineIcon />
                     </SuccessCartIconButton>
+
+                    <Tooltip title="Quitar del carrito" arrow>
+                      <ClearCartIconButton
+                        className="clearIconButton"
+                        size="small"
+                        edge="end"
+                        color="inherit"
+                        disabled={disableButton}
+                        onClick={handleDeleteCart}
+                        sx={{
+                          color: "gray",
+                          display: !cartStatus && "none",
+                        }}
+                      >
+                        <ClearIcon />
+                      </ClearCartIconButton>
+                    </Tooltip>
                   </ButtonsContainer>
 
                 </IconButtonsContainer>
+
               </IconsContainer>
 
               <ProductImage
@@ -517,17 +586,6 @@ export const ProductPage = () => {
                 </PriceFont>
               </PriceContainer>
             </ProductImageContainer>
-
-            {!md && (
-              <DescriptionNextToImageContainer>
-                <DescriptionNextToImageFont
-                  variant="body1"
-                  color="text.primary"
-                >
-                  {description}
-                </DescriptionNextToImageFont>
-              </DescriptionNextToImageContainer>
-            )}
           </ImagesContainer>
 
           <Divider sx={{ marginTop: '7.5ch' }} />
@@ -538,7 +596,7 @@ export const ProductPage = () => {
 
           <ProductTabNav value={value} setValue={setValue} />
 
-          {md && value === 0 && (
+          {value === 0 && (
             <DescriptionContainer>
               <DescriptionFont variant="body1" color="text.primary">
                 {description}
@@ -546,7 +604,7 @@ export const ProductPage = () => {
             </DescriptionContainer>
           )}
 
-          {((md && value === 1) || (!md && value === 0)) && (
+          {value === 1 && (
             <DescriptionContainer>
               <DescriptionFont variant="body1" color="text.primary">
                 Envíos sin cargo a toda la ciudad de la plata, y envíos por
@@ -555,7 +613,7 @@ export const ProductPage = () => {
             </DescriptionContainer>
           )}
 
-          {((md && value === 2) || (!md && value === 1)) && (
+          {value === 2 && (
             <DescriptionContainer>
               <DescriptionFont variant="body1" color="text.primary">
                 El cliente dispone de 14 días como maximo para devolver un
