@@ -6,7 +6,7 @@ import { store } from "./store/store";
 
 import { AppRouter } from './router/AppRouter';
 
-import "./styles/main.scss";
+import "./main.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

@@ -1,13 +1,131 @@
+/** Libraries */
 import { Image } from 'cloudinary-react';
 
-import GlobalStyles from '@mui/material/GlobalStyles';
-import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { Container, Typography } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
+
+import { styled } from "@mui/material/styles";
+
+/** Material UI - Icons */
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+
+/** Material UI - Custom components */
+const ProductModalViewContainer = styled("div")(({ theme }) => ({
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(0, 0, 0, 0.95)',
+    zIndex: 110,
+}));
+
+const ImagesIndexContainer = styled("div")(({ theme }) => ({
+    position: 'absolute',
+    left: '2%',
+    top: '3%',
+    width: '25%',
+}));
+
+const ImagesIndex = styled("div")(({ theme }) => ({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#fff',
+    color: '#000',
+    fontSize: '24px',
+    width: '10vh',
+    height: '5vh',
+    borderRadius: '20px',
+    zIndex: 100,
+}));
+
+const CloseIconButton = styled(IconButton)(({ theme }) => ({
+    position: 'absolute',
+    padding: '2.5px',
+    top: '1%',
+    right: '1%',
+    display: 'flex',
+    alignItems: 'center',
+    height: 'auto',
+    ':hover': {
+        backgroundColor: 'rgba(333, 333, 333, 0.1)',
+    },
+    '.MuiSvgIcon-root': {
+        color: '#fff',
+        fontSize: '40px',
+        padding: '10px',
+
+        ':hover': {
+            borderRadius: '30px',
+        }
+    },
+}));
+
+const ProductImageContainer = styled('div')(({ theme }) => ({
+    position: 'absolute',
+    top: '25%',
+    left: 0,
+    width: '100%',
+    height: '50ch',
+    margin: 'auto',
+    marginBottom: '12.5%',
+}));
+
+const ProductImage = styled(Image)(({ theme }) => ({
+    width: '100%',
+    display: 'flex',
+    alignItems: 'start',
+    height: '45ch',
+    objectFit: 'contain',
+    img: {
+        width: '100%',
+        height: 'auto',
+    },
+}));
+
+const ArrowButtonsContainer = styled('div')(({ theme }) => ({
+    position: 'absolute',
+    height: 'auto',
+    left: 0,
+    top: '45%',
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    [theme.breakpoints.down("sm")]: {
+        top: '85%',
+    },
+}));
+
+const ArrowLeftIconButton = styled(IconButton)(({ theme }) => ({
+    ':hover': {
+        backgroundColor: 'rgba(333, 333, 333, 0.1)',
+    },
+    '.MuiSvgIcon-root': {
+        color: '#fff',
+        fontSize: '70px',
+    },
+    [theme.breakpoints.down("sm")]: {
+        marginLeft: 0,
+    },
+}));
+
+const ArrowRightIconButton = styled(IconButton)(({ theme }) => ({
+    ':hover': {
+        backgroundColor: 'rgba(333, 333, 333, 0.1)',
+    },
+    '.MuiSvgIcon-root': {
+        color: '#fff',
+        fontSize: '70px',
+    },
+    [theme.breakpoints.down("sm")]: {
+        marginRight: 0,
+    },
+}));
 
 
 export const ProductModalView = ({ modalViewOpen,
@@ -70,61 +188,45 @@ export const ProductModalView = ({ modalViewOpen,
             aria-describedby="modal-modal-description"
         >
             <Container maxWidth="sm">
-                <Box className='container_ProductModalView'>
+                <ProductModalViewContainer>
 
-                    <GlobalStyles styles={{
-                        body: {
-                            overflowY: 'hidden'
-                        }
-                    }} />
-
-                    <div id='imagesIndexContainer'>
-                        <div id='imagesIndex'>
+                    <ImagesIndexContainer>
+                        <ImagesIndex>
 
                             <Typography fontSize={18} variant="body2">
                                 {`${(imageSelected !== null) ? (imageSelected.i + 1) : 1} / ${img.length}`}
                             </Typography>
 
-                        </div>
-                    </div>
+                        </ImagesIndex>
+                    </ImagesIndexContainer>
 
-                    <IconButton
-                        id='buttonIcon'
-                        onClick={handleCloseModal}
-                    >
-                        <CloseIcon id='closeIcon' />
-                    </IconButton>
+                    <CloseIconButton onClick={handleCloseModal}>
+                        <CloseIcon />
+                    </CloseIconButton>
 
-                    <div id='productImageContainer'>
-                        <Image
-                            id='productImage'
+                    <ProductImageContainer>
+                        <ProductImage
                             cloudName="the-kings-company"
                             publicId={(imageSelected !== null) ? imageSelected.img : img[0].imageUrl}
                             alt='Product'
                             onTouchStart={handleTouchStart}
                             onTouchEnd={handleTouchEnd}
                         />
-                    </div>
+                    </ProductImageContainer>
 
-                    <div id='arrowButtonsContainer'>
+                    <ArrowButtonsContainer>
 
-                        <IconButton
-                            id='arrowLeftIconButton'
-                            onClick={handleLeft}
-                        >
-                            <ArrowLeftIcon id='arrowLeftIcon' />
-                        </IconButton>
+                        <ArrowLeftIconButton onClick={handleLeft}>
+                            <ArrowLeftIcon />
+                        </ArrowLeftIconButton>
 
-                        <IconButton
-                            id='arrowRightIconButton'
-                            onClick={handleRight}
-                        >
-                            <ArrowRightIcon id='arrowRightIcon' />
-                        </IconButton>
+                        <ArrowRightIconButton onClick={handleRight}>
+                            <ArrowRightIcon />
+                        </ArrowRightIconButton>
 
-                    </div>
+                    </ArrowButtonsContainer>
 
-                </Box>
+                </ProductModalViewContainer>
             </Container>
         </Modal>
     );

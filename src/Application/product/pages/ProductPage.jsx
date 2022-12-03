@@ -1,3 +1,4 @@
+/** Libraries */
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { useParams, useNavigate } from "react-router-dom";
@@ -5,27 +6,249 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Image } from "cloudinary-react";
 
 import { Button, Container, Divider, Typography } from "@mui/material";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
-import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import DoneOutlineIcon from "@mui/icons-material/DoneOutline";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 
+import { styled } from "@mui/material/styles";
+
+/** Material UI - Icons */
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import DoneOutlineIcon from "@mui/icons-material/DoneOutline";
+
+/** Components */
+import { ProductTabNav } from "../../product";
+import { ProductModalView } from "../../product";
+import { Footer } from "../../ui";
+
+/** Custom hooks */
 import {
   useAuthStore,
   useCartStore,
   useCategoriesStore,
-  useProductsStore,
-  useUiStore,
 } from "../../../hooks";
 
-import { ProductTabNav } from "../../product";
-import { ProductModalView } from "../../product";
-import { Footer } from "../../ui";
+/** Material UI - Custom components */
+const ProductPageContainer = styled("div")(({ theme }) => ({
+  backgroundColor: '#fff',
+  borderRadius: '5px',
+  marginTop: '12.5vh',
+  marginBottom: '5vh',
+  [theme.breakpoints.down("sm")]: {
+    position: 'relative',
+    left: 0,
+    top: 0,
+    backgroundColor: '#fff',
+    marginTop: '6vh',
+    marginBottom: '5vh',
+    overflowX: 'hidden',
+  },
+}));
+
+const ImagesContainer = styled("div")(({ theme }) => ({
+  width: '100%',
+  height: '50ch',
+  display: 'flex',
+  flexWrap: 'wrap',
+  justifyContent: 'space-between',
+  marginTop: '2.5vh',
+  marginBottom: '2.5vh',
+  [theme.breakpoints.between("sm", "md")]: {
+    justifyContent: 'center',
+  },
+}));
+
+const ProductImagesToShowContainer = styled("div")(({ theme }) => ({
+  display: 'flex',
+  flexWrap: 'wrap',
+  maxWidth: '10%',
+  maxHeight: '50ch',
+  marginLeft: '5%',
+  marginTop: '5vh',
+}));
+
+const ImageProductsToShow = styled(Image)(({ theme }) => ({
+  display: 'block',
+  maxWidth: '10ch',
+  maxHeight: '8ch',
+  margin: 'auto',
+}));
+
+const ProductImageContainer = styled('div')(({ theme }) => ({
+  maxWidth: '60%',
+  maxHeight: '45ch',
+  margin: 'auto',
+  [theme.breakpoints.down("sm")]: {
+    width: '100%',
+    height: '50ch',
+    margin: 'auto',
+    // marginBottom: '12.5%',
+  }
+}));
+
+const IconsContainer = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
+  width: '100%',
+  maxHeight: '50px',
+  zIndex: 100,
+}));
+
+const ImagesIndexContainer = styled('div')(({ theme }) => ({
+  width: '25%',
+}));
+
+const ImagesIndex = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundColor: '#fff',
+  color: '#000',
+  fontSize: '24px',
+  width: '10vh',
+  height: '5vh',
+  borderRadius: '20px',
+  zIndex: 100,
+}));
+
+const ProductImage = styled(Image)(({ theme }) => ({
+  width: '45ch',
+  height: '45ch',
+  objectFit: 'contain',
+  marginLeft: '8%',
+  cursor: 'pointer',
+  img: {
+    width: '45ch',
+    height: '45ch',
+  },
+  [theme.breakpoints.down("sm")]: {
+    width: '100%',
+    display: 'flex',
+    alignItems: 'start',
+    height: '45ch',
+    objectFit: 'contain',
+
+    img: {
+      width: '100%',
+      height: 'auto',
+    }
+  },
+}));
+
+const IconButtonsContainer = styled('div')(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'flex-end',
+  alignItems: 'center',
+  width: '75%',
+}));
+
+const GoToCartButton = styled(Button)(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: '#F29102',
+  borderRadius: '10px',
+  marginRight: '2.5%',
+  color: '#fff',
+  height: '75%',
+  width: '45%',
+  zIndex: 100,
+}));
+
+const ButtonsContainer = styled('div')(({ theme }) => ({
+  position: 'relative',
+  display: 'flex',
+  alignItems: 'center',
+  maxWidth: '50px',
+  maxHeight: '50px',
+  marginRight: '15%',
+}));
+
+const ShoppingCartIconButton = styled(IconButton)(({ theme }) => ({
+  position: 'absolute',
+  color: '#F29102',
+  zIndex: 100,
+}));
+
+const SuccessCartIconButton = styled(IconButton)(({ theme }) => ({
+  position: 'absolute',
+  color: '#0B5345',
+  zIndex: 100,
+}));
+
+const PriceContainer = styled('div')(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'flex-end',
+  marginTop: '2.5vh',
+}));
+
+const PriceFont = styled(Typography)(({ theme }) => ({
+  backgroundColor: '#F29102',
+  color: '#fff',
+  fontSize: '18px',
+  marginTop: '-10%',
+  marginRight: '-10%',
+  padding: '7.5px',
+  borderRadius: '10px',
+  zIndex: 110,
+}));
+
+const DescriptionNextToImageContainer = styled('div')(({ theme }) => ({
+  position: 'relative',
+  top: '5%',
+  display: 'block',
+  backgroundColor: '#fff',
+  borderRadius: '5px',
+  width: '25%',
+  height: '45ch',
+  maxHeight: '45ch',
+  padding: '2.5ch',
+  overflow: 'hidden',
+  margin: 'auto',
+  objectFit: 'cover',
+  overflowY: 'scroll',
+  zIndex: 100,
+}));
+
+const DescriptionNextToImageFont = styled(Typography)(({ theme }) => ({
+  margin: 'auto',
+  width: 'auto',
+  padding: '0%',
+  marginBottom: '1vh',
+  fontSize: '16px',
+}));
+
+const NameFont = styled(Typography)(({ theme }) => ({
+  backgroundColor: '#fff',
+  marginTop: '2.5vh',
+  marginBottom: '2.5vh',
+  padding: '0 2.5% 0 2.5%',
+  borderRadius: '5px',
+  fontSize: '20px',
+}));
+
+const DescriptionContainer = styled('div')(({ theme }) => ({
+  display: 'block',
+  backgroundColor: '#fff',
+  borderRadius: '5px',
+  width: '100%',
+  minHeight: '10ch',
+  overflow: 'hidden',
+  margin: 'auto',
+  marginBottom: '2.5vh',
+  objectFit: 'cover',
+  overflow: 'contain',
+}));
+
+const DescriptionFont = styled(Typography)(({ theme }) => ({
+  margin: 'auto',
+  width: 'auto',
+  marginTop: '2.5vh',
+  marginBottom: '2.5vh',
+  padding: '2.5%',
+  fontSize: '16px',
+}));
 
 export const ProductPage = () => {
   const { id, category } = useParams();
@@ -34,8 +257,6 @@ export const ProductPage = () => {
 
   const { role, uid } = useAuthStore();
 
-  const { startSetActiveProduct } = useProductsStore();
-
   const { categories } = useCategoriesStore();
 
   const {
@@ -43,8 +264,6 @@ export const ProductPage = () => {
     startDeletedCart,
     startUpdatedCart,
   } = useCartStore();
-
-  const { startUiOpenDialogDelete, startUiOpenProductModalEdit } = useUiStore();
 
   const theme = useTheme();
   const sm = useMediaQuery(theme.breakpoints.down("sm"));
@@ -55,7 +274,6 @@ export const ProductPage = () => {
     scrollY: 0,
   });
   const [imageSelected, setImageSelected] = useState(null);
-  const [anchorEl, setAnchorEl] = useState(null);
   const [modalViewOpen, setModalViewOpen] = useState(false);
   const [value, setValue] = useState(0);
 
@@ -65,7 +283,7 @@ export const ProductPage = () => {
   }, [location]);
 
   if (!categories || categories.length === 0) {
-    return setTimeout(() => {}, 500);
+    return setTimeout(() => { }, 500);
   }
 
   const data = categories?.filter((e) => e.name === category);
@@ -93,7 +311,7 @@ export const ProductPage = () => {
           img.forEach(
             (image, index) =>
               index ===
-                (imageSelected.i <= 0 ? img.length - 1 : imageSelected.i - 1) &&
+              (imageSelected.i <= 0 ? img.length - 1 : imageSelected.i - 1) &&
               setImageSelected({
                 i: index,
                 img: image.imageUrl,
@@ -115,7 +333,7 @@ export const ProductPage = () => {
           img.forEach(
             (image, index) =>
               index ===
-                (imageSelected.i + 1 >= img.length ? 0 : imageSelected.i + 1) &&
+              (imageSelected.i + 1 >= img.length ? 0 : imageSelected.i + 1) &&
               setImageSelected({
                 i: index,
                 img: image.imageUrl,
@@ -146,22 +364,6 @@ export const ProductPage = () => {
     setModalViewOpen(true);
   };
 
-  const handleEditButton = (e) => {
-    e.preventDefault();
-
-    startUiOpenProductModalEdit();
-
-    handleLogout();
-  };
-
-  const handleDeleteButton = (e) => {
-    e.preventDefault();
-
-    startUiOpenDialogDelete();
-
-    handleLogout();
-  };
-
   const handleAddCart = () => {
     if (role) {
       startUpdatedCart(
@@ -189,23 +391,6 @@ export const ProductPage = () => {
     });
   };
 
-  // Normal menu
-  const handleMenu = (e) => {
-    e.preventDefault();
-
-    startSetActiveProduct(product[0]);
-
-    setAnchorEl(e.currentTarget);
-  };
-
-  const handleLogout = () => {
-    handleClose();
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
   return (
     <>
       <ProductModalView
@@ -218,10 +403,10 @@ export const ProductPage = () => {
         setImageSelected={setImageSelected}
       />
       <Container>
-        <Box className="container_ProductPage">
-          <div id="imagesContainer">
+        <ProductPageContainer>
+          <ImagesContainer>
             {!md && (
-              <div id="containerProductImagesToShow">
+              <ProductImagesToShowContainer>
                 {img.map((e, i) => (
                   <Container
                     key={i}
@@ -233,8 +418,7 @@ export const ProductPage = () => {
                           : e.imageUrl === imageSelected?.img && "25%",
                     }}
                   >
-                    <Image
-                      id="productImagesToShow"
+                    <ImageProductsToShow
                       cloudName="the-kings-company"
                       publicId={e.imageUrl}
                       alt="Product"
@@ -244,26 +428,24 @@ export const ProductPage = () => {
                     />
                   </Container>
                 ))}
-              </div>
+              </ProductImagesToShowContainer>
             )}
 
-            <div id="productImageContainer">
-              <div id="iconsContainer">
+            <ProductImageContainer>
+              <IconsContainer>
                 {(sm || md) && (
-                  <div id="imagesIndexContainer">
-                    <div id="imagesIndex">
+                  <ImagesIndexContainer>
+                    <ImagesIndex>
                       <Typography fontSize={18} variant="body2">
-                        {`${
-                          imageSelected !== null ? imageSelected.i + 1 : 1
-                        } / ${img.length}`}
+                        {`${imageSelected !== null ? imageSelected.i + 1 : 1
+                          } / ${img.length}`}
                       </Typography>
-                    </div>
-                  </div>
+                    </ImagesIndex>
+                  </ImagesIndexContainer>
                 )}
 
-                <div id="iconButtonsContainer">
-                  <Button
-                    id="goToCartButton"
+                <IconButtonsContainer>
+                  <GoToCartButton
                     onClick={() => navigate("/cart")}
                     sx={{
                       visibility:
@@ -276,11 +458,10 @@ export const ProductPage = () => {
                     <Typography fontSize={12} variant="body2">
                       Ir al carrito
                     </Typography>
-                  </Button>
+                  </GoToCartButton>
 
-                  <div id="buttonsContainer">
-                    <IconButton
-                      id="ShoppingCartIcon"
+                  <ButtonsContainer>
+                    <ShoppingCartIconButton
                       aria-label="account of current user"
                       aria-controls="menu-appbar"
                       aria-haspopup="true"
@@ -289,18 +470,17 @@ export const ProductPage = () => {
                       sx={{
                         visibility: role
                           ? cartProducts?.filter(
-                              (event) => event._id === id && cartProducts
-                            ).length === 0
+                            (event) => event._id === id && cartProducts
+                          ).length === 0
                             ? "visible"
                             : "hidden"
                           : "visible",
                       }}
                     >
                       <ShoppingCartIcon />
-                    </IconButton>
+                    </ShoppingCartIconButton>
 
-                    <IconButton
-                      id="SuccessCartIcon"
+                    <SuccessCartIconButton
                       aria-label="account of current user"
                       aria-controls="menu-appbar"
                       aria-haspopup="true"
@@ -315,14 +495,13 @@ export const ProductPage = () => {
                       }}
                     >
                       <DoneOutlineIcon />
-                    </IconButton>
-                  </div>
+                    </SuccessCartIconButton>
+                  </ButtonsContainer>
 
-                </div>
-              </div>
+                </IconButtonsContainer>
+              </IconsContainer>
 
-              <Image
-                id="productImage"
+              <ProductImage
                 cloudName="the-kings-company"
                 publicId={
                   imageSelected !== null ? imageSelected.img : img[0].imageUrl
@@ -332,64 +511,63 @@ export const ProductPage = () => {
                 onTouchEnd={handleTouchEnd}
                 onClick={handleClickImage}
               />
-              <div id="priceContainer">
-                <Typography id="price" gutterBottom variant="p" component="div">
+              <PriceContainer>
+                <PriceFont variant="p" component="div">
                   {`$${new Intl.NumberFormat("es-IN").format(price)}`}
-                </Typography>
-              </div>
-            </div>
+                </PriceFont>
+              </PriceContainer>
+            </ProductImageContainer>
 
             {!md && (
-              <div id="descriptionContainerNextToImage">
-                <Typography
-                  id="descriptionNextToImage"
+              <DescriptionNextToImageContainer>
+                <DescriptionNextToImageFont
                   variant="body1"
                   color="text.primary"
                 >
                   {description}
-                </Typography>
-              </div>
+                </DescriptionNextToImageFont>
+              </DescriptionNextToImageContainer>
             )}
-          </div>
+          </ImagesContainer>
 
-          <Divider id="divider" />
+          <Divider sx={{ marginTop: '7.5ch' }} />
 
-          <Typography id="name" variant="subtitle2" color="text.primary">
+          <NameFont variant="subtitle2" color="text.primary">
             {name}
-          </Typography>
+          </NameFont>
 
           <ProductTabNav value={value} setValue={setValue} />
 
           {md && value === 0 && (
-            <div id="descriptionContainer">
-              <Typography id="description" variant="body1" color="text.primary">
+            <DescriptionContainer>
+              <DescriptionFont variant="body1" color="text.primary">
                 {description}
-              </Typography>
-            </div>
+              </DescriptionFont>
+            </DescriptionContainer>
           )}
 
           {((md && value === 1) || (!md && value === 0)) && (
-            <div id="descriptionContainer">
-              <Typography id="description" variant="body1" color="text.primary">
+            <DescriptionContainer>
+              <DescriptionFont variant="body1" color="text.primary">
                 Envíos sin cargo a toda la ciudad de la plata, y envíos por
                 correo Argentino a todo el país.
-              </Typography>
-            </div>
+              </DescriptionFont>
+            </DescriptionContainer>
           )}
 
           {((md && value === 2) || (!md && value === 1)) && (
-            <div id="descriptionContainer">
-              <Typography id="description" variant="body1" color="text.primary">
+            <DescriptionContainer>
+              <DescriptionFont variant="body1" color="text.primary">
                 El cliente dispone de 14 días como maximo para devolver un
                 producto que ha adquirido desde la fecha en la que lo haya
                 recibido, los gastos por devolucion, son cubiertas por el
                 usuario mismo, devolveremos el monto total del articulo, siempre
                 y cuando este en perfectas condiciones, con su caja y sus otros
                 accesorios.
-              </Typography>
-            </div>
+              </DescriptionFont>
+            </DescriptionContainer>
           )}
-        </Box>
+        </ProductPageContainer>
       </Container>
       <Footer />
     </>

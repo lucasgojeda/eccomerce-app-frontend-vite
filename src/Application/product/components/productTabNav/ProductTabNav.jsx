@@ -1,9 +1,16 @@
+/** Libraries */
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Box from '@mui/material/Box';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
+import { styled } from "@mui/material/styles";
+
+/** Material UI - Custom components */
+const ProductTabNavContainer = styled("div")(({ theme }) => ({
+  width: '100%',
+  marginBottom: '2.5vh',
+}));
 
 export const ProductTabNav = ({ setValue, value }) => {
 
@@ -16,7 +23,7 @@ export const ProductTabNav = ({ setValue, value }) => {
   };
 
   return (
-    <Box className='container_ProductTabNav'>
+    <ProductTabNavContainer>
       <Tabs
         onChange={handleChange}
         value={value}
@@ -32,6 +39,6 @@ export const ProductTabNav = ({ setValue, value }) => {
         <Tab label="Envio" />
         <Tab label="Devolución" />
       </Tabs>
-    </Box>
+    </ProductTabNavContainer>
   );
 }
