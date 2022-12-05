@@ -76,8 +76,6 @@ export const useProductsStore = () => {
 
       const { msg, results } = data;
 
-      console.log('Called')
-
       if (msg === "OK") {
         // console.log('Filtered products', body);
 

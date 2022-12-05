@@ -75,6 +75,9 @@ export const CloseIconButton = styled(IconButton)(({ theme }) => ({
   position: "absolute",
   top: 0,
   left: "85%",
+  [theme.breakpoints.down("sm")]: {
+    left: "80%",
+  },
 }));
 
 /** TODO: Implementar sistema de busquedas. */

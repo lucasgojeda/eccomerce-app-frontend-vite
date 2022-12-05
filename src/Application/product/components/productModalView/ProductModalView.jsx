@@ -51,6 +51,7 @@ const CloseIconButton = styled(IconButton)(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
     height: 'auto',
+    zIndex: 1000,
     ':hover': {
         backgroundColor: 'rgba(333, 333, 333, 0.1)',
     },
@@ -67,10 +68,13 @@ const CloseIconButton = styled(IconButton)(({ theme }) => ({
 
 const ProductImageContainer = styled('div')(({ theme }) => ({
     position: 'absolute',
-    top: '25%',
+    top: 0,
     left: 0,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     width: '100%',
-    height: '50ch',
+    height: '100%',
     margin: 'auto',
     marginBottom: '12.5%',
 }));

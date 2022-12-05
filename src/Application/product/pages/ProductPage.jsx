@@ -99,6 +99,9 @@ const IconsContainer = styled('div')(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {
     position: 'absolute',
     left: 0,
+    '.MuiSvgIcon-root': {
+      fontSize: '30px',
+    },
   }
 }));
 
@@ -213,7 +216,7 @@ const PriceContainer = styled('div')(({ theme }) => ({
   marginTop: '-5vh',
   [theme.breakpoints.down("sm")]: {
     position: 'absolute',
-    left: '55vw',
+    right: '2.5%',
     marginTop: 0,
   },
 }));
@@ -302,20 +305,20 @@ export const ProductPage = () => {
   const theme = useTheme();
   const sm = useMediaQuery(theme.breakpoints.down("sm"));
   const md = useMediaQuery(theme.breakpoints.down("md"));
-  
+
   const [cartStatus, setCartStatus] = useState(false);
   const [disableButton, setDisableButton] = useState(false);
-  
+
   /** Check if the product is on the user cart */
   useEffect(() => {
-   const result = cartProducts.filter((e) => e._id === id);
+    const result = cartProducts.filter((e) => e._id === id);
 
-   if (result.length !== 0) {
-     setCartStatus(true);
-   } else {
-     setCartStatus(false);
-   }
- }, [cartProducts]);
+    if (result.length !== 0) {
+      setCartStatus(true);
+    } else {
+      setCartStatus(false);
+    }
+  }, [cartProducts]);
 
   const [touchStart, setTouchStart] = useState({
     touchX: 0,
@@ -518,21 +521,21 @@ export const ProductPage = () => {
 
 
                   <ButtonsContainer className='buttonsContainer'>
-                  <Tooltip title="Añadir al carrito" arrow>
-                    <ShoppingCartIconButton
-                      aria-label="account of current user"
-                      aria-controls="menu-appbar"
-                      aria-haspopup="true"
-                      color="inherit"
-                      disabled={disableButton}
-                      onClick={handleAddCart}
-                      sx={{
-                        display: cartStatus && "none",
-                      }}
-                    >
-                      <ShoppingCartIcon />
-                    </ShoppingCartIconButton>
-                  </Tooltip>
+                    <Tooltip title="Añadir al carrito" arrow>
+                      <ShoppingCartIconButton
+                        aria-label="account of current user"
+                        aria-controls="menu-appbar"
+                        aria-haspopup="true"
+                        color="inherit"
+                        disabled={disableButton}
+                        onClick={handleAddCart}
+                        sx={{
+                          display: cartStatus && "none",
+                        }}
+                      >
+                        <ShoppingCartIcon />
+                      </ShoppingCartIconButton>
+                    </Tooltip>
 
                     <SuccessCartIconButton
                       className='successIconButton'
