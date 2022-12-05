@@ -37,6 +37,10 @@ const SecondContainer = styled("div")(({ theme }) => ({
   justifyContent: "center",
   alignItems: "center",
   overflow: "hidden",
+  [theme.breakpoints.down("sm")]: {
+    justifyContent: "flex-start",
+    marginTop: '10vh',
+  },
 }));
 
 const HomeIconContainer = styled("div")(({ theme }) => ({
@@ -57,7 +61,7 @@ const HomeIconContainer = styled("div")(({ theme }) => ({
   },
   [theme.breakpoints.down("sm")]: {
     "& .MuiSvgIcon-root": {
-      fontSize: "35px",
+      fontSize: "30px",
       marginLeft: "2vw",
       marginTop: "1.5vh",
     },
@@ -72,6 +76,7 @@ const ImageContainer = styled("div")(({ theme }) => ({
   justifyContent: "center",
   mb: 1,
   [theme.breakpoints.down("sm")]: {
+    minHeight: "30vh",
     mb: 0,
   },
 }));
@@ -81,8 +86,8 @@ const Image = styled("img")(({ theme }) => ({
   objectFit: "cover",
   objectPosition: "20% 10%",
   [theme.breakpoints.down("sm")]: {
-    maxWidth: "80%",
-    maxHeight: "30ch",
+    maxWidth: "70%",
+    maxHeight: "25ch",
   },
 }));
 
@@ -100,8 +105,8 @@ const GoogleButton = styled(GoogleLogin)(({ theme }) => ({
   margin: "auto",
   marginTop: "2.5vh",
   height: "7vh",
-  minWidth: "190px",
-  minHeight: "65px",
+  minWidth: "150px",
+  minHeight: "60px",
   backgroundColor: "#fff",
   color: "#737373",
   borderWidth: 0,
