@@ -42,6 +42,14 @@ const ProductContainer = styled("div")(({ theme }) => ({
       backgroundColor: "rgba(84, 153, 199, 0.85)",
     },
   },
+  [theme.breakpoints.down("sm")]: {
+    "& .CartIconContainer": {
+      visibility: "visible",
+    },
+    "& .LabelCartContainer": {
+      visibility: "visible",
+    },
+  }
 }));
 
 const ProductImage = styled("img")(({ theme }) => ({

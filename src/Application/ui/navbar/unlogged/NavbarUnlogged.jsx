@@ -1,6 +1,7 @@
 /** Libraries */
 import { useNavigate } from "react-router";
 
+import { Divider, Tooltip } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 /** Material UI - Icons */
@@ -10,7 +11,6 @@ import HomeIcon from "@mui/icons-material/Home";
 /** Components */
 import { SearchBar } from "../../../ui";
 import { MovilMenu } from "../../../ui";
-import { Divider, Tooltip } from "@mui/material";
 
 /** Material UI - Custom components */
 const Navbar = styled("nav")(({ theme }) => ({
@@ -99,7 +99,7 @@ export const NavbarUnlogged = () => {
           }}
         />
 
-        <Font variant="body2" onClick={() => navigate("login")}>
+        <Font variant="body2" onClick={() => navigate("/login")}>
           <AccountCircleIcon sx={{ fontSize: "22.5px", ml: "1vw", mr: '2.5px' }} />
           Iniciar sessión
         </Font>

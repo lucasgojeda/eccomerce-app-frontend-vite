@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router";
 
+import { Box } from "@mui/material";
+
 import InputBase from "@mui/material/InputBase";
 import queryString from "query-string";
 
@@ -14,8 +16,17 @@ import CloseIcon from "@mui/icons-material/Close";
 
 /** Custom hooks */
 import { useProductsStore } from "../../../../../hooks";
+import { FilterMenu } from "../filterMenu/FilterMenu";
 
 /** Material UI - Custom components */
+export const SearchContainer = styled("div")(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexDirection: 'row',
+  width: '100%'
+}));
+
 export const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -73,35 +84,24 @@ export const SearchBar = () => {
 
   const { startLoadProducts } = useProductsStore();
 
-  const { q = "" } = queryString.parse(location.search);
-  const { c = "" } = queryString.parse(location.search);
-  let { page: pagePath = 1 } = queryString.parse(location.search);
-
   /** Text to search */
-  const [searchText, setSearchText] = useState(q);
+  const [searchText, setSearchText] = useState("");
 
   /** Filters */
-  const [filterBy, setFilterBy] = useState("price");
+  const filterBy = "price";
   const [orderBy, setOrderBy] = useState("desc");
 
-  /** Flag to refresh search */
-  const [flagSearch, setFlagSearch] = useState(0);
+  const handleOrderBy = (value) => {
+    setOrderBy(value);
 
-  /** Filters and search */
-  useEffect(() => {
-    if (flagSearch && flagSearch !== 0) {
-      startLoadProducts(filterBy, orderBy, searchText, pagePath);
-    }
-  }, [filterBy, orderBy, flagSearch, pagePath]);
+    if (pathname !== "search") navigate("/search");
 
-  useEffect(() => {
-    if (searchText === "") {
-      if (pathname === "/search") {
-        navigate("/search");
-        setFlagSearch(flagSearch + 1);
-      }
-    }
-  }, [searchText]);
+    if (!searchText) return;
+    if (searchText === "") return;
+    if (searchText === " ") return;
+
+    startLoadProducts(filterBy, value, searchText);
+  }
 
   /** Search */
   const handleInputChange = (e) => {
@@ -116,25 +116,23 @@ export const SearchBar = () => {
   const handleSearch = (e) => {
     e.preventDefault();
 
-    if (pathname !== "search") {
-      navigate("/search");
-    }
+    if (pathname !== "search") navigate("/search");
 
-    if (searchText !== "") {
-      navigate(`/search?q=${searchText}`);
-      setFlagSearch(flagSearch + 1);
-    } else {
-      setFlagSearch(flagSearch + 1);
-    }
-  };
+    if (!searchText) return;
+    if (searchText === "") return;
+    if (searchText === " ") return;
 
-  /** Filter */
-  const handleOrderByChange = (value) => {
-    setOrderBy(value);
+    startLoadProducts(filterBy, orderBy, searchText);
   };
 
   return (
-    <div className="container_Search">
+    <SearchContainer>
+
+      {
+        (pathname === "/search")
+        &&
+        <FilterMenu orderBy={orderBy} handleOrderBy={handleOrderBy} />
+      }
 
       <Search>
         <SearchIconWrapper>
@@ -157,6 +155,6 @@ export const SearchBar = () => {
           </CloseIconButton>
         )}
       </Search>
-    </div>
+    </SearchContainer>
   );
 };
