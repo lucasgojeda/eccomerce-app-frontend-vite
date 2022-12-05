@@ -5,8 +5,7 @@ import "moment/locale/es";
 
 import Box from "@mui/material/Box";
 import Tooltip from "@mui/material/Tooltip";
-import Container from "@mui/material/Container";
-import { Divider, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import Skeleton from "@mui/material/Skeleton";
 
@@ -45,7 +44,7 @@ const NotificationsPageContaiener = styled("div")(({ theme }) => ({
   marginTop: "5vh",
   marginBottom: "5vh",
   [theme.breakpoints.down("sm")]: {
-    marginBottom: "0",
+    marginBottom: "15vh",
   },
 }));
 
@@ -69,6 +68,12 @@ const TableContaiener = styled("div")(({ theme }) => ({
   overflowX: "cover",
   [theme.breakpoints.down("sm")]: {
     width: "calc(100% - 2px)",
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  [theme.breakpoints.down("sm")]: {
+    height: 'calc(76vh / 8)',
   },
 }));
 
@@ -170,7 +175,7 @@ export const NotificationsPage = () => {
                         {notifications.map(
                           (n) =>
                             n.sale === e._id && (
-                              <TableRow
+                              <StyledTableRow
                                 width="100%"
                                 key={e.id}
                                 sx={{
@@ -242,7 +247,7 @@ export const NotificationsPage = () => {
                                     </IconButton>
                                   )}
                                 </TableCell>
-                              </TableRow>
+                              </StyledTableRow>
                             )
                         )}
                       </>
