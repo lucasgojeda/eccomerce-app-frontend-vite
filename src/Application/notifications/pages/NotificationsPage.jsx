@@ -32,6 +32,7 @@ import { useNotificationsStore } from "../../../hooks";
 
 /** Custom hooks */
 import { Footer } from "../../ui";
+import { useState } from "react";
 
 /** Material UI - Custom components */
 const NotificationsPageContaiener = styled("div")(({ theme }) => ({
@@ -39,18 +40,28 @@ const NotificationsPageContaiener = styled("div")(({ theme }) => ({
   height: "100vh",
   display: "flex",
   alignItems: "center",
-  justifyContent: "space-between",
+  justifyContent: "center",
   flexDirection: "column",
-  marginTop: "10vh",
+  marginTop: "5vh",
   marginBottom: "5vh",
   [theme.breakpoints.down("sm")]: {
     marginBottom: "0",
   },
 }));
 
+const TitleContaiener = styled("div")(({ theme }) => ({
+  width: "95%",
+  height: "10vh",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "start",
+  paddingLeft: '2.5%',
+  color: theme.palette.neutral.main
+}));
+
 const TableContaiener = styled("div")(({ theme }) => ({
   width: "80%",
-  height: "87.5vh",
+  height: "76vh",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
@@ -82,21 +93,40 @@ const PaginationContaiener = styled("div")(({ theme }) => ({
   borderTop: "1px solid rgba(98, 101, 103, 0.25)",
   "& .MuiSvgIcon-root": {
     fontSize: "45px",
-    color: "#fff",
+    color: theme.palette.primary.darker,
   },
 }));
 
 moment.locale("es");
 
 export const NotificationsPage = () => {
-  const { sales_user, notifications, notificationStartUpdated } =
-    useNotificationsStore();
+
+  const [page, setPage] = useState(1)
+
+  const {
+    sales_user,
+    notifications,
+    notificationStartUpdated,
+    startLoadNotifications
+  } = useNotificationsStore();
 
   const handleSendedButton = (e, notification) => {
     e.preventDefault();
 
     notificationStartUpdated(notification);
   };
+
+  const handlePreviusPage = () => {
+
+    startLoadNotifications((page - 1));
+    setPage(page - 1);
+  }
+
+  const handleNextPage = () => {
+
+    startLoadNotifications((page + 1));
+    setPage(page + 1);
+  }
 
   const theme = useTheme();
   const sm = useMediaQuery(theme.breakpoints.down("sm"));
@@ -107,6 +137,12 @@ export const NotificationsPage = () => {
   return (
     <>
       <NotificationsPageContaiener>
+        <TitleContaiener>
+        <Typography color="gray" fontSize="16px" variant="body2">
+              - En la siguiente tabla se muestran los pedidos que ya fueron enviados 
+              por la empresa hacia tí.
+            </Typography>
+        </TitleContaiener>
         <TableContaiener>
           {sales_user?.length !== 0 && sales_user !== null ? (
             <Table aria-label="customized table">
@@ -231,23 +267,22 @@ export const NotificationsPage = () => {
           <PaginationContaiener>
             <Tooltip title="Página anterior" arrow>
               <IconButton
-                color="primary"
                 component="span"
-                // disabled={users?.previousPage === null ? true : false}
-                // onClick={handlePreviusPage}
+                disabled={(page <= 1) ? true : false}
+                onClick={handlePreviusPage}
               >
                 <ArrowLeftIcon />
               </IconButton>
             </Tooltip>
             <Typography color="#fff" fontSize="16px" variant="body2">
-              Página 1{/* Page {page} */}
+              Página {page}
             </Typography>
             <Tooltip title="Página siguiente" arrow>
               <IconButton
                 color="primary"
                 component="span"
-                // disabled={users?.nextPage === null ? true : false}
-                // onClick={handleNextPage}
+                disabled={(notifications.length < 8) ? true : false}
+                onClick={handleNextPage}
               >
                 <ArrowRightIcon />
               </IconButton>
