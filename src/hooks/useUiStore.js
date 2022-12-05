@@ -2,18 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import {
     uiLogout,
-    uiOpenRecordModal,
-    uiCloseRecordModal,
-    uiOpenCategoriesModal,
-    uiCloseCategoriesModal,
-    uiOpenProductModal,
-    uiCloseProductModal,
-    uiOpenProductModalEdit,
-    uiCloseProductModalEdit,
-    uiOpenUserModalEdit,
-    uiCloseUserModalEdit,
-    uiOpenUserModalAdd,
-    uiCloseUserModalAdd,
     uiOpenSuccessAlert,
     uiCloseSuccessAlert,
     uiOpenErrorAlert,
@@ -22,10 +10,8 @@ import {
     uiCloseProgressBackdrop,
     uiOpenDialogDelete,
     uiCloseDialogDelete,
-    uiOpenDialogFields,
-    uiCloseDialogFields,
-    uiStartTableLoading,
-    uiStopTableLoading,
+    uiStartSearchProductsLoading,
+    uiStopSearchProductsLoading,
 } from '../store/slices/uiSlice';
 
 
@@ -34,93 +20,17 @@ export const useUiStore = () => {
     const dispatch = useDispatch();
 
     const {
-        modalProductAdd,
-        modalProductEdit,
-        addProductProgress,
-        modalUserAdd,
-        modalUserEdit,
         successAlert,
         errorAlert,
         progressBackdrop,
         dialogDelete,
-        dialogFields,
-        recordModal,
-        categoriesModal,
-        tableLoading,
+        searchProducts
     } = useSelector(state => state.ui);
 
 
     const startUiLogout = () => {
 
         dispatch(uiLogout());
-    };
-
-    /* RECORDS */
-
-    const startUiOpenRecordModal = () => {
-
-        dispatch(uiOpenRecordModal());
-    };
-
-    const startUiCloseRecordModal = () => {
-
-        dispatch(uiCloseRecordModal());
-    };
-    /* CATEGORIES */
-
-    const startUiOpenCategoriesModal = () => {
-
-        dispatch(uiOpenCategoriesModal());
-    };
-
-    const startUiCloseCategoriesModal = () => {
-
-        dispatch(uiCloseCategoriesModal());
-    };
-
-    /* PRODUCTS */
-
-    const startUiOpenProductModal = () => {
-
-        dispatch(uiOpenProductModal());
-    };
-
-    const startUiCloseProductModal = () => {
-
-        dispatch(uiCloseProductModal());
-    };
-
-    const startUiOpenProductModalEdit = () => {
-
-        dispatch(uiOpenProductModalEdit());
-    };
-
-    const startUiCloseProductModalEdit = () => {
-
-        dispatch(uiCloseProductModalEdit());
-    };
-
-
-    /* USERS */
-
-    const startUiOpenUserModalEdit = () => {
-
-        dispatch(uiOpenUserModalEdit());
-    };
-
-    const startUiCloseUserModalEdit = () => {
-
-        dispatch(uiCloseUserModalEdit());
-    };
-
-    const startUiOpenUserModalAdd = () => {
-
-        dispatch(uiOpenUserModalAdd());
-    };
-
-    const startUiCloseUserModalAdd = () => {
-
-        dispatch(uiCloseUserModalAdd());
     };
 
     /* ALERTS */
@@ -167,58 +77,28 @@ export const useUiStore = () => {
         dispatch(uiCloseDialogDelete());
     };
 
-    const startUiOpenDialogFields = (errors) => {
+    const startUiStartSearchProducts = () => {
 
-        dispatch(uiOpenDialogFields(errors));
+        dispatch(uiStartSearchProductsLoading());
     };
 
-    const startUiCloseDialogFields = () => {
+    const startUiStopSearchProducts = () => {
 
-        dispatch(uiCloseDialogFields());
-    };
-
-    const startUiStartTableLoading = () => {
-
-        dispatch(uiStartTableLoading());
-    };
-
-    const startUiStopTableLoading = () => {
-
-        dispatch(uiStopTableLoading());
+        dispatch(uiStopSearchProductsLoading());
     };
 
 
 
     return {
         //* Propiedades
-        modalProductAdd,
-        modalProductEdit,
-        addProductProgress,
-        modalUserAdd,
-        modalUserEdit,
         successAlert,
         errorAlert,
         progressBackdrop,
         dialogDelete,
-        dialogFields,
-        recordModal,
-        categoriesModal,
-        tableLoading,
+        searchProducts,
 
         //* Métodos
         startUiLogout,
-        startUiOpenRecordModal,
-        startUiCloseRecordModal,
-        startUiOpenCategoriesModal,
-        startUiCloseCategoriesModal,
-        startUiOpenProductModal,
-        startUiCloseProductModal,
-        startUiOpenProductModalEdit,
-        startUiCloseProductModalEdit,
-        startUiOpenUserModalEdit,
-        startUiCloseUserModalEdit,
-        startUiOpenUserModalAdd,
-        startUiCloseUserModalAdd,
         startUiOpenSuccessAlert,
         startUiCloseSuccessAlert,
         startUiOpenErrorAlert,
@@ -227,9 +107,7 @@ export const useUiStore = () => {
         startUiCloseProgressBackdrop,
         startUiOpenDialogDelete,
         startUiCloseDialogDelete,
-        startUiOpenDialogFields,
-        startUiCloseDialogFields,
-        startUiStartTableLoading,
-        startUiStopTableLoading,
+        startUiStartSearchProducts,
+        startUiStopSearchProducts,
     }
 }
