@@ -75,7 +75,7 @@ export const Category = ({ category }) => {
       <CarouselContainer>
         {category.products?.length !== 0 ? (
           <Carousel
-            swipeable={false}
+            swipeable={true}
             draggable={false}
             centerMode={sm ? true : false}
             responsive={responsive}

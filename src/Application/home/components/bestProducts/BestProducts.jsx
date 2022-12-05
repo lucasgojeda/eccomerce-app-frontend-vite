@@ -94,7 +94,7 @@ export const BestProducts = () => {
       <CarouselContainer>
         {bestProducts.length !== 0 ? (
           <Carousel
-            swipeable={false}
+            swipeable={true}
             draggable={false}
             showDots={true}
             centerMode={true}
