@@ -20,11 +20,11 @@ export const useNotificationsStore = () => {
     const { notifications, sales_user } = useSelector(state => state.notifications);
 
 
-    const startLoadNotifications = async () => {
+    const startLoadNotifications = async (page = 1) => {
 
         try {
 
-            const { data: { msg, sales, notifications } } = await ecommerceApi.get('notifications');
+            const { data: { msg, sales, notifications } } = await ecommerceApi.get(`notifications/${page}`);
 
             console.log({ msg, sales, notifications })
 
