@@ -9,7 +9,6 @@ import {
   useCategoriesStore,
   useNotificationsStore,
   useProductsStore,
-  useStaticsStore,
 } from "../hooks";
 
 import { PrivateRoute } from "./PrivateRoute";

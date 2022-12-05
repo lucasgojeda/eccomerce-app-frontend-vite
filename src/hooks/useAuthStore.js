@@ -2,10 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import ecommerceApi from "../api/ecommerceApi";
 
-import { usersLogout } from "../store/slices/userSlice";
-import { recordsLogout } from "../store/slices/recordsSlice";
-import { salesLogout } from "../store/slices/saleSlice";
-import { staticsLogout } from "../store/slices/staticsSlice";
 import { notificationsLogout } from "../store/slices/notificationsSlice";
 
 import {
@@ -21,19 +17,12 @@ import {
 
 import { cartLogout, loadCart } from "../store/slices/cartSlice";
 
-import { productsBinLogout, usersBinLogout } from "../store/slices/binSlice";
-import { useCategoriesStore } from "./useCategoriesStore";
-import { useStaticsStore } from "./useStaticsStore";
 import { useNotificationsStore } from "./useNotificationsStore";
 import { useProductsStore } from "./useProductsStore";
 
 export const useAuthStore = () => {
   const dispatch = useDispatch();
   const { checking, uid, name, role } = useSelector((state) => state.auth);
-
-  const { categories, startLoadCategories } = useCategoriesStore();
-
-  const { startLoadStatistics } = useStaticsStore();
 
   const { startLoadNotifications } = useNotificationsStore();
 

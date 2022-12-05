@@ -4,17 +4,8 @@ export const saleSlice = createSlice({
   name: 'sales',
   initialState: {
     sales: [],
-    activeSale: false
   },
   reducers: {
-    setActiveSale: (state, action) => {
-
-      state.activeSale = { ...action.payload };
-    },
-    clearActiveSale: (state) => {
-
-      state.activeSale = false;
-    },
     loadSales: (state, action) => {
 
       state.sales = action.payload;
@@ -35,15 +26,12 @@ export const saleSlice = createSlice({
     salesLogout: (state) => {
 
       state.sales = [];
-      state.activeSale = false;
     },
 
   },
 })
 
 export const {
-  setActiveSale,
-  clearActiveSale,
   loadSales,
   addNewSale,
   updateFilteredSales,
