@@ -53,7 +53,9 @@ const SearchCardContainer = styled("div")(({ theme }) => ({
 const TitleFont = styled(Typography)(({ theme }) => ({
   fontSize: '16px',
   fontWeight: '700',
-  color: theme.palette.gray.main
+  color: theme.palette.gray.main,
+  marginTop: '5vh',
+  marginLeft: '5vw',
 }));
 
 const mockProducts = [

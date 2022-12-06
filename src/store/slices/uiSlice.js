@@ -14,6 +14,7 @@ export const uiSlice = createSlice({
     progressBackdrop: { status: false },
     dialogDelete: false,
     searchProducts: false,
+    notificationsTable: false,
   },
   reducers: {
     uiLogout: (state) => {
@@ -29,6 +30,17 @@ export const uiSlice = createSlice({
       state.progressBackdrop = { status: false };
       state.dialogDelete = false;
       state.searchProducts = false;
+    },
+
+    /* NOTIFICATIONS */
+
+    uiStartNotificationsTable: (state) => {
+
+      state.notificationsTable = true;
+    },
+    uiStopNotificationsTable: (state) => {
+
+      state.notificationsTable = false;
     },
 
     /* SEARCH PRODUCTS */
@@ -88,6 +100,10 @@ export const uiSlice = createSlice({
 export const {
 
   uiLogout,
+
+  /* NOTIFICATIONS */
+  uiStartNotificationsTable,
+  uiStopNotificationsTable,
 
   /* SEARCH PRODUCTS */
   uiStartSearchProductsLoading,

@@ -10,7 +10,9 @@ import {
 import {
     uiCloseProgressBackdrop,
     uiOpenErrorAlert,
-    uiOpenSuccessAlert
+    uiOpenSuccessAlert,
+    uiStartNotificationsTable,
+    uiStopNotificationsTable
 } from "../store/slices/uiSlice";
 
 
@@ -19,10 +21,11 @@ export const useNotificationsStore = () => {
     const dispatch = useDispatch();
     const { notifications, sales_user } = useSelector(state => state.notifications);
 
-
     const startLoadNotifications = async (page = 1) => {
 
         try {
+
+            dispatch(uiStartNotificationsTable());
 
             const { data: { msg, sales, notifications } } = await ecommerceApi.get(`notifications/${page}`);
 
@@ -35,12 +38,16 @@ export const useNotificationsStore = () => {
                     notifications: notifications
                 }));
 
+                dispatch(uiStopNotificationsTable());
+
             } else {
+                dispatch(uiStopNotificationsTable());
                 console.log(msg);
             }
 
 
         } catch (error) {
+            dispatch(uiStopNotificationsTable());
             console.log(error);
         }
     }
