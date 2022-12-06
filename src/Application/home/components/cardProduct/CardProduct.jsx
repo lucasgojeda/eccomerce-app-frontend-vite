@@ -46,9 +46,11 @@ const ProductContainer = styled("div")(({ theme }) => ({
     "& .CartIconContainer": {
       visibility: "visible",
     },
-    "& .LabelCartContainer": {
-      visibility: "visible",
-    },
+    "&:hover": {
+      "& .LabelCartContainer": {
+        visibility: "hidden",
+      },
+    }
   }
 }));
 

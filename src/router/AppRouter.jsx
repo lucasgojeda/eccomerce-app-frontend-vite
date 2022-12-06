@@ -4,6 +4,8 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 
+import { useGoogleOneTapLogin } from '@react-oauth/google';
+
 import {
   useAuthStore,
   useCategoriesStore,
@@ -28,8 +30,15 @@ import { SearchPage } from "../Application/search";
 // import { ErrorAlert } from '../components/dashboard/ui/alerts/ErrorAlert';
 // import { SuccessAlert } from '../components/dashboard/ui/alerts/SuccessAlert';
 
+
 export const AppRouter = () => {
-  const { uid, checking, role, startChecking } = useAuthStore();
+  const { 
+    uid, 
+    checking, 
+    role, 
+    startChecking,
+    startGoogleLogin
+   } = useAuthStore();
 
   const { startLoadBestProducts } = useProductsStore();
   const { categories, startLoadCategories } = useCategoriesStore();
@@ -39,6 +48,15 @@ export const AppRouter = () => {
     startLoadCategories();
     startChecking();
   }, []);
+
+  useGoogleOneTapLogin({
+    onSuccess: credentialResponse => {
+      startGoogleLogin(credentialResponse.credential);
+    },
+    onError: () => {
+      console.log('Login Failed');
+    },
+  });
 
   if (checking || !categories) {
     return (

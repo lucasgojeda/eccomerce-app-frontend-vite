@@ -3,6 +3,10 @@ import moment from "moment";
 import "moment-timezone";
 import "moment/locale/es";
 
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import Stack from '@mui/material/Stack';
+
 import Box from "@mui/material/Box";
 import Tooltip from "@mui/material/Tooltip";
 import { Typography } from "@mui/material";
@@ -27,7 +31,7 @@ import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
 /** Components */
-import { useNotificationsStore } from "../../../hooks";
+import { useNotificationsStore, useUiStore } from "../../../hooks";
 
 /** Custom hooks */
 import { Footer } from "../../ui";
@@ -102,11 +106,28 @@ const PaginationContaiener = styled("div")(({ theme }) => ({
   },
 }));
 
+const AlertContainer = styled("div")(({ theme }) => ({
+  position: 'absolute',
+  top: '50%',
+  width: "100%",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  '.MuiAlert-action': {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  }
+}));
+
 moment.locale("es");
 
 export const NotificationsPage = () => {
 
+  const { notificationsTable } = useUiStore();
+
   const [page, setPage] = useState(1)
+  const [infoAlert, setInfoAlert] = useState(true)
 
   const {
     sales_user,
@@ -141,15 +162,27 @@ export const NotificationsPage = () => {
 
   return (
     <>
+      {
+        (!notificationsTable && infoAlert && sales_user.length === 0)
+        &&
+        <AlertContainer>
+          <Stack sx={{ width: '70%' }} spacing={2}>
+            <Alert onClose={() => setInfoAlert(false)} severity="info">
+              <AlertTitle>Info</AlertTitle>
+              Aún no tienes ningúna notificación.
+            </Alert>
+          </Stack>
+        </AlertContainer>
+      }
       <NotificationsPageContaiener>
         <TitleContaiener>
-        <Typography color="gray" fontSize="16px" variant="body2">
-              - En la siguiente tabla se muestran los pedidos que ya fueron enviados 
-              por la empresa hacia tí.
-            </Typography>
+          <Typography color="gray" fontSize="16px" variant="body2">
+            - En la siguiente tabla se muestran los pedidos que ya fueron enviados
+            por la empresa hacia tí.
+          </Typography>
         </TitleContaiener>
         <TableContaiener>
-          {sales_user?.length !== 0 && sales_user !== null ? (
+          {!notificationsTable ? (
             <Table aria-label="customized table">
               <TableHead>
                 <TableRow>
@@ -256,7 +289,7 @@ export const NotificationsPage = () => {
               </TableBody>
             </Table>
           ) : (
-            <Box width={sm ? "90%" : "100"}>
+            <Box width={sm ? "90%" : "100%"}>
               <Skeleton height={80} animation="wave" />
               <Skeleton height={80} animation="wave" />
               <Skeleton height={80} animation="wave" />

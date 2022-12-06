@@ -150,7 +150,7 @@ const ProductImage = styled(Image)(({ theme }) => ({
 
 const IconButtonsContainer = styled('div')(({ theme }) => ({
   display: 'flex',
-  justifyContent: 'space-around',
+  justifyContent: 'flex-end',
   alignItems: 'center',
   width: '100%',
 }));
@@ -467,7 +467,10 @@ export const ProductPage = () => {
       />
       <Container>
         <ProductPageContainer>
-          <ImagesContainer>
+          <ImagesContainer
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
             {!sm && (
               <ProductImagesToShowContainer>
                 {img.map((e, i) => (
@@ -579,8 +582,6 @@ export const ProductPage = () => {
                   imageSelected !== null ? imageSelected.img : img[0].imageUrl
                 }
                 alt="Product"
-                onTouchStart={handleTouchStart}
-                onTouchEnd={handleTouchEnd}
                 onClick={handleClickImage}
               />
               <PriceContainer>

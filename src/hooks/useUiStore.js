@@ -12,6 +12,8 @@ import {
     uiCloseDialogDelete,
     uiStartSearchProductsLoading,
     uiStopSearchProductsLoading,
+    uiStartNotificationsTable,
+    uiStopNotificationsTable,
 } from '../store/slices/uiSlice';
 
 
@@ -24,7 +26,8 @@ export const useUiStore = () => {
         errorAlert,
         progressBackdrop,
         dialogDelete,
-        searchProducts
+        searchProducts,
+        notificationsTable
     } = useSelector(state => state.ui);
 
 
@@ -77,6 +80,7 @@ export const useUiStore = () => {
         dispatch(uiCloseDialogDelete());
     };
 
+    /** SEARCH PRODUCTS */
     const startUiStartSearchProducts = () => {
 
         dispatch(uiStartSearchProductsLoading());
@@ -87,6 +91,16 @@ export const useUiStore = () => {
         dispatch(uiStopSearchProductsLoading());
     };
 
+    /** NOTIFICATIONS */
+    const uiStartNotificationsTable = () => {
+
+        dispatch(uiStartNotificationsTable());
+    };
+
+    const uiStopNotificationsTable = () => {
+
+        dispatch(uiStopNotificationsTable());
+    };
 
 
     return {
@@ -96,6 +110,7 @@ export const useUiStore = () => {
         progressBackdrop,
         dialogDelete,
         searchProducts,
+        notificationsTable,
 
         //* Métodos
         startUiLogout,
@@ -109,5 +124,7 @@ export const useUiStore = () => {
         startUiCloseDialogDelete,
         startUiStartSearchProducts,
         startUiStopSearchProducts,
+        uiStartNotificationsTable,
+        uiStopNotificationsTable,
     }
 }
