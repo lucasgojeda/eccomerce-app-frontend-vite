@@ -9,7 +9,7 @@ import { styled } from "@mui/material/styles";
 
 import { useFormik } from "formik";
 
-import { GoogleLogin } from "react-google-login";
+import { GoogleLogin } from '@react-oauth/google';
 
 import HomeIcon from "@mui/icons-material/Home";
 
@@ -100,37 +100,6 @@ const LoginButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-const GoogleButton = styled(GoogleLogin)(({ theme }) => ({
-  display: "block",
-  margin: "auto",
-  marginTop: "2.5vh",
-  height: "7vh",
-  minWidth: "150px",
-  minHeight: "60px",
-  backgroundColor: "#fff",
-  color: "#737373",
-  borderWidth: 0,
-  borderRadius: "2px",
-  whiteSpace: "nowrap",
-  boxShadow: "1px 1px 1px 1px rgba(0,0,0,0.25)",
-  transitionProperty: "background-color box-shadow",
-  transitionDuration: "150ms",
-  transitionTimingFunction: "ease-in-out",
-  padding: 0,
-  transform: "scale(1.4)",
-  ":hover": {
-    boxShadow: "1px 4px 5px 1px rgba(0,0,0,0.2)",
-    outline: "none",
-    transform: "scale(1.4) skewX(-0.4deg)",
-    cursor: "pointer",
-  },
-  ":active": {
-    outline: "none",
-    boxShadow: "1px 4px 5px 1px rgba(0,0,0,0.3)",
-    transitionDuration: "10ms",
-  },
-}));
-
 export const LoginPage = () => {
   const navigate = useNavigate();
 
@@ -150,9 +119,9 @@ export const LoginPage = () => {
   });
 
   const handleGoogleLogin = (response) => {
-    const { tokenId } = response;
+    const { credential } = response;
 
-    if (tokenId) return startGoogleLogin(tokenId);
+    if (credential) return startGoogleLogin(credential);
   };
 
   return (
@@ -222,23 +191,17 @@ export const LoginPage = () => {
               </LoginButton>
             </Grid>
           </Grid>
-          <Grid container justifyContent="center">
+          <Grid container justifyContent="center" mt={3}>
             <Grid item>
               <GoogleLogin
-                clientId="263099325228-55asn431srakct5pegne7a7go6hjctq6.apps.googleusercontent.com"
-                render={(renderProps) => (
-                  <GoogleButton
-                    onClick={renderProps.onClick}
-                    disabled={renderProps.disabled}
-                  >
-                    Ingresar con Google
-                  </GoogleButton>
-                )}
-                buttonText="Login"
-                onSuccess={handleGoogleLogin}
-                onFailure={handleGoogleLogin}
-                cookiePolicy={"single_host_origin"}
-              />
+                onSuccess={credentialResponse => {
+                  handleGoogleLogin(credentialResponse);
+                }}
+                onError={() => {
+                  console.log('Login Failed');
+                }}
+                useOneTap
+              />;
             </Grid>
           </Grid>
           <Grid container justifyContent="flex-end" mt={3}>

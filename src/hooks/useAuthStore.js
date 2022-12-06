@@ -1,5 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 
+import { googleLogout } from '@react-oauth/google';
+
 import ecommerceApi from "../api/ecommerceApi";
 
 import { notificationsLogout } from "../store/slices/notificationsSlice";
@@ -155,6 +157,7 @@ export const useAuthStore = () => {
       dispatch(authLogout());
       dispatch(cartLogout());
       dispatch(notificationsLogout());
+      googleLogout();
 
       setTimeout(() => {
         dispatch(uiCloseProgressBackdrop());
