@@ -145,7 +145,7 @@ export const MovilMenu = () => {
                 <ListItem disablePadding>
                   <ListItemButton>
                     <ListItemIcon>
-                      <Badge badgeContent={badgeNumber} color="warning">
+                      <Badge badgeContent={badgeNumber || "0"} color="warning">
                         <ShoppingCartIcon />
                       </Badge>
                     </ListItemIcon>
@@ -157,7 +157,7 @@ export const MovilMenu = () => {
                 <ListItem disablePadding>
                   <ListItemButton>
                     <ListItemIcon>
-                      <Badge badgeContent={badgeNotifications} color="primary">
+                      <Badge badgeContent={badgeNotifications || "0"} color="primary">
                         <NotificationsIcon />
                       </Badge>
                     </ListItemIcon>

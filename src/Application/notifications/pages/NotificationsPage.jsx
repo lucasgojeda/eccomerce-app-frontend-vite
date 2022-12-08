@@ -58,7 +58,7 @@ const TitleContaiener = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "start",
-  paddingLeft: '2.5%',
+  padding: '2.5%',
   color: theme.palette.neutral.main
 }));
 

@@ -26,7 +26,7 @@ const ProductContainer = styled("div")(({ theme }) => ({
   borderRadius: "5px",
   background: "#fff",
   transition: "all 0.3s ease-in",
-  "&:hover": {
+  ":hover": {
     cursor: "pointer",
     transform: "scale(1.15)",
     transition: "all 0.2s ease-in",
@@ -43,6 +43,9 @@ const ProductContainer = styled("div")(({ theme }) => ({
     },
   },
   [theme.breakpoints.down("sm")]: {
+    ':hover': {
+      transform: "none",
+    },
     "& .CartIconContainer": {
       visibility: "visible",
     },
@@ -125,6 +128,16 @@ const DoneAndClearIconsContainer = styled("div")(({ theme }) => ({
     position: "absolute",
     visibility: "hidden",
   },
+  [theme.breakpoints.down("sm")]: {
+    ":hover": {
+      "& .DoneOutlineIcon": {
+        visibility: "visible",
+      },
+      "& .ClearIcon": {
+        visibility: "hidden",
+      },
+    },
+  }
 }));
 
 const PriceContainer = styled("div")(({ theme }) => ({
