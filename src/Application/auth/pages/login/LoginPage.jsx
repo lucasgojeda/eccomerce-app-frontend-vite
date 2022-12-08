@@ -107,7 +107,7 @@ export const LoginPage = () => {
 
   const formik = useFormik({
     initialValues: {
-      email: "user_test@test.com",
+      email: "homelander@gmail.com",
       password: "1234567",
     },
 
@@ -201,7 +201,7 @@ export const LoginPage = () => {
                   console.log('Login Failed');
                 }}
                 useOneTap
-              />;
+              />
             </Grid>
           </Grid>
           <Grid container justifyContent="flex-end" mt={3}>

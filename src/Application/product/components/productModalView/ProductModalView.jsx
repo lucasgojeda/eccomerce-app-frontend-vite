@@ -77,6 +77,7 @@ const ProductImageContainer = styled('div')(({ theme }) => ({
     height: '100%',
     margin: 'auto',
     marginBottom: '12.5%',
+    zIndex: 110,
 }));
 
 const ProductImage = styled(Image)(({ theme }) => ({

@@ -214,7 +214,7 @@ export const RegisterPage = () => {
                   console.log('Login Failed');
                 }}
                 useOneTap
-              />;
+              />
             </Grid>
           </Grid>
           <Grid container justifyContent="flex-end" mt={3}>

@@ -39,7 +39,7 @@ export const NotificationsItem = () => {
         edge="end"
         onClick={() => navigate("/notifications")}
       >
-        <Badge badgeContent={badgeNotifications} color="primary">
+        <Badge badgeContent={badgeNotifications || "0"} color="primary">
           <Tooltip title="Mis notificaciones" arrow>
             <NotificationsIcon />
           </Tooltip>

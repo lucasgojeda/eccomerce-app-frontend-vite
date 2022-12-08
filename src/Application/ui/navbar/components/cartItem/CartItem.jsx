@@ -39,7 +39,7 @@ export const CartItem = () => {
         id="shoppingCartBagleIcon"
         onClick={handleCartMenu}
       >
-        <Badge badgeContent={badgeNumber} color="warning">
+        <Badge badgeContent={badgeNumber || "0"} color="warning">
           <Tooltip title="Ir al carrito" arrow>
           <ShoppingCartIcon />
           </Tooltip>

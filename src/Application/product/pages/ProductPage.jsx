@@ -56,8 +56,6 @@ const ImagesContainer = styled("div")(({ theme }) => ({
   justifyContent: 'center',
   marginTop: '2.5vh',
   marginBottom: '2.5vh',
-  [theme.breakpoints.between("sm", "md")]: {
-  },
 }));
 
 const ProductImagesToShowContainer = styled("div")(({ theme }) => ({
@@ -99,6 +97,7 @@ const IconsContainer = styled('div')(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {
     position: 'absolute',
     left: 0,
+    zIndex: 110,
     '.MuiSvgIcon-root': {
       fontSize: '30px',
     },
@@ -140,6 +139,7 @@ const ProductImage = styled(Image)(({ theme }) => ({
     alignItems: 'start',
     height: '45ch',
     objectFit: 'contain',
+    zIndex: 100,
 
     img: {
       width: '100%',
@@ -153,6 +153,9 @@ const IconButtonsContainer = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
   alignItems: 'center',
   width: '100%',
+  [theme.breakpoints.down("sm")]: {
+    zIndex: 110,
+  }
 }));
 
 const GoToCartButton = styled(Button)(({ theme }) => ({
@@ -208,6 +211,9 @@ const ClearCartIconButton = styled(IconButton)(({ theme }) => ({
   color: theme.palette.gray.main,
   zIndex: 100,
   visibility: 'hidden',
+  [theme.breakpoints.down("sm")]: {
+    visibility: 'visible',
+  }
 }));
 
 const PriceContainer = styled('div')(({ theme }) => ({
@@ -229,31 +235,6 @@ const PriceFont = styled(Typography)(({ theme }) => ({
   padding: '7.5px',
   borderRadius: '10px',
   zIndex: 110,
-}));
-
-const DescriptionNextToImageContainer = styled('div')(({ theme }) => ({
-  position: 'relative',
-  top: '5%',
-  display: 'block',
-  backgroundColor: theme.palette.white.main,
-  borderRadius: '5px',
-  width: '25%',
-  height: '45ch',
-  maxHeight: '45ch',
-  padding: '2.5ch',
-  overflow: 'hidden',
-  margin: 'auto',
-  objectFit: 'cover',
-  overflowY: 'scroll',
-  zIndex: 100,
-}));
-
-const DescriptionNextToImageFont = styled(Typography)(({ theme }) => ({
-  margin: 'auto',
-  width: 'auto',
-  padding: '0%',
-  marginBottom: '1vh',
-  fontSize: '16px',
 }));
 
 const NameFont = styled(Typography)(({ theme }) => ({
@@ -405,7 +386,8 @@ export const ProductPage = () => {
 
     if (
       window.scrollY === touchStart.scrollY &&
-      touchStart.touchX === e.changedTouches[0].clientX
+      touchStart.touchX === e.changedTouches[0].clientX && 
+      !sm
     ) {
       setModalViewOpen(true);
     }
@@ -498,7 +480,10 @@ export const ProductPage = () => {
             )}
 
             <ProductImageContainer>
-              <IconsContainer>
+              <IconsContainer onClick={(e) => {
+                e.stopPropagation();
+                console.log('click');
+              }}>
                 {(sm) && (
                   <ImagesIndexContainer>
                     <ImagesIndex>
@@ -521,7 +506,6 @@ export const ProductPage = () => {
                       Ir al carrito
                     </Typography>
                   </GoToCartButton>
-
 
                   <ButtonsContainer className='buttonsContainer'>
                     <Tooltip title="Añadir al carrito" arrow>
@@ -547,7 +531,7 @@ export const ProductPage = () => {
                       aria-haspopup="true"
                       color="inherit"
                       sx={{
-                        display: (disableButton || !cartStatus) && "none",
+                        display: (disableButton || !cartStatus || sm) && "none",
                         visibility: cartStatus ? "visible" : "hidden",
                       }}
                     >
