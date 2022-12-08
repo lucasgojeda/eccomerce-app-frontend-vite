@@ -15,6 +15,7 @@ import {
 export const useCartStore = () => {
   const dispatch = useDispatch();
   const { cart } = useSelector((state) => state.cart);
+  const { email } = useSelector((state) => state.auth);
 
   const startUpdatedCart = async (_cart, id, setDisableButton) => {
     try {
@@ -78,6 +79,23 @@ export const useCartStore = () => {
     setDisableButton(false);
   };
 
+  const startPayment = async (products) => {
+    try {
+
+      const user_email = email;
+
+      const { data, status } = await ecommerceApi.post('payment', { products, user_email });
+
+      console.log(data)
+
+      if (status === 200) {
+        window.location.href = data.init_point;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return {
     //* Propiedades
     cart,
@@ -85,5 +103,6 @@ export const useCartStore = () => {
     //* Métodos
     startUpdatedCart,
     startDeletedCart,
+    startPayment
   };
 };

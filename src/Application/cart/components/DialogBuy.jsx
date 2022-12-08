@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router';
+
+import queryString from "query-string";
 
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -10,13 +12,18 @@ import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-import { useSalesStore } from '../../../hooks';
+import { useCartStore, useSalesStore } from '../../../hooks';
 
 
 
 export const DialogBuy = ({ dialogBuyOpen, setDialogBuyOpen, cart }) => {
 
+    const location = useLocation();
+
+    const { status } = queryString.parse(location.search);
+
     const { salesStartAddNew } = useSalesStore();
+    const { startPayment } = useCartStore();
 
     const theme = useTheme();
     const sm = useMediaQuery(theme.breakpoints.down('sm'));
@@ -24,10 +31,16 @@ export const DialogBuy = ({ dialogBuyOpen, setDialogBuyOpen, cart }) => {
     const xl = useMediaQuery(theme.breakpoints.down('xl'));
     const lg = useMediaQuery(theme.breakpoints.down('lg'));
 
+    useEffect(() => {
+        if (status === 'approved') {
+            salesStartAddNew(cart);
+        }
+    }, [])
+
 
     const handleBuy = () => {
 
-        salesStartAddNew(cart)
+        startPayment(cart);
         setDialogBuyOpen(false);
     };
 
