@@ -217,8 +217,6 @@ export const CartPage = () => {
     setTotalPrice(counter);
   }, [cart]);
 
-  console.log(cart);
-
   const handleDeleteCart = (e, cartProduct) => {
     e.preventDefault();
 
