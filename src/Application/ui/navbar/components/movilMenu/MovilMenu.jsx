@@ -9,6 +9,8 @@ import Divider from "@mui/material/Divider";
 
 import styled from "@emotion/styled";
 
+import Avatar from '@mui/material/Avatar';
+
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -73,6 +75,11 @@ export const MovilMenu = () => {
   };
 
   /** Logged */
+  const handleAccountButton = () => {
+    handleCloseMenu();
+    navigate("/account");
+  };
+
   const handleCartButton = () => {
     handleCloseMenu();
     navigate("/cart");
@@ -141,6 +148,16 @@ export const MovilMenu = () => {
           )}
           {uid ? (
             <>
+              <List onClick={handleAccountButton}>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                    <Avatar alt="Lucas Ojeda" src="https://res.cloudinary.com/the-kings-company/image/upload/v1661787469/Portafolio/IMG_20220828_120501_331_sehi6d.webp" />
+                    </ListItemIcon>
+                    <ListItemText primary="Mi cuenta" />
+                  </ListItemButton>
+                </ListItem>
+              </List>
               <List onClick={handleCartButton}>
                 <ListItem disablePadding>
                   <ListItemButton>

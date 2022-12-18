@@ -24,7 +24,14 @@ import { useProductsStore } from "./useProductsStore";
 
 export const useAuthStore = () => {
   const dispatch = useDispatch();
-  const { checking, uid, name, role } = useSelector((state) => state.auth);
+  const {
+    checking,
+    uid,
+    name,
+    role,
+    email,
+    data
+  } = useSelector((state) => state.auth);
 
   const { startLoadNotifications } = useNotificationsStore();
 
@@ -46,7 +53,9 @@ export const useAuthStore = () => {
           authLogin({
             uid: user._id,
             name: user.name,
+            email: user.email,
             role: user.role,
+            data: user.data,
           })
         );
         dispatch(loadCart(user.cart));
@@ -86,7 +95,9 @@ export const useAuthStore = () => {
           authLogin({
             uid: user._id,
             name: user.name,
+            email: user.email,
             role: user.role,
+            data: user.data,
           })
         );
         dispatch(loadCart(user.cart));
@@ -111,7 +122,16 @@ export const useAuthStore = () => {
     try {
       const { data } = await ecommerceApi.get("auth/renew");
 
-      const { msg, token, _id, name: _name, role: _role, cart } = data;
+      const {
+        msg,
+        token,
+        _id,
+        name: _name,
+        role: _role,
+        cart,
+        email: _email,
+        data: _data
+      } = data;
 
       if (msg === "OK") {
         localStorage.setItem("token", token);
@@ -121,7 +141,9 @@ export const useAuthStore = () => {
           authLogin({
             uid: _id,
             name: _name,
+            email: _email,
             role: _role,
+            data: (_data?.address) ? _data : null,
           })
         );
         dispatch(loadCart(cart));
@@ -187,7 +209,9 @@ export const useAuthStore = () => {
           authLogin({
             uid: user._id,
             name: user.name,
+            email: user.email,
             role: user.role,
+            data: user.data,
           })
         );
         dispatch(loadCart(user.cart));
@@ -205,12 +229,45 @@ export const useAuthStore = () => {
     }
   };
 
+  const startUpdateUser = async (_user, setAlertStatus) => {
+
+    try {
+      dispatch(uiOpenProgressBackdrop());
+
+      const { data: { msg, user } } = await ecommerceApi.put(`users/${_user._id}`, { user: _user });
+
+      if (msg === 'OK') {
+        dispatch(
+          authLogin({
+            uid: user._id,
+            name: user.name, 
+            email: user.email,
+            role: user.role,
+            data: user.data,
+          })
+        );
+        setAlertStatus(true);
+        dispatch(uiCloseProgressBackdrop());
+      } else {
+        dispatch(uiCloseProgressBackdrop());
+        console.log(msg);
+      }
+    } catch (error) {
+      dispatch(uiCloseProgressBackdrop());
+      console.log(error);
+    }
+
+  }
+
+
   return {
     //* Propiedades
     checking,
     uid,
     name,
     role,
+    email,
+    data,
 
     //* Métodos
     StartLogin,
@@ -218,5 +275,6 @@ export const useAuthStore = () => {
     startChecking,
     startLogout,
     startGoogleLogin,
+    startUpdateUser,
   };
 };

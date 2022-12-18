@@ -14,8 +14,6 @@ import { useTheme } from '@mui/material/styles';
 
 import { useCartStore, useSalesStore } from '../../../hooks';
 
-
-
 export const DialogBuy = ({ dialogBuyOpen, setDialogBuyOpen, cart }) => {
 
     const location = useLocation();

@@ -21,6 +21,7 @@ import { Footer } from "../../ui";
 
 /** Custom hooks */
 import { useAuthStore, useCartStore } from "../../../hooks";
+import { Box } from "@mui/system";
 
 /** Material UI - Custom components */
 const CartPageContainer = styled("div")(({ theme }) => ({
@@ -29,7 +30,7 @@ const CartPageContainer = styled("div")(({ theme }) => ({
   justifyContent: "center",
   flexDirection: "column",
   width: "100%",
-  marginTop: "20vh",
+  marginTop: "15vh",
   marginBottom: "12.5vh",
 }));
 
@@ -39,14 +40,14 @@ const ProductsContainer = styled("div")(({ theme }) => ({
   justifyContent: "flex-start",
   flexDirection: "column",
   backgroundColor: "#fff",
-  width: "70%",
+  width: "90%",
   height: "50vh",
   overflowY: "scroll",
-  marginTop: "1.5%",
-  padding: "2.5% 2.5% 2.5% 0",
+  overflowX: "hidden",
+  // padding: "2.5% 2.5% 2.5% 0",
   borderRadius: "5px",
   [theme.breakpoints.down("md")]: {
-    width: "80%",
+    width: "90%",
   },
   [theme.breakpoints.down("sm")]: {
     width: "90%",
@@ -58,13 +59,44 @@ const ProductRowContainer = styled("div")(({ theme }) => ({
   alignItems: "center",
   justifyContent: "space-between",
   width: "100%",
+  maxHeight: '12.5ch',
+}));
+
+const FirstContainer = styled("div")(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  width: '60%',
+  [theme.breakpoints.down("sm")]: {
+    justifyContent: 'center',
+    width: '30%',
+  },
+}));
+
+const SecondContainer = styled("div")(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-around',
+  width: '30%',
+  [theme.breakpoints.down("sm")]: {
+    width: '70%',
+  },
+}));
+
+const ButtonsContainer = styled("div")(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-around',
+  width: '40%',
+  height: '5vh'
 }));
 
 const DeleteIconContainer = styled('div')(({ theme }) => ({
   display: "flex",
-  aligntems: "center",
+  alignItems: "center",
   justifyContent: "center",
   width: "10%",
+  height: '12.5vh',
   [theme.breakpoints.down("sm")]: {
     width: "25%",
   },
@@ -72,50 +104,34 @@ const DeleteIconContainer = styled('div')(({ theme }) => ({
 
 const DeleteIconButton = styled(IconButton)(({ theme }) => ({
   display: "flex",
-  aligntems: "center",
+  alignItems: "center",
   justifyContent: "center",
 
-  "& .MuiSvgIcon-root": {
-    ":hover": {
-      backgroundColor: "rgba(0, 0, 0, 0.03)",
-    },
-  },
-}));
-
-const ProductContainer = styled("div")(({ theme }) => ({
-  width: "80%",
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  marginTop: "2.5%",
-  marginBottom: "5%",
   ":hover": {
-    cursor: "pointer",
-    backgroundColor: "rgba(0, 0, 0, 0.025)",
-    borderRadius: "5px",
-  },
-  [theme.breakpoints.down("sm")]: {
-    justifyContent: "center",
-    width: "50%",
+    backgroundColor: "rgba(0, 0, 0, 0.03)",
   },
 }));
 
 const ImageProductContainer = styled("div")(({ theme }) => ({
   display: "flex",
+  alignItems: "center",
   justifyContent: "center",
-  minWidth: "10ch",
-  maxHeight: "10ch",
+  width: "7.5ch",
 }));
 
 const ImageProduct = styled(Image)(({ theme }) => ({
-  maxWidth: "10ch",
-  maxHeight: "10ch",
+  maxWidth: "7.5ch",
+  maxHeight: "7.5ch",
+  ':hover': {
+    cursor: 'pointer'
+  }
 }));
 
 const FontName = styled(Typography)(({ theme }) => ({
   display: "flex",
+  alignItems: 'center',
   justifyContent: "flex-start",
-  marginLeft: "2.5%",
+  width: '80%',
   [theme.breakpoints.down("sm")]: {
     display: "none",
   },
@@ -128,6 +144,21 @@ const FontPrice = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {
     width: "25%",
   },
+}));
+
+const FontQuantity = styled(Typography)(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+}));
+
+const ButtonQuantity = styled('button')(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  // color: '#000',
+  width: '20px',
+  height: '12.5px',
 }));
 
 const ThereIsNotAnyProductContainer = styled("div")(({ theme }) => ({
@@ -143,22 +174,28 @@ const ThereIsNotAnyProductContainer = styled("div")(({ theme }) => ({
 }));
 
 const TotalAndButtonContainer = styled("div")(({ theme }) => ({
-  marginTop: "1.5%",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   flexWrap: "wrap",
-  width: "70%",
+  width: "90%",
   backgroundColor: "#fff",
   height: "10vh",
-  paddingRight: "2.5vw",
+  marginTop: "5%",
   borderRadius: "5px",
-  [theme.breakpoints.down("md")]: {
-    width: "80%",
-  },
-  [theme.breakpoints.down("sm")]: {
-    width: "85%",
-  },
+}));
+
+const TotalProductsContainer = styled("div")(({ theme }) => ({
+  width: "95%",
+  display: "flex",
+  justifyContent: "space-between",
+  marginBottom: '0.5vh',
+}));
+
+const FontProducts = styled(Typography)(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
 }));
 
 const TotalContainer = styled("div")(({ theme }) => ({
@@ -182,12 +219,12 @@ const BuyButton = styled(Button)(({ theme }) => ({
   minWidth: "200px",
   display: "flex",
   justifySelf: "flex-end",
-  backgroundColor: "#f7dc6f",
-  color: "#000",
+  backgroundColor: '#2AE3C8',
+  color: "#fff",
+  marginTop: '2.5vh',
 
-  ":hover": {
-    backgroundColor: "#f29102",
-    color: "#fff",
+  ':hover': {
+    backgroundColor: '#00DFC0',
   },
 }));
 
@@ -198,7 +235,12 @@ export const CartPage = () => {
 
   const { cart, startDeletedCart } = useCartStore();
 
+  const [cartProducts, setCartProducts] = useState([...cart.map((e) => e = {
+    ...e,
+    quantity: 1
+  })]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [totalProducts, setTotalProducts] = useState(0);
   const [dialogBuyOpen, setDialogBuyOpen] = useState(false);
 
   const theme = useTheme();
@@ -208,14 +250,17 @@ export const CartPage = () => {
   useEffect(() => {
     window.scroll(0, 0);
 
-    let counter = 0;
+    let counterTotalPrice = 0;
+    let counterTotalProducts = 0;
 
-    cart.forEach((e) => {
-      counter = counter + parseFloat(e.price);
+    cartProducts.forEach((e) => {
+      counterTotalPrice = counterTotalPrice + parseFloat((e.price * e.quantity));
+      counterTotalProducts = counterTotalProducts + e.quantity;
     });
 
-    setTotalPrice(counter);
-  }, [cart]);
+    setTotalPrice(counterTotalPrice);
+    setTotalProducts(counterTotalProducts);
+  }, [cartProducts]);
 
   const handleDeleteCart = (e, cartProduct) => {
     e.preventDefault();
@@ -230,55 +275,82 @@ export const CartPage = () => {
     setDialogBuyOpen(true);
   };
 
+  const handleIncreasedQuantity = ({ id }) => {
+
+    setCartProducts(p => p.map((e) =>
+      (e._id.toString() === id.toString())
+        ?
+        (e = { ...e, quantity: (e.quantity + 1) })
+        :
+        e
+    )
+    )
+  }
+
+  const handleDecreaseQuantity = ({ id }) => {
+    setCartProducts(p => p.map((e) =>
+      (e._id.toString() === id.toString())
+        ?
+        (e = { ...e, quantity: (e.quantity > 1) ? (e.quantity - 1) : e.quantity })
+        :
+        e
+    )
+    )
+  }
+
   return (
     <>
       <CartPageContainer>
-        <DialogBuy
-          dialogBuyOpen={dialogBuyOpen}
-          setDialogBuyOpen={setDialogBuyOpen}
-          cart={cart}
-        />
         <ProductsContainer>
           <>
-            {cart.length !== 0 ? (
+            {cartProducts.length !== 0 ? (
               <>
-                {cart.map((e) => (
+                {cartProducts.map((e) => (
                   <ProductRowContainer key={e._id}>
-                    <DeleteIconContainer>
-                      <DeleteIconButton
-                        onClick={(event) => handleDeleteCart(event, e)}
-                      >
-                        <CloseIcon />
-                      </DeleteIconButton>
-                    </DeleteIconContainer>
 
-                    <ProductContainer
-                      onClick={() =>
-                        navigate(`/product/${e.category.name}/${e._id}`)
-                      }
-                    >
+                    <FirstContainer>
                       <ImageProductContainer>
                         <ImageProduct
                           cloudName="the-kings-company"
-                          publicId={e.img[0].imageUrl}
+                          publicId={e?.img[0]?.imageUrl}
                           alt="Product"
+                          onClick={() =>
+                            navigate(`/product/${e.category.name}/${e._id}`)
+                          }
                         />
                       </ImageProductContainer>
 
                       {!sm && <FontName>{e.name}</FontName>}
+                    </FirstContainer>
 
+                    <SecondContainer>
                       {!sm && (
                         <FontPrice>
-                          {`$${new Intl.NumberFormat("es-IN").format(e.price)}`}
+                          {`$${new Intl.NumberFormat("es-IN").format((e.price * e.quantity))}`}
                         </FontPrice>
                       )}
-                    </ProductContainer>
 
-                    {sm && (
-                      <FontPrice>
-                        {`$${new Intl.NumberFormat("es-IN").format(e.price)}`}
-                      </FontPrice>
-                    )}
+                      {sm && (
+                        <FontPrice>
+                          {`$${new Intl.NumberFormat("es-IN").format((e.price * e.quantity))}`}
+                        </FontPrice>
+                      )}
+
+                      <ButtonsContainer>
+                        <ButtonQuantity onClick={() => handleDecreaseQuantity({ id: e._id })}>-</ButtonQuantity>
+                        <FontQuantity>{e.quantity}</FontQuantity>
+                        <ButtonQuantity onClick={() => handleIncreasedQuantity({ id: e._id })}>+</ButtonQuantity>
+                      </ButtonsContainer>
+
+                      <DeleteIconContainer>
+                        <DeleteIconButton
+                          onClick={(event) => handleDeleteCart(event, e)}
+                        >
+                          <CloseIcon />
+                        </DeleteIconButton>
+                      </DeleteIconContainer>
+                    </SecondContainer>
+
                   </ProductRowContainer>
                 ))}
               </>
@@ -291,6 +363,14 @@ export const CartPage = () => {
         </ProductsContainer>
 
         <TotalAndButtonContainer>
+          <TotalProductsContainer>
+            <Typography>Cantidad de productos</Typography>
+
+            <FontProducts>
+              {totalProducts}
+            </FontProducts>
+          </TotalProductsContainer>
+
           <TotalContainer>
             <Typography>Monto total a pagar</Typography>
 
@@ -301,7 +381,7 @@ export const CartPage = () => {
 
           <ButtonContainer>
             <BuyButton variant="contained" onClick={handleBuy}>
-              Finalizar Compra
+              Comprar
             </BuyButton>
           </ButtonContainer>
         </TotalAndButtonContainer>
