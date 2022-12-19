@@ -10,12 +10,14 @@ import { useAuthStore } from '../../../hooks';
 import { DataUserModal } from '../components/DataUserModal';
 import { SuccessUpdateAlert } from '../components/SuccessUpdateAlert';
 import { DialogData } from '../components/DialogData';
+import { Footer } from '../../ui';
 
 /** Material UI - Custom components */
 const AccountPageContainer = styled("div")(({ theme }) => ({
   width: "100%",
   height: "80vh",
   marginTop: '12.5vh',
+  marginBottom: '12.5vh',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -163,69 +165,72 @@ export const AccountPage = () => {
   const [alertStatus, setAlertStatus] = useState(false);
 
   return (
-    <AccountPageContainer>
-      <DataUserModal
-        modalStatus={modalStatus}
-        setModalStatus={setModalStatus}
-        setAlertStatus={setAlertStatus}
-      />
-      <DialogData
-        dialogDataStatus={dialogDataStatus}
-        setDialogDataStatus={setDialogDataStatus}
-        setAlertStatus={setAlertStatus}
-      />
-      <SuccessUpdateAlert
-        alertStatus={alertStatus}
-        setAlertStatus={setAlertStatus}
-      />
-      <FirstContainer>
-        <ImageContainer>
-          <Stack direction="row">
-            <Avatar alt="Lucas Ojeda" src="https://res.cloudinary.com/the-kings-company/image/upload/v1671396595/user-ecommerce/Avatar-Profile-PNG-Free-Image_yeonm0.png" />
-          </Stack>
-        </ImageContainer>
-        <NameEmailContainer>
-          <FontContainer>
-            <FontTitle variant='subtitle1'>Nombre</FontTitle>
-            <Font variant='body1'>{name}</Font>
-          </FontContainer>
-          <FontContainer>
-            <FontTitle variant='subtitle1'>Email</FontTitle>
-            <Font variant='body1'>{email}</Font>
-          </FontContainer>
-        </NameEmailContainer>
-      </FirstContainer>
-      <SecondContainer>
-        <EditButtonContainer>
-          <Button variant='contained' color='secondary' onClick={() => setModalStatus(true)}>
-            Editar
-          </Button>
-        </EditButtonContainer>
-        <DirectionContainer>
-          <FontContainer>
-            <FontTitle variant='subtitle1'>Provincia</FontTitle>
-            <Font variant='body1'>{(!!data) ? data.state : '(vacío)'}</Font>
-          </FontContainer>
-          <FontContainer>
-            <FontTitle variant='subtitle1'>Ciudad</FontTitle>
-            <Font variant='body1'>{(!!data) ? data.city : '(vacío)'}</Font>
-          </FontContainer>
-          <FontContainer>
-            <FontTitle variant='subtitle1'>Dirección</FontTitle>
-            <Font variant='body1'>{(!!data) ? data.address : '(vacío)'}</Font>
-          </FontContainer>
-        </DirectionContainer>
-        <ContactContainer>
-          <FontContainer>
-            <FontTitle variant='subtitle1'>Código postal</FontTitle>
-            <Font variant='body1'>{(!!data) ? data.postalCode : '(vacío)'}</Font>
-          </FontContainer>
-          <FontContainer>
-            <FontTitle variant='subtitle1'>Celular</FontTitle>
-            <Font variant='body1'>{(!!data) ? data.numberPhone : '(vacío)'}</Font>
-          </FontContainer>
-        </ContactContainer>
-      </SecondContainer>
-    </AccountPageContainer>
+    <>
+      <AccountPageContainer>
+        <DataUserModal
+          modalStatus={modalStatus}
+          setModalStatus={setModalStatus}
+          setAlertStatus={setAlertStatus}
+        />
+        <DialogData
+          dialogDataStatus={dialogDataStatus}
+          setDialogDataStatus={setDialogDataStatus}
+          setAlertStatus={setAlertStatus}
+        />
+        <SuccessUpdateAlert
+          alertStatus={alertStatus}
+          setAlertStatus={setAlertStatus}
+        />
+        <FirstContainer>
+          <ImageContainer>
+            <Stack direction="row">
+              <Avatar alt="Lucas Ojeda" src="https://res.cloudinary.com/the-kings-company/image/upload/v1671396595/user-ecommerce/Avatar-Profile-PNG-Free-Image_yeonm0.png" />
+            </Stack>
+          </ImageContainer>
+          <NameEmailContainer>
+            <FontContainer>
+              <FontTitle variant='subtitle1'>Nombre</FontTitle>
+              <Font variant='body1'>{name}</Font>
+            </FontContainer>
+            <FontContainer>
+              <FontTitle variant='subtitle1'>Email</FontTitle>
+              <Font variant='body1'>{email}</Font>
+            </FontContainer>
+          </NameEmailContainer>
+        </FirstContainer>
+        <SecondContainer>
+          <EditButtonContainer>
+            <Button variant='contained' color='secondary' onClick={() => setModalStatus(true)}>
+              Editar
+            </Button>
+          </EditButtonContainer>
+          <DirectionContainer>
+            <FontContainer>
+              <FontTitle variant='subtitle1'>Provincia</FontTitle>
+              <Font variant='body1'>{(!!data) ? data.state : '(vacío)'}</Font>
+            </FontContainer>
+            <FontContainer>
+              <FontTitle variant='subtitle1'>Ciudad</FontTitle>
+              <Font variant='body1'>{(!!data) ? data.city : '(vacío)'}</Font>
+            </FontContainer>
+            <FontContainer>
+              <FontTitle variant='subtitle1'>Dirección</FontTitle>
+              <Font variant='body1'>{(!!data) ? data.address : '(vacío)'}</Font>
+            </FontContainer>
+          </DirectionContainer>
+          <ContactContainer>
+            <FontContainer>
+              <FontTitle variant='subtitle1'>Código postal</FontTitle>
+              <Font variant='body1'>{(!!data) ? data.postalCode : '(vacío)'}</Font>
+            </FontContainer>
+            <FontContainer>
+              <FontTitle variant='subtitle1'>Celular</FontTitle>
+              <Font variant='body1'>{(!!data) ? data.numberPhone : '(vacío)'}</Font>
+            </FontContainer>
+          </ContactContainer>
+        </SecondContainer>
+      </AccountPageContainer>
+      <Footer />
+    </>
   )
 }

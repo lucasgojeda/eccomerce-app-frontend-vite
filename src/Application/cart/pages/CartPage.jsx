@@ -16,12 +16,12 @@ import { styled } from "@mui/material/styles";
 import CloseIcon from "@mui/icons-material/Close";
 
 /** Components */
-import { DialogBuy } from "../../cart";
 import { Footer } from "../../ui";
 
 /** Custom hooks */
 import { useAuthStore, useCartStore } from "../../../hooks";
 import { Box } from "@mui/system";
+import { InfoCredentialsAlert } from "../components/InfoCredentialsAlert";
 
 /** Material UI - Custom components */
 const CartPageContainer = styled("div")(({ theme }) => ({
@@ -233,7 +233,7 @@ export const CartPage = () => {
 
   const { uid } = useAuthStore();
 
-  const { cart, startDeletedCart } = useCartStore();
+  const { cart, startDeletedCart, startPayment } = useCartStore();
 
   const [cartProducts, setCartProducts] = useState([...cart.map((e) => e = {
     ...e,
@@ -241,7 +241,7 @@ export const CartPage = () => {
   })]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalProducts, setTotalProducts] = useState(0);
-  const [dialogBuyOpen, setDialogBuyOpen] = useState(false);
+  const [infoAlertStatus, setInfoAlertStatus] = useState(false); 
 
   const theme = useTheme();
   const sm = useMediaQuery(theme.breakpoints.down("sm"));
@@ -272,7 +272,8 @@ export const CartPage = () => {
   };
 
   const handleBuy = () => {
-    setDialogBuyOpen(true);
+
+    startPayment(cartProducts, setInfoAlertStatus);
   };
 
   const handleIncreasedQuantity = ({ id }) => {
@@ -300,6 +301,10 @@ export const CartPage = () => {
 
   return (
     <>
+      <InfoCredentialsAlert
+        infoAlertStatus={infoAlertStatus}
+        setInfoAlertStatus={setInfoAlertStatus}
+      />
       <CartPageContainer>
         <ProductsContainer>
           <>

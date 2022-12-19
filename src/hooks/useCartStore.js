@@ -84,11 +84,11 @@ export const useCartStore = () => {
     setDisableButton(false);
   };
 
-  const startPayment = async (products) => {
+  const startPayment = async (products, setInfoAlertStatus) => {
     try {
       dispatch(uiOpenProgressBackdrop());
 
-      const paymentData = { 
+      const paymentData = {
         user_email: email,
         products,
         success: `${VITE_REACT_APP_FRONT_URL}/cart`,
@@ -99,11 +99,10 @@ export const useCartStore = () => {
 
       const { data, status } = await ecommerceApi.post('payment', { ...paymentData });
 
-      console.log(data)
-
       if (status === 200) {
-        if(data.init_point !== undefined) window.location.href = data.init_point;
+        if (data.init_point !== undefined) window.open(data.init_point, '_blank');
         dispatch(uiCloseProgressBackdrop());
+        setInfoAlertStatus(true);
       }
     } catch (error) {
       console.log(error);

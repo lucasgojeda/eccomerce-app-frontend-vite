@@ -152,7 +152,7 @@ export const MovilMenu = () => {
                 <ListItem disablePadding>
                   <ListItemButton>
                     <ListItemIcon>
-                    <Avatar alt="Lucas Ojeda" src="https://res.cloudinary.com/the-kings-company/image/upload/v1661787469/Portafolio/IMG_20220828_120501_331_sehi6d.webp" />
+                    <Avatar alt="Lucas Ojeda" src="https://res.cloudinary.com/the-kings-company/image/upload/v1671396595/user-ecommerce/Avatar-Profile-PNG-Free-Image_yeonm0.png" />
                     </ListItemIcon>
                     <ListItemText primary="Mi cuenta" />
                   </ListItemButton>
