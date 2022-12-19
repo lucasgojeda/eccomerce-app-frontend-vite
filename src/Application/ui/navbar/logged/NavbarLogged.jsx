@@ -1,9 +1,12 @@
 /** Libraries */
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 import { Divider } from "@mui/material";
 import Tooltip from "@mui/material/Tooltip";
+
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
 
 import { styled } from "@mui/material/styles";
 
@@ -72,6 +75,15 @@ const CartItemContainer = styled("div")(({ theme }) => ({
   },
 }));
 
+const ImageContainer = styled("div")(({ theme }) => ({
+  '& .MuiAvatar-root': {
+    width: '2.5ch',
+    height: '2.5ch',
+    objectFit: 'cover',
+    cursor: 'pointer'
+  },
+}));
+
 const SearchContainer = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
@@ -93,6 +105,7 @@ const MenuContainer = styled("div")(({ theme }) => ({
 }));
 
 export const NavbarLogged = () => {
+  const { pathname } = useLocation();
   const navigate = useNavigate();
 
   const [dialogLogoutOpen, setDialogLogoutOpen] = useState(false);
@@ -102,7 +115,7 @@ export const NavbarLogged = () => {
       <DialogLogout
         dialogLogoutOpen={dialogLogoutOpen}
         setDialogLogoutOpen={setDialogLogoutOpen}
-        handleCloseMenu={() => {}}
+        handleCloseMenu={() => { }}
       />
       <Navbar>
         <MenuContainer>
@@ -121,10 +134,23 @@ export const NavbarLogged = () => {
             orientation="vertical"
             flexItem
             sx={{
-              height: "2.5vh",
+              height: "5vh",
               color: "#000",
+              marginRight: '1vw'
             }}
           />
+
+          {
+            (pathname !== '/account')
+            &&
+            <ImageContainer onClick={() => navigate('/account')}>
+              <Tooltip title="Mi cuenta" arrow>
+                <Stack direction="row">
+                  <Avatar alt="Lucas Ojeda" src="https://res.cloudinary.com/the-kings-company/image/upload/v1671396595/user-ecommerce/Avatar-Profile-PNG-Free-Image_yeonm0.png" />
+                </Stack>
+              </Tooltip>
+            </ImageContainer>
+          }
 
           <Tooltip title="Cerrar sesión" arrow>
             <LogoutIcon

@@ -13,6 +13,8 @@ import { GoogleLogin } from '@react-oauth/google';
 
 import HomeIcon from "@mui/icons-material/Home";
 
+import { useGoogleOneTapLogin } from '@react-oauth/google';
+
 /** Custom hooks */
 import { useAuthStore } from "../../../../hooks";
 
@@ -104,6 +106,15 @@ export const LoginPage = () => {
   const navigate = useNavigate();
 
   const { StartLogin, startGoogleLogin } = useAuthStore();
+
+  useGoogleOneTapLogin({
+    onSuccess: credentialResponse => {
+      startGoogleLogin(credentialResponse.credential);
+    },
+    onError: () => {
+      console.log('Login Failed');
+    },
+  });
 
   const formik = useFormik({
     initialValues: {

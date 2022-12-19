@@ -21,3 +21,26 @@ export const YupLoginValidations = Yup.object({
     .min(6, 'La contraseña debe tener al menos 6 caracteres')
     .required('El campo es requerido'),
 });
+
+export const YupUserDataValidations = Yup.object({
+  state: Yup.string()
+    .min(3, 'Este campo debe tener al menos 6 caracteres')
+    .max(30, 'Este campo no debe tener más de 30 caracteres')
+    .required('El campo es requerido'),
+  city: Yup.string()
+    .min(3, 'Este campo debe tener al menos 6 caracteres')
+    .max(30, 'Este campo no debe tener más de 30 caracteres')
+    .required('El campo es requerido'),
+  postalCode: Yup.string()
+    .min(3, 'Este campo debe tener al menos 6 caracteres')
+    .max(10, 'Este campo no debe tener más de 30 caracteres')
+    .required('El campo es requerido'),
+  address: Yup.string()
+    .min(3, 'Este campo debe tener al menos 6 caracteres')
+    .max(30, 'Este campo no debe tener más de 30 caracteres')
+    .required('El campo es requerido'),
+  numberPhone: Yup.string()
+    .min(3, 'Este campo debe tener al menos 6 caracteres')
+    .max(30, 'Este campo no debe tener más de 30 caracteres')
+    .required('El campo es requerido'),
+});

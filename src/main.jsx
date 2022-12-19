@@ -30,7 +30,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <ThemeProvider theme={theme}>
         <GoogleOAuthProvider clientId={VITE_REACT_APP_GOOGLE_CLIENT_ID}>
           <AppRouter />
-        </GoogleOAuthProvider>;
+        </GoogleOAuthProvider>
       </ThemeProvider>
     </Provider>
   </React.StrictMode>

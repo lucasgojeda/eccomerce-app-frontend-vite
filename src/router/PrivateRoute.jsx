@@ -1,7 +1,22 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
+
+import { useAuthStore } from "../hooks";
 
 
-export const PrivateRoute = ({children, isAutenticated}) => {
+export const PrivateRoute = ({ children }) => {
 
-    return isAutenticated ? children : <Navigate to="/login" />
+    const { pathname } = useLocation();
+
+    const { uid, data } = useAuthStore();
+
+    if (!uid) {
+
+        if (pathname === '/cart') return <Navigate to="/login" />
+        if (pathname === '/notifications') return <Navigate to="/login" />
+        if (pathname === '/account') return <Navigate to="/login" />
+    }
+
+    if((uid && !data) && pathname !== '/account') return <Navigate to="/account" />
+
+    return children;
 };

@@ -1,5 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 
+import { getEnvironmets } from '../helpers';
+
+const { VITE_REACT_APP_API_URL, VITE_REACT_APP_FRONT_URL } = getEnvironmets();
+
 import ecommerceApi from "../api/ecommerceApi";
 
 import {
@@ -8,6 +12,7 @@ import {
 } from "../store/slices/cartSlice";
 
 import {
+  uiOpenProgressBackdrop,
   uiCloseProgressBackdrop,
   uiOpenErrorAlert,
 } from "../store/slices/uiSlice";
@@ -79,20 +84,29 @@ export const useCartStore = () => {
     setDisableButton(false);
   };
 
-  const startPayment = async (products) => {
+  const startPayment = async (products, setInfoAlertStatus) => {
     try {
+      dispatch(uiOpenProgressBackdrop());
 
-      const user_email = email;
+      const paymentData = {
+        user_email: email,
+        products,
+        success: `${VITE_REACT_APP_FRONT_URL}/cart`,
+        failure: `${VITE_REACT_APP_FRONT_URL}`,
+        pending: `${VITE_REACT_APP_FRONT_URL}`,
+        notification_baseUrl: `${VITE_REACT_APP_API_URL}`,
+      }
 
-      const { data, status } = await ecommerceApi.post('payment', { products, user_email });
-
-      console.log(data)
+      const { data, status } = await ecommerceApi.post('payment', { ...paymentData });
 
       if (status === 200) {
-        window.location.href = data.init_point;
+        if (data.init_point !== undefined) window.open(data.init_point, '_blank');
+        dispatch(uiCloseProgressBackdrop());
+        setInfoAlertStatus(true);
       }
     } catch (error) {
       console.log(error);
+      dispatch(uiCloseProgressBackdrop());
     }
   }
 

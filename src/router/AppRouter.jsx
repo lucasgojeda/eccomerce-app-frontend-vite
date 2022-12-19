@@ -4,8 +4,6 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 
-import { useGoogleOneTapLogin } from '@react-oauth/google';
-
 import {
   useAuthStore,
   useCategoriesStore,
@@ -27,18 +25,21 @@ import { CartPage } from "../Application/cart";
 import { NotificationsPage } from "../Application/notifications";
 import { ProductPage } from "../Application/product";
 import { SearchPage } from "../Application/search";
+import { AccountPage } from "../Application/account";
 // import { ErrorAlert } from '../components/dashboard/ui/alerts/ErrorAlert';
 // import { SuccessAlert } from '../components/dashboard/ui/alerts/SuccessAlert';
 
 
 export const AppRouter = () => {
-  const { 
-    uid, 
-    checking, 
-    role, 
+
+  const {
+    uid,
+    checking,
+    role,
+    data,
     startChecking,
     startGoogleLogin
-   } = useAuthStore();
+  } = useAuthStore();
 
   const { startLoadBestProducts } = useProductsStore();
   const { categories, startLoadCategories } = useCategoriesStore();
@@ -49,14 +50,6 @@ export const AppRouter = () => {
     startChecking();
   }, []);
 
-  useGoogleOneTapLogin({
-    onSuccess: credentialResponse => {
-      startGoogleLogin(credentialResponse.credential);
-    },
-    onError: () => {
-      console.log('Login Failed');
-    },
-  });
 
   if (checking || !categories) {
     return (
@@ -76,17 +69,13 @@ export const AppRouter = () => {
   return (
     <BrowserRouter>
       <ProgressBackdrop />
-      {/* <ErrorAlert />
-            <SuccessAlert /> */}
 
       <Routes>
         <Route
           path="login"
           element={
             <PublicRoute isAutenticated={!!uid}>
-              <>
-                <LoginPage />
-              </>
+              <LoginPage />
             </PublicRoute>
           }
         />
@@ -95,9 +84,7 @@ export const AppRouter = () => {
           path="register"
           element={
             <PublicRoute isAutenticated={!!uid}>
-              <>
-                <RegisterPage />
-              </>
+              <RegisterPage />
             </PublicRoute>
           }
         />
@@ -105,27 +92,41 @@ export const AppRouter = () => {
         <Route
           path="/"
           element={
-            <>
+            <PrivateRoute>
+              <>
+                {uid ? <NavbarLogged /> : <NavbarUnlogged />}
+                <HomePage />
+              </>
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/account"
+          element={
+            <PrivateRoute>
               {uid ? <NavbarLogged /> : <NavbarUnlogged />}
-              <HomePage />
-            </>
+              <AccountPage />
+            </PrivateRoute>
           }
         />
 
         <Route
           path="/search"
           element={
-            <>
-              {uid ? <NavbarLogged /> : <NavbarUnlogged />}
-              <SearchPage />
-            </>
+            <PrivateRoute>
+              <>
+                {uid ? <NavbarLogged /> : <NavbarUnlogged />}
+                <SearchPage />
+              </>
+            </PrivateRoute>
           }
         />
 
         <Route
           path="/cart"
           element={
-            <PrivateRoute isAutenticated={!!uid}>
+            <PrivateRoute>
               {uid ? <NavbarLogged /> : <NavbarUnlogged />}
               <CartPage />
             </PrivateRoute>
@@ -135,7 +136,7 @@ export const AppRouter = () => {
         <Route
           path="/notifications"
           element={
-            <PrivateRoute isAutenticated={!!uid}>
+            <PrivateRoute>
               {uid ? <NavbarLogged /> : <NavbarUnlogged />}
               <NotificationsPage />
             </PrivateRoute>
@@ -145,10 +146,12 @@ export const AppRouter = () => {
         <Route
           path="/product/:category/:id"
           element={
-            <>
-              {uid ? <NavbarLogged /> : <NavbarUnlogged />}
-              <ProductPage />
-            </>
+            <PrivateRoute>
+              <>
+                {uid ? <NavbarLogged /> : <NavbarUnlogged />}
+                <ProductPage />
+              </>
+            </PrivateRoute>
           }
         />
       </Routes>
