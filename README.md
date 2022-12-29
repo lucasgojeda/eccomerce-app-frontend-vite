@@ -1,19 +1,17 @@
-## E-commerce App | (Demo en proceso)
+## E-commerce App | [Demo](https://my-ecommerce-app-vite.netlify.app/)
 
-### _Aplicación de tienda virtual_
+### _virtual store application_
 
-Este proyecto fue migrado de CRA a VITE, y refactorizado varias veces mientras iba aprendiendo nuevas cosas, los commits de este repositorio empiezan cuando el poyecto fue migrado a VITE.
+This project was migrated from CRA to VITE, and refactored several times while i was learning new things, the commits of this repository start when the project was migrated to VITE.
 
-Funcionalmente está en un 90% terminado pero visualmente deja mucho que desear, es por eso que aún no está presente la demo, falta acomodar varias y resolver varios bugs.
+This project is part of what at the beginning was a much bigger one but I decided to divide its frontend into two parts so that everything is much more orderly, easy to maintain and make changes, the project itself is an e-commerce which consists of the following parts:
 
-Este proyecto es parte del que al principio fue uno mucho más grande pero decidí dividir su frontend en dos partes para que todo quede mucho más ordenado, facil de mantener y de realizar cambios, el proyecto en si es un e-commerce el cuál consta de las siguientes partes:
-
-- Frontend del usuario, e-commerce en si.
+- User application (e-commerce itself).
     * React js.
-    * Redux toolkit (acciones mediante custom hooks).
-- Frontend del administrador/moderador.
+    * Redux toolkit (actions by using custom hooks).
+- Admin/moderator application (dashboard).
     * React js.
-    * Redux toolkit (acciones mediante custom hooks).
+    * Redux toolkit (actions by using custom hooks).
 - Backend.
     * Node js - Express.
     * MongoDb - Mongoose.
@@ -23,7 +21,7 @@ Este proyecto es parte del que al principio fue uno mucho más grande pero decid
 
 
 
-Primero instalamos las dependencias y luego iniciamos el servidor local.
+First install the dependencies and then we start the local server.
 
 ```sh
 $ git clone https://github.com/lucasgojeda/eccomerce-app-frontend-vite.git
@@ -31,8 +29,7 @@ $ cd eccomerce-app-frontend-vite
 $ npm i
 $ npm run dev
 ```
-
-Cabe destacar que debemos contar con la siguiente variable de entorno configurada.
+It should be noted that we must have the following environment variable configured.
 
 ```sh
 VITE_REACT_APP_API_URL= 'Backend URL'
