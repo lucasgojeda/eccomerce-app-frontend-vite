@@ -123,7 +123,7 @@ export const NavbarLogged = () => {
         </MenuContainer>
 
         <FirstIconsContainer>
-          <Tooltip title="Ir al inicio" arrow>
+          <Tooltip title="Home" arrow>
             <HomeIcon
               sx={{ fontSize: "25px", mr: "1vw" }}
               onClick={() => navigate("/")}
@@ -144,7 +144,7 @@ export const NavbarLogged = () => {
             (pathname !== '/account')
             &&
             <ImageContainer onClick={() => navigate('/account')}>
-              <Tooltip title="Mi cuenta" arrow>
+              <Tooltip title="My account" arrow>
                 <Stack direction="row">
                   <Avatar alt="Lucas Ojeda" src="https://res.cloudinary.com/the-kings-company/image/upload/v1671396595/user-ecommerce/Avatar-Profile-PNG-Free-Image_yeonm0.png" />
                 </Stack>
@@ -152,7 +152,7 @@ export const NavbarLogged = () => {
             </ImageContainer>
           }
 
-          <Tooltip title="Cerrar sesión" arrow>
+          <Tooltip title="Log out" arrow>
             <LogoutIcon
               sx={{ fontSize: "22.5px", ml: "1vw" }}
               onClick={() => setDialogLogoutOpen(true)}

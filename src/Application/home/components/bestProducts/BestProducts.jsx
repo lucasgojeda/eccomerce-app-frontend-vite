@@ -87,7 +87,7 @@ export const BestProducts = () => {
     <CategoryContainer>
       <TitleContainer>
         <Typography variant="body2" fontSize={18} color="#707B7C">
-          Lo más vendido
+          Most sold
         </Typography>
       </TitleContainer>
 
@@ -137,7 +137,7 @@ export const BestProducts = () => {
               "superLargeDesktop",
             ]}
             containerClass="carousel-container"
-            dotListClass="custom-dot-list-style"width={(sm) ? "17.5ch" : "20ch"}
+            dotListClass="custom-dot-list-style" width={(sm) ? "17.5ch" : "20ch"}
             itemClass="carousel-item-padding-40-px"
           >
             <Stack spacing={1}>

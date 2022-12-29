@@ -172,19 +172,19 @@ export const Footer = () => {
       >
         <SectionsContainer>
           <MainSection>
-            <Font>Acerca de nosotros</Font>
+            <Font>About us</Font>
             <Paragraph>
-              Latam Market es una empresa <i>innovadora</i> la cuál busca
-              mejorar la experiencia del usuario en todos los aspectos mientras
-              brinda productos de calidad importados principalmente desde China, 
-              Singapur, Taiwan, Estados Unidos y Vietnam.
-              Contamos con un catalogo de más de 16.000 productos y trabajamos con 
-              más de 360 marcas con reconocimientos de nivel internacional.
+              We are an <i>innovative</i> company which seeks to improve
+              the user experience in all aspects while providing quality
+              products imported mainly from China, Singapore, Taiwan, the
+              United States and Vietnam. We have a catalog of more than 16,000
+              products and we work with more than 360 brands with international
+              recognition.
             </Paragraph>
           </MainSection>
 
           <SecondarySection>
-            <Font>Marcas</Font>
+            <Font>Brands</Font>
             <ul>
               <li>
                 <Paragraph>Apple</Paragraph>
@@ -208,13 +208,13 @@ export const Footer = () => {
           </SecondarySection>
 
           <SecondarySection>
-            <Font>Clientes</Font>
+            <Font>Clients</Font>
             <ul className="footer-links">
               <li>
-                <Paragraph>Gobierno del Brazíl</Paragraph>
+                <Paragraph>Government of Brazil</Paragraph>
               </li>
               <li>
-                <Paragraph>Gobierno Argentino</Paragraph>
+                <Paragraph>Government of Argentina</Paragraph>
               </li>
               <li>
                 <Paragraph>Carrefour</Paragraph>
@@ -258,7 +258,7 @@ export const Footer = () => {
               </a>
             </li>
             <li>
-              <a href="https://www.instagram.com/lucasgojeda/" target="_blank">
+              <a href="https://www.instagram.com/lucass_ojedaa/" target="_blank">
                 <InstagramIcon />
               </a>
             </li>

@@ -33,7 +33,7 @@ export const SuccessUpdateAlert = ({ alertStatus, setAlertStatus }) => {
                         <Alert
                             onClose={() => setAlertStatus(false)}
                         >
-                            La información del usuario fue actualizada exitosamente!
+                            User information was successfully updated!
                         </Alert>
                     </Stack>
                 </AlertContainer>

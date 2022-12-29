@@ -33,12 +33,11 @@ export const InfoCredentialsAlert = ({ infoAlertStatus, setInfoAlertStatus }) =>
                         <Stack sx={{ width: '100%' }} spacing={2}>
                             <Alert severity="info" onClose={() => setInfoAlertStatus(false)}>
                                 <AlertTitle>Info</AlertTitle>
-                                Para realizar una compra en modo de prueba
-                                solo se pueden usar credenciales de mercado pago
-                                que sean de prueba.
+                                To make a purchase in test mode, only test
+                                market payment credentials can be used.
                                 —
-                                <strong> Usuario: </strong> TESTUDIDCIFB,
-                                <strong> Contraseña: </strong> hExI9i0OTW
+                                <strong> User: </strong> TESTUDIDCIFB,
+                                <strong> Password: </strong> hExI9i0OTW
                             </Alert>
                         </Stack>
                     </AlertContainer>

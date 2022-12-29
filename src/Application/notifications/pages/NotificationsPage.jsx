@@ -169,7 +169,7 @@ export const NotificationsPage = () => {
           <Stack sx={{ width: '70%' }} spacing={2}>
             <Alert onClose={() => setInfoAlert(false)} severity="info">
               <AlertTitle>Info</AlertTitle>
-              Aún no tienes ningúna notificación.
+              You don't have any notification yet.
             </Alert>
           </Stack>
         </AlertContainer>
@@ -177,8 +177,8 @@ export const NotificationsPage = () => {
       <NotificationsPageContaiener>
         <TitleContaiener>
           <Typography color="gray" fontSize="16px" variant="body2">
-            - En la siguiente tabla se muestran los pedidos que ya fueron enviados
-            por la empresa hacia tí.
+            - The following table shows the orders that
+            have already been sent by the company to you.
           </Typography>
         </TitleContaiener>
         <TableContaiener>
@@ -187,14 +187,14 @@ export const NotificationsPage = () => {
               <TableHead>
                 <TableRow>
                   <StyledTableCell align="left">
-                    Cantidad de productos
+                    Quantity of products
                   </StyledTableCell>
                   <StyledTableCell align="center">
-                    Total a pagar
+                    Total to pay
                   </StyledTableCell>
                   {!sm && !md && (
                     <StyledTableCell align="center">
-                      Fecha del envio
+                      Shipping date
                     </StyledTableCell>
                   )}
                   <StyledTableCell align="center"></StyledTableCell>
@@ -225,7 +225,7 @@ export const NotificationsPage = () => {
                                     color: n.status ? "#000" : "#626567",
                                   }}
                                 >
-                                  {`${e.cart?.length} produtos`}
+                                  {`${e.cart?.length} products`}
                                 </TableCell>
                                 <TableCell
                                   align="center"
@@ -251,7 +251,7 @@ export const NotificationsPage = () => {
                                 )}
                                 <TableCell align="center">
                                   {n.status ? (
-                                    <Tooltip title="Marcar como visto" arrow>
+                                    <Tooltip title="Mark as seen" arrow>
                                       <IconButton
                                         size="large"
                                         aria-label="account of current user"
@@ -303,7 +303,7 @@ export const NotificationsPage = () => {
             </Box>
           )}
           <PaginationContaiener>
-            <Tooltip title="Página anterior" arrow>
+            <Tooltip title="Previous page" arrow>
               <IconButton
                 component="span"
                 disabled={(page <= 1) ? true : false}
@@ -313,9 +313,9 @@ export const NotificationsPage = () => {
               </IconButton>
             </Tooltip>
             <Typography color="#fff" fontSize="16px" variant="body2">
-              Página {page}
+              page {page}
             </Typography>
-            <Tooltip title="Página siguiente" arrow>
+            <Tooltip title="Next page" arrow>
               <IconButton
                 color="primary"
                 component="span"

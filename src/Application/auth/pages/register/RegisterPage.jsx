@@ -107,7 +107,7 @@ export const RegisterPage = () => {
 
   const { StartRegister, startGoogleLogin } = useAuthStore();
 
-    useGoogleOneTapLogin({
+  useGoogleOneTapLogin({
     onSuccess: credentialResponse => {
       startGoogleLogin(credentialResponse.credential);
     },
@@ -140,7 +140,7 @@ export const RegisterPage = () => {
     <LoginContainer>
       <SecondContainer>
         <HomeIconContainer>
-          <Tooltip title="Ir al inicio" arrow>
+          <Tooltip title="Home" arrow>
             <HomeIcon onClick={() => navigate("/")} />
           </Tooltip>
         </HomeIconContainer>
@@ -171,7 +171,7 @@ export const RegisterPage = () => {
                 required
                 fullWidth
                 id="name"
-                label="Nombre"
+                label="Name"
                 value={formik.values.name}
                 onChange={formik.handleChange}
                 error={formik.touched.name && Boolean(formik.errors.name)}
@@ -183,7 +183,7 @@ export const RegisterPage = () => {
                 required
                 fullWidth
                 id="email"
-                label="Correo Electrónico"
+                label="Email"
                 name="email"
                 autoComplete="email"
                 value={formik.values.email}
@@ -197,7 +197,7 @@ export const RegisterPage = () => {
                 required
                 fullWidth
                 name="password"
-                label="Contraseña"
+                label="Password"
                 type="password"
                 id="password"
                 autoComplete="new-password"
@@ -211,13 +211,13 @@ export const RegisterPage = () => {
             </Grid>
             <Grid item xs={12} sm={6}>
               <RegisterButton type="submit" fullWidth variant="contained">
-                Registrarse
+                Sign in
               </RegisterButton>
             </Grid>
           </Grid>
           <Grid container justifyContent="center" mt={3}>
             <Grid item>
-            <GoogleLogin
+              <GoogleLogin
                 onSuccess={credentialResponse => {
                   handleGoogleLogin(credentialResponse);
                 }}
@@ -232,7 +232,7 @@ export const RegisterPage = () => {
             <Grid item>
               <Link as={LinkRouter} to="/login" variant="body2">
                 <Typography variant="p" color="#1976D2">
-                  Ya tienes una cuenta?
+                  Do you already have an account?
                 </Typography>
               </Link>
             </Grid>

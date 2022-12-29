@@ -189,7 +189,7 @@ export const DataUserModal = ({ modalStatus, setModalStatus, setAlertStatus }) =
                     >
                         <TitleContainer>
                             <FontTitle color="GrayText" variant="body2">
-                                Datos del usuario
+                                User data
                             </FontTitle>
                         </TitleContainer>
 
@@ -200,7 +200,7 @@ export const DataUserModal = ({ modalStatus, setModalStatus, setAlertStatus }) =
                                     id="outlined-required"
                                     type="text"
                                     variant="outlined"
-                                    label="Provincia"
+                                    label="State"
                                     name="state"
                                     value={formik.values.state}
                                     onChange={formik.handleChange}
@@ -212,7 +212,7 @@ export const DataUserModal = ({ modalStatus, setModalStatus, setAlertStatus }) =
                                     id="outlined-required"
                                     type="text"
                                     variant="outlined"
-                                    label="Ciudad"
+                                    label="City"
                                     name="city"
                                     value={formik.values.city}
                                     onChange={formik.handleChange}
@@ -227,7 +227,7 @@ export const DataUserModal = ({ modalStatus, setModalStatus, setAlertStatus }) =
                                     id="outlined-required"
                                     type="text"
                                     variant="outlined"
-                                    label="Codigo postal"
+                                    label="Postal code"
                                     name="postalCode"
                                     value={formik.values.postalCode}
                                     onChange={formik.handleChange}
@@ -239,7 +239,7 @@ export const DataUserModal = ({ modalStatus, setModalStatus, setAlertStatus }) =
                                     id="outlined-required"
                                     type="text"
                                     variant="outlined"
-                                    label="Dirección"
+                                    label="Address"
                                     name="address"
                                     value={formik.values.address}
                                     onChange={formik.handleChange}
@@ -254,7 +254,7 @@ export const DataUserModal = ({ modalStatus, setModalStatus, setAlertStatus }) =
                                     id="outlined-required"
                                     type="text"
                                     variant="outlined"
-                                    label="N° Telefonico"
+                                    label="Number phone"
                                     name="numberPhone"
                                     value={formik.values.numberPhone}
                                     onChange={formik.handleChange}
@@ -266,11 +266,11 @@ export const DataUserModal = ({ modalStatus, setModalStatus, setAlertStatus }) =
 
                         <ButtonsContainer>
                             <Button variant="outlined" onClick={handleClose}>
-                                Cerrar
+                                Close
                             </Button>
 
                             <Button type="submit" variant="contained">
-                                Guardar
+                                Save
                             </Button>
                         </ButtonsContainer>
                     </Form>

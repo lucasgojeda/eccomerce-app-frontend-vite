@@ -123,7 +123,7 @@ export const SearchPage = () => {
             {products.length === 0 || !products ? (
               <CardsContainer>
                 <TitleFont variant="body2">
-                  No se ha encontrado ningún producto
+                  No product found
                 </TitleFont>
               </CardsContainer>
             ) : (
