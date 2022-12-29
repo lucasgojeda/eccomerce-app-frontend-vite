@@ -189,7 +189,7 @@ export const AccountPage = () => {
           </ImageContainer>
           <NameEmailContainer>
             <FontContainer>
-              <FontTitle variant='subtitle1'>Nombre</FontTitle>
+              <FontTitle variant='subtitle1'>Name</FontTitle>
               <Font variant='body1'>{name}</Font>
             </FontContainer>
             <FontContainer>
@@ -201,30 +201,30 @@ export const AccountPage = () => {
         <SecondContainer>
           <EditButtonContainer>
             <Button variant='contained' color='secondary' onClick={() => setModalStatus(true)}>
-              Editar
+              Edit
             </Button>
           </EditButtonContainer>
           <DirectionContainer>
             <FontContainer>
-              <FontTitle variant='subtitle1'>Provincia</FontTitle>
+              <FontTitle variant='subtitle1'>State</FontTitle>
               <Font variant='body1'>{(!!data) ? data.state : '(vacío)'}</Font>
             </FontContainer>
             <FontContainer>
-              <FontTitle variant='subtitle1'>Ciudad</FontTitle>
+              <FontTitle variant='subtitle1'>City</FontTitle>
               <Font variant='body1'>{(!!data) ? data.city : '(vacío)'}</Font>
             </FontContainer>
             <FontContainer>
-              <FontTitle variant='subtitle1'>Dirección</FontTitle>
+              <FontTitle variant='subtitle1'>Address</FontTitle>
               <Font variant='body1'>{(!!data) ? data.address : '(vacío)'}</Font>
             </FontContainer>
           </DirectionContainer>
           <ContactContainer>
             <FontContainer>
-              <FontTitle variant='subtitle1'>Código postal</FontTitle>
+              <FontTitle variant='subtitle1'>Postal code</FontTitle>
               <Font variant='body1'>{(!!data) ? data.postalCode : '(vacío)'}</Font>
             </FontContainer>
             <FontContainer>
-              <FontTitle variant='subtitle1'>Celular</FontTitle>
+              <FontTitle variant='subtitle1'>Number phone</FontTitle>
               <Font variant='body1'>{(!!data) ? data.numberPhone : '(vacío)'}</Font>
             </FontContainer>
           </ContactContainer>

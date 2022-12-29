@@ -83,7 +83,7 @@ export const NavbarUnlogged = () => {
       </MenuContainer>
 
       <IconsContainer>
-        <Tooltip title="Ir al inicio" arrow>
+        <Tooltip title="Home" arrow>
           <HomeIcon
             sx={{ fontSize: "25px", mr: "1vw" }}
             onClick={() => navigate("/")}
@@ -101,7 +101,7 @@ export const NavbarUnlogged = () => {
 
         <Font variant="body2" onClick={() => navigate("/login")}>
           <AccountCircleIcon sx={{ fontSize: "22.5px", ml: "1vw", mr: '2.5px' }} />
-          Iniciar sessión
+          Log in
         </Font>
       </IconsContainer>
 

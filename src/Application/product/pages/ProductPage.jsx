@@ -386,7 +386,7 @@ export const ProductPage = () => {
 
     if (
       window.scrollY === touchStart.scrollY &&
-      touchStart.touchX === e.changedTouches[0].clientX && 
+      touchStart.touchX === e.changedTouches[0].clientX &&
       !sm
     ) {
       setModalViewOpen(true);
@@ -503,12 +503,12 @@ export const ProductPage = () => {
                     }}
                   >
                     <Typography fontSize={12} variant="body2">
-                      Ir al carrito
+                      Go to cart
                     </Typography>
                   </GoToCartButton>
 
                   <ButtonsContainer className='buttonsContainer'>
-                    <Tooltip title="Añadir al carrito" arrow>
+                    <Tooltip title="Add to cart" arrow>
                       <ShoppingCartIconButton
                         aria-label="account of current user"
                         aria-controls="menu-appbar"
@@ -538,7 +538,7 @@ export const ProductPage = () => {
                       <DoneOutlineIcon />
                     </SuccessCartIconButton>
 
-                    <Tooltip title="Quitar del carrito" arrow>
+                    <Tooltip title="Remove to cart" arrow>
                       <ClearCartIconButton
                         className="clearIconButton"
                         size="small"
@@ -595,8 +595,8 @@ export const ProductPage = () => {
           {value === 1 && (
             <DescriptionContainer>
               <DescriptionFont variant="body1" color="text.primary">
-                Envíos sin cargo a toda la ciudad de la plata, y envíos por
-                correo Argentino a todo el país.
+                Free shipping to the entire city of La Plata, and shipments
+                by Argentine mail to the whole country.
               </DescriptionFont>
             </DescriptionContainer>
           )}
@@ -604,12 +604,11 @@ export const ProductPage = () => {
           {value === 2 && (
             <DescriptionContainer>
               <DescriptionFont variant="body1" color="text.primary">
-                El cliente dispone de 14 días como maximo para devolver un
-                producto que ha adquirido desde la fecha en la que lo haya
-                recibido, los gastos por devolucion, son cubiertas por el
-                usuario mismo, devolveremos el monto total del articulo, siempre
-                y cuando este en perfectas condiciones, con su caja y sus otros
-                accesorios.
+                The client has a maximum of 14 days to return a product
+                that he has purchased from the date on which he received it,
+                the return expenses are covered by the user himself, we will
+                refund the total amount of the article, as long as it is in
+                perfect condition with its box and its other accessories.
               </DescriptionFont>
             </DescriptionContainer>
           )}

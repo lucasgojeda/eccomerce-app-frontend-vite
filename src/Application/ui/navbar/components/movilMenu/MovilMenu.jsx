@@ -130,7 +130,7 @@ export const MovilMenu = () => {
         <Box sx={{ width: "75vw" }}>
           <TitleContainer>
             <Typography variant="body2" fontSize={17} color="inherit">
-              Menú
+              Menu
             </Typography>
           </TitleContainer>
           <Divider />
@@ -141,7 +141,7 @@ export const MovilMenu = () => {
                   <ListItemIcon>
                     <HomeIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Inicio" />
+                  <ListItemText primary="Home" />
                 </ListItemButton>
               </ListItem>
             </List>
@@ -154,7 +154,7 @@ export const MovilMenu = () => {
                     <ListItemIcon>
                     <Avatar alt="Lucas Ojeda" src="https://res.cloudinary.com/the-kings-company/image/upload/v1671396595/user-ecommerce/Avatar-Profile-PNG-Free-Image_yeonm0.png" />
                     </ListItemIcon>
-                    <ListItemText primary="Mi cuenta" />
+                    <ListItemText primary="My account" />
                   </ListItemButton>
                 </ListItem>
               </List>
@@ -166,7 +166,7 @@ export const MovilMenu = () => {
                         <ShoppingCartIcon />
                       </Badge>
                     </ListItemIcon>
-                    <ListItemText primary="Ir al carrito" />
+                    <ListItemText primary="Go to cart" />
                   </ListItemButton>
                 </ListItem>
               </List>
@@ -178,7 +178,7 @@ export const MovilMenu = () => {
                         <NotificationsIcon />
                       </Badge>
                     </ListItemIcon>
-                    <ListItemText primary="Ver notificaciones" />
+                    <ListItemText primary="Notifications" />
                   </ListItemButton>
                 </ListItem>
               </List>
@@ -188,7 +188,7 @@ export const MovilMenu = () => {
                     <ListItemIcon>
                       <LogoutIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Cerrar sesión" />
+                    <ListItemText primary="Log out" />
                   </ListItemButton>
                 </ListItem>
               </List>
@@ -201,7 +201,7 @@ export const MovilMenu = () => {
                     <ListItemIcon>
                       <AccountCircleIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Iniciar sesión" />
+                    <ListItemText primary="Log in" />
                   </ListItemButton>
                 </ListItem>
               </List>
@@ -211,7 +211,7 @@ export const MovilMenu = () => {
                     <ListItemIcon>
                       <LoginIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Registrarse" />
+                    <ListItemText primary="Sign in" />
                   </ListItemButton>
                 </ListItem>
               </List>

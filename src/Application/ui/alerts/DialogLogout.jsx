@@ -37,15 +37,15 @@ export const DialogLogout = ({
       <DialogTitle id="responsive-dialog-title">{"Advertencia"}</DialogTitle>
       <DialogContent>
         <DialogContentText>
-          Está seguro que desea cerrar sesión?
+          Are you sure you want to log out?
         </DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button autoFocus onClick={handleClose}>
-          Cancelar
+          Cancel
         </Button>
         <Button autoFocus onClick={handleLogout}>
-          Aceptar
+          Accept
         </Button>
       </DialogActions>
     </Dialog>

@@ -241,7 +241,7 @@ export const CartPage = () => {
   })]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalProducts, setTotalProducts] = useState(0);
-  const [infoAlertStatus, setInfoAlertStatus] = useState(false); 
+  const [infoAlertStatus, setInfoAlertStatus] = useState(false);
 
   const theme = useTheme();
   const sm = useMediaQuery(theme.breakpoints.down("sm"));
@@ -273,7 +273,10 @@ export const CartPage = () => {
 
   const handleBuy = () => {
 
-    startPayment(cartProducts, setInfoAlertStatus);
+    if (cartProducts.length !== 0) {
+
+      startPayment(cartProducts, setInfoAlertStatus);
+    }
   };
 
   const handleIncreasedQuantity = ({ id }) => {
@@ -361,7 +364,7 @@ export const CartPage = () => {
               </>
             ) : (
               <ThereIsNotAnyProductContainer>
-                <h3>Aún no hay ningún producto en el carrito</h3>
+                <h3>There are no products in the cart yet</h3>
               </ThereIsNotAnyProductContainer>
             )}
           </>
@@ -369,7 +372,7 @@ export const CartPage = () => {
 
         <TotalAndButtonContainer>
           <TotalProductsContainer>
-            <Typography>Cantidad de productos</Typography>
+            <Typography>Quantity of products</Typography>
 
             <FontProducts>
               {totalProducts}
@@ -377,7 +380,7 @@ export const CartPage = () => {
           </TotalProductsContainer>
 
           <TotalContainer>
-            <Typography>Monto total a pagar</Typography>
+            <Typography>Total amount to pay</Typography>
 
             <FontPrice>
               {`$${new Intl.NumberFormat("es-IN").format(totalPrice)}`}
@@ -386,7 +389,7 @@ export const CartPage = () => {
 
           <ButtonContainer>
             <BuyButton variant="contained" onClick={handleBuy}>
-              Comprar
+              Buy
             </BuyButton>
           </ButtonContainer>
         </TotalAndButtonContainer>

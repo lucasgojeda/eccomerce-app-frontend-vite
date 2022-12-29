@@ -233,9 +233,9 @@ export const CardProduct = ({ product }) => {
               display: !cartStatus && "none",
             }}
           >
-            <Font onClick={handleGoToCart}>Carrito</Font>
+            <Font onClick={handleGoToCart}>Cart</Font>
           </LabelCartContainer>
-          <Tooltip title="Añadir al carrito" arrow>
+          <Tooltip title="Add to cart" arrow>
             <IconButton
               className="ShoppingCartIcon"
               size="small"
@@ -266,7 +266,7 @@ export const CardProduct = ({ product }) => {
               <DoneOutlineIcon />
             </IconButton>
 
-            <Tooltip title="Quitar del carrito" arrow>
+            <Tooltip title="Remove from cart" arrow>
               <IconButton
                 className="ClearIcon"
                 size="small"

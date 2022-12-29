@@ -139,7 +139,7 @@ export const LoginPage = () => {
     <LoginContainer>
       <SecondContainer>
         <HomeIconContainer>
-          <Tooltip title="Ir al inicio" arrow>
+          <Tooltip title="Home" arrow>
             <HomeIcon onClick={() => navigate("/")} />
           </Tooltip>
         </HomeIconContainer>
@@ -166,7 +166,7 @@ export const LoginPage = () => {
               <TextField
                 fullWidth
                 id="email"
-                label="Correo Electrónico"
+                label="Email"
                 name="email"
                 autoComplete="email"
                 value={formik.values.email}
@@ -179,7 +179,7 @@ export const LoginPage = () => {
               <TextField
                 fullWidth
                 name="password"
-                label="Contraseña"
+                label="Password"
                 type="password"
                 id="password"
                 autoComplete="password"
@@ -198,7 +198,7 @@ export const LoginPage = () => {
                 variant="contained"
                 size="large"
               >
-                Ingresar
+                Login
               </LoginButton>
             </Grid>
           </Grid>
@@ -219,7 +219,7 @@ export const LoginPage = () => {
             <Grid item>
               <Link as={LinkRouter} to="/register" variant="body2">
                 <Typography variant="p" color="#1976D2">
-                  No tienes una cuenta?
+                  You do not have an account?
                 </Typography>
               </Link>
             </Grid>

@@ -52,22 +52,21 @@ export const DialogData = ({ dialogDataStatus, setDialogDataStatus, setAlertStat
                 aria-labelledby="responsive-dialog-title"
             >
                 <DialogTitle id="responsive-dialog-title">
-                    {"Datos de contacto"}
+                    {"User data"}
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        Para completar su registro necesitaremos algunos datos de contacto.
-                        (Al estar usando una versión demo puede elegir llenar los
-                        datos con información demostrativa automaticamente
-                        o bien hacerlo en forma manual)
+                        To complete your registration we need some contact information.
+                        (When using a demo version you can choose to fill the data with
+                        demo information automatically or do it manually)
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>
-                        Manualmente
+                        Manually
                     </Button>
                     <Button autoFocus onClick={handleClick}>
-                        Automaticamente
+                        Automatically
                     </Button>
                 </DialogActions>
             </Dialog>

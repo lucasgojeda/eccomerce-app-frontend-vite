@@ -41,7 +41,7 @@ export const FilterMenu = ({ orderBy, handleOrderBy }) => {
     };
     return (
         <div>
-            <Tooltip title="Ordenar por" arrow>
+            <Tooltip title="Order by" arrow>
                 <IconButton
                     aria-label="more"
                     aria-haspopup="true"
@@ -74,10 +74,10 @@ export const FilterMenu = ({ orderBy, handleOrderBy }) => {
                 TransitionComponent={Fade}
             >
                 <MenuItem onClick={handleMayorPrice}>
-                    Mayor precio
+                    Higher price
                 </MenuItem>
                 <MenuItem onClick={handleMenorPrice}>
-                    Menor precio
+                    Lower price
                 </MenuItem>
             </Menu>
         </div>
