@@ -6,11 +6,14 @@ import Stack from '@mui/material/Stack';
 
 import { styled } from "@mui/material/styles";
 import { Button, Typography } from '@mui/material';
-import { useAuthStore } from '../../../hooks';
-import { DataUserModal } from '../components/DataUserModal';
-import { SuccessUpdateAlert } from '../components/SuccessUpdateAlert';
-import { DialogData } from '../components/DialogData';
+
+/** Components */
+import { DataUserModal } from '../../account';
+import { SuccessUpdateAlert } from '../../account';
 import { Footer } from '../../ui';
+
+/** Custom hooks */
+import { useAuthStore } from '../../../hooks';
 
 /** Material UI - Custom components */
 const AccountPageContainer = styled("div")(({ theme }) => ({
@@ -125,7 +128,6 @@ const EditButtonContainer = styled("div")(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {
     height: "30vh",
     width: "100%",
-    marginTop: 0,
     borderRadius: 0,
     paddingTop: 0,
     paddingRight: 0,
@@ -161,7 +163,6 @@ export const AccountPage = () => {
   const { name, email, data } = useAuthStore();
 
   const [modalStatus, setModalStatus] = useState(false);
-  const [dialogDataStatus, setDialogDataStatus] = useState(!data);
   const [alertStatus, setAlertStatus] = useState(false);
 
   return (
@@ -170,11 +171,6 @@ export const AccountPage = () => {
         <DataUserModal
           modalStatus={modalStatus}
           setModalStatus={setModalStatus}
-          setAlertStatus={setAlertStatus}
-        />
-        <DialogData
-          dialogDataStatus={dialogDataStatus}
-          setDialogDataStatus={setDialogDataStatus}
           setAlertStatus={setAlertStatus}
         />
         <SuccessUpdateAlert

@@ -17,11 +17,10 @@ import CloseIcon from "@mui/icons-material/Close";
 
 /** Components */
 import { Footer } from "../../ui";
+import { InfoCredentialsAlert } from "../../cart";
 
 /** Custom hooks */
 import { useAuthStore, useCartStore } from "../../../hooks";
-import { Box } from "@mui/system";
-import { InfoCredentialsAlert } from "../components/InfoCredentialsAlert";
 
 /** Material UI - Custom components */
 const CartPageContainer = styled("div")(({ theme }) => ({

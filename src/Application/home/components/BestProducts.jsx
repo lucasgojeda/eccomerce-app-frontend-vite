@@ -14,10 +14,10 @@ import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 
 /** Components */
-import { CardProduct } from "../../../home";
+import { CardProduct } from "../../home";
 
 /** Custom hooks */
-import { useProductsStore } from "../../../../hooks";
+import { useProductsStore } from "../../../hooks";
 
 /** Material UI - Custom components */
 const CategoryContainer = styled("div")(({ theme }) => ({

@@ -1,7 +1,8 @@
+/** Libraries */
 import { Navigate, useLocation } from "react-router-dom";
 
+/** Custom hooks */
 import { useAuthStore } from "../hooks";
-
 
 export const PrivateRoute = ({ children }) => {
 

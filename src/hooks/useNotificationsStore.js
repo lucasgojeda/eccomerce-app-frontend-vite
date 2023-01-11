@@ -1,7 +1,10 @@
+/** Libraries */
 import { useDispatch, useSelector } from 'react-redux';
 
+/** API */
 import ecommerceApi from '../api/ecommerceApi';
 
+/** Redux toolkit - Slices */
 import {
     loadNotifications,
     updateNotification
@@ -14,7 +17,6 @@ import {
     uiStartNotificationsTable,
     uiStopNotificationsTable
 } from "../store/slices/uiSlice";
-
 
 export const useNotificationsStore = () => {
 
@@ -85,7 +87,6 @@ export const useNotificationsStore = () => {
         }
 
     }
-
 
     return {
         //* Propiedades

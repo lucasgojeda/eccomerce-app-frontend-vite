@@ -1,7 +1,6 @@
 /** Libraries */
 import * as React from 'react';
 import Alert from '@mui/material/Alert';
-import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 
 import { styled } from "@mui/material/styles";

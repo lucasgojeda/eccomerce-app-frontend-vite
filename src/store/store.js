@@ -1,5 +1,7 @@
+/** Libraries */
 import { configureStore } from '@reduxjs/toolkit';
 
+/** Redux toolkit - Slices */
 import { authSlice } from './slices/authSlice';
 import { cartSlice } from './slices/cartSlice';
 import { categoriesSlice } from './slices/categoriesSlice';
