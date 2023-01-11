@@ -1,5 +1,7 @@
+/** Libraries */
 import axios from 'axios';
 
+/** Helpers */
 import { getEnvironmets } from '../helpers';
 
 const { VITE_REACT_APP_API_URL } = getEnvironmets();

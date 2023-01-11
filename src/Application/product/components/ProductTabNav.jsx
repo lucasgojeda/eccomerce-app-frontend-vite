@@ -1,6 +1,7 @@
 /** Libraries */
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 

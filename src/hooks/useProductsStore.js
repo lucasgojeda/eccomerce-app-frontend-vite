@@ -1,7 +1,10 @@
+/** Libraries */
 import { useDispatch, useSelector } from "react-redux";
 
+/** API */
 import ecommerceApi from "../api/ecommerceApi";
 
+/** Redux toolkit - Slices */
 import {
   loadBestProducts,
   loadProducts,
@@ -30,34 +33,6 @@ export const useProductsStore = () => {
         console.log(msg);
       }
     } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const startLoadProductsByCategories = async () => {
-    // const term = (searchText !== '' && searchText) ? searchText : 'home';
-
-    try {
-      // dispatch(uiStartTableLoading());
-
-      const { data } = await ecommerceApi.get("products/productsByCategories");
-
-      const { msg, results } = data;
-
-      if (msg === "OK") {
-        console.log(results);
-
-        // dispatch(loadProducts(filteredProducts));
-
-        // window.scroll(0, 0);
-
-        // dispatch(uiStopTableLoading());
-      } else {
-        // dispatch(uiStopTableLoading());
-        console.log(msg);
-      }
-    } catch (error) {
-      // dispatch(uiStopTableLoading());
       console.log(error);
     }
   };
@@ -104,7 +79,6 @@ export const useProductsStore = () => {
     bestProducts,
 
     //* Métodos
-    startLoadProductsByCategories,
     startLoadProducts,
     startLoadBestProducts,
   };

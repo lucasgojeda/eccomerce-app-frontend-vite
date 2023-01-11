@@ -25,7 +25,7 @@ import { ProductModalView } from "../../product";
 import { Footer } from "../../ui";
 
 /** Custom hooks */
-import {
+import { 
   useAuthStore,
   useCartStore,
   useCategoriesStore,
@@ -252,7 +252,6 @@ const DescriptionContainer = styled('div')(({ theme }) => ({
   borderRadius: '5px',
   width: '100%',
   minHeight: '10ch',
-  overflow: 'hidden',
   margin: 'auto',
   marginBottom: '2.5vh',
   objectFit: 'cover',

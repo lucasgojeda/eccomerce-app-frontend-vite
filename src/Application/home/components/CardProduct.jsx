@@ -13,7 +13,7 @@ import DoneOutlineIcon from "@mui/icons-material/DoneOutline";
 import ClearIcon from "@mui/icons-material/Clear";
 
 /** Custom hooks */
-import { useAuthStore, useCartStore } from "../../../../hooks";
+import { useAuthStore, useCartStore } from "../../../hooks";
 
 /** Material UI - Custom components */
 const ProductContainer = styled("div")(({ theme }) => ({

@@ -1,9 +1,11 @@
+/** Libraries */
 import { useDispatch, useSelector } from 'react-redux';
 
+/** API */
 import ecommerceApi from '../api/ecommerceApi';
 
+/** Redux toolkit - Slices */
 import { cartLogout } from "../store/slices/cartSlice";
-
 
 import {
     addNewSale,
@@ -15,12 +17,10 @@ import {
     uiOpenSuccessAlert,
 } from "../store/slices/uiSlice";
 
-
 export const useSalesStore = () => {
 
     const dispatch = useDispatch();
     const { sales } = useSelector(state => state.sales);
-
 
     const salesStartAddNew = async () => {
 

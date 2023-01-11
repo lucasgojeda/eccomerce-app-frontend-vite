@@ -9,14 +9,16 @@ import queryString from "query-string";
 
 import { styled } from "@mui/material/styles";
 
-/** Material UI - Iconst */
+/** Material UI - Icons */
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 
+/** Components */
+import { FilterMenu } from "../../../ui";
+
 /** Custom hooks */
-import { useProductsStore } from "../../../../../hooks";
-import { FilterMenu } from "../filterMenu/FilterMenu";
+import { useProductsStore } from "../../../../hooks";
 
 /** Material UI - Custom components */
 export const SearchContainer = styled("div")(({ theme }) => ({

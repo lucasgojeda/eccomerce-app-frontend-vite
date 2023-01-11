@@ -107,6 +107,7 @@ export const LoginPage = () => {
 
   const { StartLogin, startGoogleLogin } = useAuthStore();
 
+  /** Google oauth */
   useGoogleOneTapLogin({
     onSuccess: credentialResponse => {
       startGoogleLogin(credentialResponse.credential);

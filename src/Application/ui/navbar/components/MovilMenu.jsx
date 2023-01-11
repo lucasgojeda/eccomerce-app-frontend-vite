@@ -29,12 +29,16 @@ import LoginIcon from "@mui/icons-material/Login";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LogoutIcon from "@mui/icons-material/Logout";
+
+/** Components */
+import { DialogLogout } from "../../../ui";
+
+/** Custom hooks */
 import {
   useAuthStore,
   useCartStore,
   useNotificationsStore,
-} from "../../../../../hooks";
-import { DialogLogout } from "../../../../ui";
+} from "../../../../hooks";
 
 const TitleContainer = styled("div")(({ theme }) => ({
   display: "flex",

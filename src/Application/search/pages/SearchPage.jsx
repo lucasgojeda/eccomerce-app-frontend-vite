@@ -4,6 +4,8 @@ import { styled } from "@mui/material/styles";
 import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
 
+import { Typography } from "@mui/material";
+
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 
@@ -13,7 +15,6 @@ import { Footer } from "../../ui";
 
 /** Custom hooks */
 import { useProductsStore, useUiStore } from "../../../hooks";
-import { Typography } from "@mui/material";
 
 /** Material UI - Custom components */
 const SearchPageContainer = styled("div")(({ theme }) => ({

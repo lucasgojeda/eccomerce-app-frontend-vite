@@ -1,4 +1,6 @@
 /** Libraries */
+import { useState } from "react";
+
 import moment from "moment";
 import "moment-timezone";
 import "moment/locale/es";
@@ -31,11 +33,10 @@ import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
 /** Components */
-import { useNotificationsStore, useUiStore } from "../../../hooks";
+import { Footer } from "../../ui";
 
 /** Custom hooks */
-import { Footer } from "../../ui";
-import { useState } from "react";
+import { useNotificationsStore, useUiStore } from "../../../hooks";
 
 /** Material UI - Custom components */
 const NotificationsPageContaiener = styled("div")(({ theme }) => ({

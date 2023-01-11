@@ -1,11 +1,15 @@
+/** Libraries */
 import { useDispatch, useSelector } from "react-redux";
 
+/** API */
+import ecommerceApi from "../api/ecommerceApi";
+
+/** Helpers */
 import { getEnvironmets } from '../helpers';
 
 const { VITE_REACT_APP_API_URL, VITE_REACT_APP_FRONT_URL } = getEnvironmets();
 
-import ecommerceApi from "../api/ecommerceApi";
-
+/** Redux toolkit - Slices */
 import {
   deleteCartProduct,
   updateCartProduct,

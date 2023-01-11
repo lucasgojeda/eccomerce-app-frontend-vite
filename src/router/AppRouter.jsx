@@ -1,33 +1,35 @@
+/** Libraries */
 import React, { useEffect } from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 
-import {
-  useAuthStore,
-  useCategoriesStore,
-  useNotificationsStore,
-  useProductsStore,
-} from "../hooks";
-
+/** Middlewares */
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
 
+/** Components */
 import { LoginPage, RegisterPage } from "../Application/auth";
-import {
-  NavbarLogged,
-  NavbarUnlogged,
-  ProgressBackdrop,
-} from "../Application/ui";
 import { HomePage } from "../Application/home";
 import { CartPage } from "../Application/cart";
 import { NotificationsPage } from "../Application/notifications";
 import { ProductPage } from "../Application/product";
 import { SearchPage } from "../Application/search";
 import { AccountPage } from "../Application/account";
-// import { ErrorAlert } from '../components/dashboard/ui/alerts/ErrorAlert';
-// import { SuccessAlert } from '../components/dashboard/ui/alerts/SuccessAlert';
+
+import {
+  NavbarLogged,
+  NavbarUnlogged,
+  ProgressBackdrop,
+} from "../Application/ui";
+
+/** Custom hooks */
+import {
+  useAuthStore,
+  useCategoriesStore,
+  useProductsStore,
+} from "../hooks";
 
 
 export const AppRouter = () => {
@@ -35,10 +37,7 @@ export const AppRouter = () => {
   const {
     uid,
     checking,
-    role,
-    data,
     startChecking,
-    startGoogleLogin
   } = useAuthStore();
 
   const { startLoadBestProducts } = useProductsStore();
@@ -68,6 +67,7 @@ export const AppRouter = () => {
 
   return (
     <BrowserRouter>
+    
       <ProgressBackdrop />
 
       <Routes>

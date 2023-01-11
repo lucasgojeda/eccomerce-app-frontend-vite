@@ -1,3 +1,4 @@
+/** Libraries */
 import { createSlice } from '@reduxjs/toolkit';
 
 export const uiSlice = createSlice({
@@ -12,7 +13,6 @@ export const uiSlice = createSlice({
       title: ''
     },
     progressBackdrop: { status: false },
-    dialogDelete: false,
     searchProducts: false,
     notificationsTable: false,
   },
@@ -86,14 +86,6 @@ export const uiSlice = createSlice({
 
       state.progressBackdrop = { status: false };
     },
-    uiOpenDialogDelete: (state) => {
-
-      state.dialogDelete = true;
-    },
-    uiCloseDialogDelete: (state) => {
-
-      state.dialogDelete = false;
-    },
   },
 })
 
@@ -116,7 +108,5 @@ export const {
   uiCloseErrorAlert,
   uiOpenProgressBackdrop,
   uiCloseProgressBackdrop,
-  uiOpenDialogDelete,
-  uiCloseDialogDelete,
 
 } = uiSlice.actions;

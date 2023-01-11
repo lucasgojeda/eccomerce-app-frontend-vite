@@ -14,7 +14,7 @@ import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 
 /** Components */
-import { CardProduct } from "../../../home";
+import { CardProduct } from "../../home"; 
 
 /** Material UI - Custom components */
 const CategoryContainer = styled("div")(({ theme }) => ({

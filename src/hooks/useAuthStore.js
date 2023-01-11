@@ -1,9 +1,12 @@
+/** Libraries */
 import { useDispatch, useSelector } from "react-redux";
 
 import { googleLogout } from '@react-oauth/google';
 
+/** API */
 import ecommerceApi from "../api/ecommerceApi";
 
+/** Redux toolkit - Slices */
 import { notificationsLogout } from "../store/slices/notificationsSlice";
 
 import {
@@ -19,8 +22,8 @@ import {
 
 import { cartLogout, loadCart } from "../store/slices/cartSlice";
 
+/** Custom hooks */
 import { useNotificationsStore } from "./useNotificationsStore";
-import { useProductsStore } from "./useProductsStore";
 
 export const useAuthStore = () => {
   const dispatch = useDispatch();
@@ -34,8 +37,6 @@ export const useAuthStore = () => {
   } = useSelector((state) => state.auth);
 
   const { startLoadNotifications } = useNotificationsStore();
-
-  const { startLoadProducts } = useProductsStore();
 
   const StartLogin = async ({ email, password }) => {
     try {
@@ -128,7 +129,7 @@ export const useAuthStore = () => {
         _id,
         name: _name,
         role: _role,
-        cart,
+        cart, 
         email: _email,
         data: _data
       } = data;

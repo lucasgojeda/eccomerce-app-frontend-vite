@@ -11,7 +11,7 @@ import Tooltip from "@mui/material/Tooltip";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 
 /** Custom hooks */
-import { useNotificationsStore } from "../../../../../hooks";
+import { useNotificationsStore } from "../../../../hooks";
 
 export const NotificationsItem = () => {
   const navigate = useNavigate();

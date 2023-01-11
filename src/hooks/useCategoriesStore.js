@@ -1,17 +1,18 @@
+/** Libraries */
 import { useDispatch, useSelector } from 'react-redux';
 
+/** API */
 import ecommerceApi from '../api/ecommerceApi';
 
+/** Redux toolkit - Slices */
 import {
     loadCategories,
 } from "../store/slices/categoriesSlice";
-
 
 export const useCategoriesStore = () => {
 
     const dispatch = useDispatch();
     const { categories } = useSelector(state => state.categories);
-
 
     const startLoadCategories = async () => {
 
@@ -37,7 +38,6 @@ export const useCategoriesStore = () => {
             return console.log(error);
         }
     }
-
 
     return {
         //* Propiedades

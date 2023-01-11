@@ -11,7 +11,7 @@ import IconButton from "@mui/material/IconButton";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 /** Custom hooks */
-import { useCartStore } from "../../../../../hooks";
+import { useCartStore } from "../../../../hooks";
 
 export const CartItem = () => {
   const navigate = useNavigate();
