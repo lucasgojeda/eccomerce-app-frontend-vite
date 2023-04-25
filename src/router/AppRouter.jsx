@@ -2,6 +2,10 @@
 import React, { useEffect } from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
+import Stack from "@mui/material/Stack";
+
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 
@@ -25,20 +29,10 @@ import {
 } from "../Application/ui";
 
 /** Custom hooks */
-import {
-  useAuthStore,
-  useCategoriesStore,
-  useProductsStore,
-} from "../hooks";
-
+import { useAuthStore, useCategoriesStore, useProductsStore } from "../hooks";
 
 export const AppRouter = () => {
-
-  const {
-    uid,
-    checking,
-    startChecking,
-  } = useAuthStore();
+  const { uid, checking, startChecking } = useAuthStore();
 
   const { startLoadBestProducts } = useProductsStore();
   const { categories, startLoadCategories } = useCategoriesStore();
@@ -49,11 +43,15 @@ export const AppRouter = () => {
     startChecking();
   }, []);
 
-
   if (checking || !categories) {
     return (
       <Backdrop
-        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          color: "#fff",
+          zIndex: (theme) => theme.zIndex.drawer + 1,
+        }}
         open={true}
       >
         <CircularProgress
@@ -61,13 +59,19 @@ export const AppRouter = () => {
           size="80px"
           sx={{ display: "block" }}
         />
+        <Stack sx={{ width: "300px", marginTop: "5vh" }} spacing={2}>
+          <Alert severity="info">
+            <AlertTitle>Info</AlertTitle>
+            <strong>The server is for free</strong> so this can take a bit of
+            time the first time you start it. Thanks for your time!
+          </Alert>
+        </Stack>
       </Backdrop>
     );
   }
 
   return (
     <BrowserRouter>
-    
       <ProgressBackdrop />
 
       <Routes>
