@@ -45,7 +45,7 @@ const TitleContainer = styled("div")(({ theme }) => ({
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
-    breakpoint: { min: 1201 },
+    breakpoint: { max: 4000, min: 1201 },
     items: 3,
   },
   desktop: {
@@ -137,13 +137,14 @@ export const BestProducts = () => {
               "superLargeDesktop",
             ]}
             containerClass="carousel-container"
-            dotListClass="custom-dot-list-style" width={(sm) ? "17.5ch" : "20ch"}
+            dotListClass="custom-dot-list-style"
+            width={sm ? "17.5ch" : "20ch"}
             itemClass="carousel-item-padding-40-px"
           >
             <Stack spacing={1}>
               <Skeleton
                 variant="rectangular"
-                width={(sm) ? "17.5ch" : "20ch"}
+                width={sm ? "17.5ch" : "20ch"}
                 height="20ch"
                 animation="wave"
               />
@@ -151,7 +152,7 @@ export const BestProducts = () => {
             <Stack spacing={1}>
               <Skeleton
                 variant="rectangular"
-                width={(sm) ? "17.5ch" : "20ch"}
+                width={sm ? "17.5ch" : "20ch"}
                 height="20ch"
                 animation="wave"
               />
@@ -159,7 +160,7 @@ export const BestProducts = () => {
             <Stack spacing={1}>
               <Skeleton
                 variant="rectangular"
-                width={(sm) ? "17.5ch" : "20ch"}
+                width={sm ? "17.5ch" : "20ch"}
                 height="20ch"
                 animation="wave"
               />
@@ -167,7 +168,7 @@ export const BestProducts = () => {
             <Stack spacing={1}>
               <Skeleton
                 variant="rectangular"
-                width={(sm) ? "17.5ch" : "20ch"}
+                width={sm ? "17.5ch" : "20ch"}
                 height="20ch"
                 animation="wave"
               />
@@ -175,7 +176,7 @@ export const BestProducts = () => {
             <Stack spacing={1}>
               <Skeleton
                 variant="rectangular"
-                width={(sm) ? "17.5ch" : "20ch"}
+                width={sm ? "17.5ch" : "20ch"}
                 height="20ch"
                 animation="wave"
               />
